@@ -1,4 +1,9 @@
 package es.sfernandez.raceyourtrack;
 
-public class MainActivity {
+import android.app.Activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
 }
