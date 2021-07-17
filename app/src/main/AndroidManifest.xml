@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="es.sfernandez.raceyourtrack">
 
+    <!-- Bluetooth's permission -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!--  -->
+
     <application
         android:name=".RaceYourTrackApplication"
         android:allowBackup="true"
@@ -27,7 +32,7 @@
             android:theme="@style/Theme.AppCompat"/>
 
         <activity
-            android:name=".CarControllerActivity"
+            android:name=".carController.CarControllerActivity"
             android:label="@string/free_ride"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="landscape"

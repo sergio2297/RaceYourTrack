@@ -38,7 +38,7 @@ public class Settings {
 
     //---- Methods ----
     private void initializeSettings() {
-        List<SettingsRow> listSettingsRows = new ArrayList<SettingsRow>(); //FIXME: Refactorizable a getAbbreviature en lugar de name
+        List<SettingsRow> listSettingsRows = new ArrayList<SettingsRow>();
         listSettingsRows.add(new SettingsRow(DaoSettings.SOUND_GROUP, DaoSettings.ENABLE_VAR, DaoSettings.TRUE_VALUE));
         listSettingsRows.add(new SettingsRow(DaoSettings.CONTROL_GROUP, DaoSettings.CONTROL_CONFIG_TYPE_VAR, DrivingModeConfig.BASIC.getName()));
         listSettingsRows.add(new SettingsRow(DaoSettings.CONTROL_GROUP, DaoSettings.PEDALS_VAR, DrivingModeConfig.BASIC.getPedalsConfig().getName()));

@@ -1,6 +1,8 @@
 package model.settings.configurable;
 
-public abstract class ConfigurableProperty {
+import java.io.Serializable;
+
+public abstract class ConfigurableProperty implements Serializable {
 
     //---- Attributes ----
     private final char abbreviation;

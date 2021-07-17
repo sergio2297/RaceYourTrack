@@ -6,7 +6,12 @@ import android.widget.ArrayAdapter;
 
 import androidx.appcompat.widget.AppCompatSpinner;
 
-public class CustomSpinner<T> {
+public class SpinnerC<T> {
+
+    //---- Constants and Definitions ----
+    public interface OnUserSelectItemListener {
+        void onSelection();
+    }
 
     //---- Attributes ----
     private boolean selectionIsUserGenerated;
@@ -14,7 +19,7 @@ public class CustomSpinner<T> {
     private OnUserSelectItemListener listener;
 
     //---- Construction ----
-    public CustomSpinner(final AppCompatSpinner spinner) {
+    public SpinnerC(final AppCompatSpinner spinner) {
         this.spinner = spinner;
         this.selectionIsUserGenerated = true;
 
@@ -72,8 +77,4 @@ public class CustomSpinner<T> {
         this.listener = listener;
     }
 
-    //---- OnUserSelectItemListener ----
-    public interface OnUserSelectItemListener {
-        public void onSelection();
-    }
 }

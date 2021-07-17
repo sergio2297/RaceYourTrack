@@ -16,7 +16,7 @@ import model.settings.configurable.DrivingModeConfig;
 import model.settings.configurable.PedalsConfig;
 import model.settings.configurable.SteeringConfig;
 import model.settings.configurable.TransmissionConfig;
-import utils.viewComponents.CustomSpinner;
+import utils.viewComponents.SpinnerC;
 
 public class SettingsFragment extends Fragment {
 
@@ -24,10 +24,10 @@ public class SettingsFragment extends Fragment {
     private Settings settings;
 
     //---- View Elements ----
-    private CustomSpinner<DrivingModeConfig> spinnerDrivingMode;
-    private CustomSpinner<PedalsConfig> spinnerPedals;
-    private CustomSpinner<TransmissionConfig> spinnerTransmission;
-    private CustomSpinner<SteeringConfig> spinnerSteeringWheel;
+    private SpinnerC<DrivingModeConfig> spinnerDrivingMode;
+    private SpinnerC<PedalsConfig> spinnerPedals;
+    private SpinnerC<TransmissionConfig> spinnerTransmission;
+    private SpinnerC<SteeringConfig> spinnerSteeringWheel;
 
     //---- Fragment Methods ----
     @Override
@@ -66,19 +66,19 @@ public class SettingsFragment extends Fragment {
 
     //---- Methods ----
     private void initializeViewElements() {
-        spinnerDrivingMode = new CustomSpinner<DrivingModeConfig>((AppCompatSpinner) this.getActivity().findViewById(R.id.spinner_driving_mode));
+        spinnerDrivingMode = new SpinnerC<DrivingModeConfig>((AppCompatSpinner) this.getActivity().findViewById(R.id.spinner_driving_mode));
         spinnerDrivingMode.setSelectableValues(DrivingModeConfig.getValues());
         spinnerDrivingMode.setSelection(settings.getDrivingModeConfig(), false);
 
-        spinnerSteeringWheel = new CustomSpinner<SteeringConfig>((AppCompatSpinner) this.getActivity().findViewById(R.id.spinner_steering_wheel));
+        spinnerSteeringWheel = new SpinnerC<SteeringConfig>((AppCompatSpinner) this.getActivity().findViewById(R.id.spinner_steering_wheel));
         spinnerSteeringWheel.setSelectableValues(SteeringConfig.getUserSelectableValues());
         spinnerSteeringWheel.setSelection(settings.getSteeringConfig(), false);
 
-        spinnerTransmission = new CustomSpinner<TransmissionConfig>((AppCompatSpinner) this.getActivity().findViewById(R.id.spinner_transmission));
+        spinnerTransmission = new SpinnerC<TransmissionConfig>((AppCompatSpinner) this.getActivity().findViewById(R.id.spinner_transmission));
         spinnerTransmission.setSelectableValues(TransmissionConfig.getUserSelectableValues());
         spinnerTransmission.setSelection(settings.getTransmissionConfig(), false);
 
-        spinnerPedals = new CustomSpinner<PedalsConfig>((AppCompatSpinner) this.getActivity().findViewById(R.id.spinner_pedals));
+        spinnerPedals = new SpinnerC<PedalsConfig>((AppCompatSpinner) this.getActivity().findViewById(R.id.spinner_pedals));
         spinnerPedals.setSelectableValues(PedalsConfig.getUserSelectableValues());
         spinnerPedals.setSelection(settings.getPedalsConfig(), false);
     }

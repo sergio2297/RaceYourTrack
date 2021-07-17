@@ -1,7 +1,6 @@
 package db.dao;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 
 import java.util.ArrayList;
@@ -9,7 +8,6 @@ import java.util.List;
 
 import db.IdentifiedObjectClass;
 import db.RaceYourTrackContract;
-import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
 import model.settings.SettingsRow;
 
 public class DaoSettings extends AbstractDao {
@@ -17,6 +15,7 @@ public class DaoSettings extends AbstractDao {
     //---- Constants and Definitions ----
     public static final String GENERAL_GROUP = "GENERAL";
     public static final String DATA_INITIALIZED_VAR = "DATA_INITIALIZED";
+    public static final String SELECTED_CAR_VAR = "SELECTED_CAR";
     public static final String FALSE_VALUE = "FALSE";
     public static final String TRUE_VALUE = "TRUE";
 
@@ -50,6 +49,7 @@ public class DaoSettings extends AbstractDao {
 
         if(group.equals(GENERAL_GROUP)) {
             listAcceptableVariables.add(DATA_INITIALIZED_VAR);
+            listAcceptableVariables.add(SELECTED_CAR_VAR);
         } else if(group.equals(CONTROL_GROUP)) {
             listAcceptableVariables.add(CONTROL_CONFIG_TYPE_VAR);
             listAcceptableVariables.add(STEERING_VAR);

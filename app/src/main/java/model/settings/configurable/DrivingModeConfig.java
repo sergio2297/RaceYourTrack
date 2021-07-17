@@ -4,15 +4,15 @@ import es.sfernandez.raceyourtrack.R;
 import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
 import es.sfernandez.raceyourtrack.app_error_handling.AppError;
 import es.sfernandez.raceyourtrack.app_error_handling.AppErrorHelper;
-import es.sfernandez.raceyourtrack.app_error_handling.AppException;
+import es.sfernandez.raceyourtrack.app_error_handling.AppUnCatchableException;
 
 public class DrivingModeConfig extends ConfigurableProperty {
 
     //---- Constants and Definitions ----
     public static final DrivingModeConfig CUSTOM = new DrivingModeConfig('C', RaceYourTrackApplication.getContext().getResources().getString(R.string.custom), SteeringConfig.UNKNOWN, TransmissionConfig.UNKNOWN, PedalsConfig.UNKNOWN);
-    public static final DrivingModeConfig BASIC = new DrivingModeConfig('B', RaceYourTrackApplication.getContext().getResources().getString(R.string.basic), SteeringConfig.ARROWS, TransmissionConfig.AUTOMATIC, PedalsConfig.ARROWS);
+    public static final DrivingModeConfig BASIC = new DrivingModeConfig('B', RaceYourTrackApplication.getContext().getResources().getString(R.string.beginner), SteeringConfig.ARROWS, TransmissionConfig.AUTOMATIC, PedalsConfig.ARROWS);
     public static final DrivingModeConfig REALISTIC = new DrivingModeConfig('R', RaceYourTrackApplication.getContext().getResources().getString(R.string.realistic), SteeringConfig.STEERING_WHEEL, TransmissionConfig.MANUAL, PedalsConfig.BOTH);
-    public static final DrivingModeConfig SENSATIONAL = new DrivingModeConfig('S', RaceYourTrackApplication.getContext().getResources().getString(R.string.accurate), SteeringConfig.STEERING_WHEEL, TransmissionConfig.AUTOMATIC, PedalsConfig.ADVANCED);
+    public static final DrivingModeConfig SENSATIONAL = new DrivingModeConfig('S', RaceYourTrackApplication.getContext().getResources().getString(R.string.race_driver), SteeringConfig.STEERING_WHEEL, TransmissionConfig.AUTOMATIC, PedalsConfig.ADVANCED);
 
     private static final DrivingModeConfig[] VALUES = new DrivingModeConfig[] {CUSTOM, BASIC, REALISTIC, SENSATIONAL};
     private static final DrivingModeConfig[] SELECTABLE_VALUES = new DrivingModeConfig[] {CUSTOM, BASIC, REALISTIC, SENSATIONAL};
@@ -53,7 +53,7 @@ public class DrivingModeConfig extends ConfigurableProperty {
         return SELECTABLE_VALUES;
     }
 
-    public static DrivingModeConfig valueOf(final String name) throws AppException {
+    public static DrivingModeConfig valueOf(final String name) {
         if(name.equalsIgnoreCase(CUSTOM.getName())) {
             return CUSTOM;
         } else if(name.equalsIgnoreCase(BASIC.getName())) {
@@ -63,7 +63,7 @@ public class DrivingModeConfig extends ConfigurableProperty {
         } else if(name.equalsIgnoreCase(SENSATIONAL.getName())) {
             return SENSATIONAL;
         } else {
-            throw new AppException(new AppError(AppErrorHelper.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
+            throw new AppUnCatchableException(new AppError(AppErrorHelper.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
         }
     }
 }

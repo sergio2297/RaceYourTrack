@@ -32,8 +32,10 @@ public class DataBaseUtils {
         SQLiteDatabase bd = getWritableDatabaseConnection(context);
 
         bd.execSQL(RaceYourTrackDbHelper.SQL_DELETE_SETTINGS_TABLE);
+        bd.execSQL(RaceYourTrackDbHelper.SQL_DELETE_CARS_TABLE);
 
         bd.execSQL(RaceYourTrackDbHelper.SQL_CREATE_SETTINGS_TABLE);
+        bd.execSQL(RaceYourTrackDbHelper.SQL_CREATE_CARS_TABLE);
     }
 
 }

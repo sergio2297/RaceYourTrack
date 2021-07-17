@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context=".carController.CarControllerActivity">
+    tools:context=".CarControllerActivity">
 
     <include layout="@layout/content_car_controller"/>
 

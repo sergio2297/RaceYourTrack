@@ -10,14 +10,14 @@
         android:orientation="horizontal">
 
         <android.widget.Button
-            android:id="@+id/btnCars"
+            android:id="@+id/btn_cars"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cars"
             android:onClick="onClick"/>
 
         <android.widget.Button
-            android:id="@+id/btnSettings"
+            android:id="@+id/btn_Settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings"
@@ -27,7 +27,7 @@
 
     <!-- Dinamic Fragments Container -->
     <FrameLayout
-        android:id="@+id/garageFragmentContainer"
+        android:id="@+id/garage_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

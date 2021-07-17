@@ -1,61 +1,94 @@
 package model.carController;
 
-import android.app.Application;
-import android.content.Context;
-import android.widget.Toast;
+import android.util.Log;
 
-public class CarController {
+import java.util.LinkedList;
+import java.util.Queue;
+
+import model.Car;
+import model.settings.configurable.TransmissionConfig;
+
+public class CarController extends Thread {
 
     //---- Constants and Definitions ----
-    private final char SYSTEM_END_COMMAND = '$';
+    private final int PERIOD_MS = 50;
     private final char SYSTEM_END_ACTION = ';';
+    private final char SYSTEM_END_COMMAND = '$';
     private final char SYSTEM_NO_ACTION_CODE =  ' ';
 
     //---- Attributes ----
-    private Context context;
-    private LightSystemController lightSystemController = new LightSystemController();
-    private SteeringSystemController steeringSystemController = new SteeringSystemController();
-    private TransmissionSystemController transmissionSystemController = new TransmissionSystemController();
+    private boolean endExecution = false;
+
+    private Queue<String> queueTransmissionActions = new LinkedList<String>();
+    private Queue<String> queueSteeringActions = new LinkedList<String>();
+    private Queue<String> queueLightActions = new LinkedList<String>();
 
     //---- Construction ----
-    public CarController(final Context context) {
-        this.context = context;
+    public CarController(final Car car) {
+        configRcCar(car);
+        start();
     }
 
     //---- Methods ----
-    public void configRcCar() {
-        //TODO:
+    @Override
+    public void run() {
+        long timestamp = System.currentTimeMillis();
+        while(!endExecution) {
+            if(System.currentTimeMillis() - PERIOD_MS >= timestamp) {
+                timestamp += PERIOD_MS;
+
+                String command = constructCommand();
+                sendCommand(command);
+            }
+        }
     }
 
-    private String constructCommand(final String action) {
+    public void terminate() {
+        queueTransmissionActions.clear();
+        queueSteeringActions.clear();
+        queueLightActions.clear();
+
+        endExecution = true;
+    }
+
+    private void configRcCar(final Car car) {
+        TransmissionSystemController transmissionSystemController = new TransmissionSystemController();
+        this.addTransmissionAction(
+                car.getTransmissionConfig().equals(TransmissionConfig.H_SHIFT) ?
+                    new TransmissionSystemController().buildActionConfigHShift() :
+                    new TransmissionSystemController().buildActionConfigSequentialShift()
+                );
+        this.addTransmissionAction(transmissionSystemController.buildActionConfigNumOfGears(car.getNumOfGears()));
+    }
+
+    private String constructCommand() {
         String command = "";
-        command += action + SYSTEM_END_ACTION;
-        return command += SYSTEM_END_COMMAND;
+        if(!queueTransmissionActions.isEmpty()) {
+            command += queueTransmissionActions.poll() + SYSTEM_END_ACTION;
+        }
+        if(!queueSteeringActions.isEmpty()) {
+            command += queueSteeringActions.poll() + SYSTEM_END_ACTION;
+        }
+        if(!queueLightActions.isEmpty()) {
+            command += queueLightActions.poll() + SYSTEM_END_ACTION;
+        }
+        return command + SYSTEM_END_COMMAND;
     }
 
     private void sendCommand(final String command) {
         //TODO: send command using bluetooth
-        Toast.makeText(context, command, Toast.LENGTH_SHORT).show();
+        Log.i("", command);
     }
 
-    //---- Steering System ----
-    public void steeringLeft() {
-        sendCommand(constructCommand(steeringSystemController.steeringLeft()));
+    public void addTransmissionAction(final String action) {
+        queueTransmissionActions.add(action);
     }
 
-    public void steeringLeft(final int degrees) {
-        sendCommand(constructCommand(steeringSystemController.steeringLeft(degrees)));
+    public void addSteeringAction(final String action) {
+        queueSteeringActions.add(action);
     }
 
-    public void centerSteering() {
-        sendCommand(constructCommand(steeringSystemController.centerSteering()));
-    }
-
-    public void steeringRight(final int degrees) {
-        sendCommand(constructCommand(steeringSystemController.steeringRight(degrees)));
-    }
-
-    public void steeringRight() {
-        sendCommand(constructCommand(steeringSystemController.steeringRight()));
+    public void addLightsAction(final String action) {
+        queueLightActions.add(action);
     }
 }

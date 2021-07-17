@@ -4,7 +4,7 @@ import es.sfernandez.raceyourtrack.R;
 import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
 import es.sfernandez.raceyourtrack.app_error_handling.AppError;
 import es.sfernandez.raceyourtrack.app_error_handling.AppErrorHelper;
-import es.sfernandez.raceyourtrack.app_error_handling.AppException;
+import es.sfernandez.raceyourtrack.app_error_handling.AppUnCatchableException;
 
 public class TransmissionConfig extends ConfigurableProperty {
 
@@ -32,7 +32,7 @@ public class TransmissionConfig extends ConfigurableProperty {
         return SELECTABLE_VALUES;
     }
 
-    public static TransmissionConfig valueOf(final String name) throws AppException {
+    public static TransmissionConfig valueOf(final String name) {
         if(name.equalsIgnoreCase(UNKNOWN.getName())) {
             return UNKNOWN;
         } else if(name.equalsIgnoreCase(MANUAL.getName())) {
@@ -44,7 +44,7 @@ public class TransmissionConfig extends ConfigurableProperty {
         } else if(name.equalsIgnoreCase(AUTOMATIC.getName())) {
             return AUTOMATIC;
         } else {
-            throw new AppException(new AppError(AppErrorHelper.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
+            throw new AppUnCatchableException(new AppError(AppErrorHelper.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
         }
     }
 }

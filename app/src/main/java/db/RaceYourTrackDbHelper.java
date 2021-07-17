@@ -17,19 +17,19 @@ public class RaceYourTrackDbHelper extends SQLiteOpenHelper {
             RaceYourTrackContract.SettingsTable.COLUMN_VALUE + " TEXT" +
             ");";
 
-    /*protected static final String SQL_CREATE_LIST_TABLE =
-            "CREATE TABLE " + bd.ShoppingListContract.ListTable.TABLE_NAME + " (" +
-            bd.ShoppingListContract.ListTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-            bd.ShoppingListContract.ListTable.COLUMN_IS_SHOPPING_LIST + " INTEGER NOT NULL," +
-            bd.ShoppingListContract.ListTable.COLUMN_IS_STOCK_SHOPPING_LIST + " INTEGER NOT NULL," +
-            bd.ShoppingListContract.ListTable.COLUMN_IS_STOCK + " INTEGER NOT NULL," +
-            bd.ShoppingListContract.ListTable.COLUMN_NAME + " TEXT NOT NULL," +
-            bd.ShoppingListContract.ListTable.COLUMN_ASSOCIATED_STOCK + " INTEGER NOT NULL," +
-            "FOREIGN KEY (" + bd.ShoppingListContract.ListTable.COLUMN_ASSOCIATED_STOCK + ") REFERENCES " +
-                    bd.ShoppingListContract.ListTable.TABLE_NAME + " (" + bd.ShoppingListContract.ListTable._ID +")" +
+    protected static final String SQL_CREATE_CARS_TABLE =
+            "CREATE TABLE " + RaceYourTrackContract.CarsTable.TABLE_NAME + " (" +
+            RaceYourTrackContract.CarsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            RaceYourTrackContract.CarsTable.COLUMN_NAME + " TEXT NOT NULL," +
+            RaceYourTrackContract.CarsTable.COLUMN_TRANSMISSION + " TEXT NOT NULL," +
+            RaceYourTrackContract.CarsTable.COLUMN_NUM_OF_GEARS + " INTEGER NOT NULL," +
+            RaceYourTrackContract.CarsTable.COLUMN_HAS_MAIN_BEAM_LIGHTS + " BOOLEAN NOT NULL " +
+                    "CHECK (" + RaceYourTrackContract.CarsTable.COLUMN_HAS_MAIN_BEAM_LIGHTS + " IN (0, 1)), " +
+            RaceYourTrackContract.CarsTable.COLUMN_HAS_BLINKING_LIGHTS + " BOOLEAN NOT NULL " +
+                    "CHECK (" + RaceYourTrackContract.CarsTable.COLUMN_HAS_BLINKING_LIGHTS + " IN (0, 1)) " +
             ");";
 
-    protected static final String SQL_CREATE_LIST_PRODUCT_TABLE =
+    /*protected static final String SQL_CREATE_LIST_PRODUCT_TABLE =
             "CREATE TABLE " + bd.ShoppingListContract.ListProductTable.TABLE_NAME + " (" +
             bd.ShoppingListContract.ListProductTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             bd.ShoppingListContract.ListProductTable.COLUMN_LIST_ID + " INTEGER NOT NULL," +
@@ -42,9 +42,9 @@ public class RaceYourTrackDbHelper extends SQLiteOpenHelper {
 
     protected static final String SQL_DELETE_SETTINGS_TABLE =
             "DROP TABLE IF EXISTS " + RaceYourTrackContract.SettingsTable.TABLE_NAME + ";";
-    /*protected static final String SQL_DELETE_LIST_TABLE =
-            "DROP TABLE IF EXISTS " + bd.ShoppingListContract.ListTable.TABLE_NAME + ";";
-    protected static final String SQL_DELETE_LIST_PRODUCT_TABLE =
+    protected static final String SQL_DELETE_CARS_TABLE =
+            "DROP TABLE IF EXISTS " + RaceYourTrackContract.CarsTable.TABLE_NAME + ";";
+    /*protected static final String SQL_DELETE_LIST_PRODUCT_TABLE =
             "DROP TABLE IF EXISTS " + bd.ShoppingListContract.ListProductTable.TABLE_NAME + ";";*/
 
     //---- Constructor ----
@@ -56,15 +56,15 @@ public class RaceYourTrackDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_SETTINGS_TABLE);
-        /*db.execSQL(SQL_CREATE_LIST_TABLE);
-        db.execSQL(SQL_CREATE_LIST_PRODUCT_TABLE);*/
+        db.execSQL(SQL_CREATE_CARS_TABLE);
+        /*db.execSQL(SQL_CREATE_LIST_PRODUCT_TABLE);*/
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_SETTINGS_TABLE);
-        /*db.execSQL(SQL_DELETE_LIST_TABLE);
-        db.execSQL(SQL_DELETE_LIST_PRODUCT_TABLE);*/
+        db.execSQL(SQL_DELETE_CARS_TABLE);
+        /*db.execSQL(SQL_DELETE_LIST_PRODUCT_TABLE);*/
         onCreate(db);
     }
 

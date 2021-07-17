@@ -15,36 +15,42 @@ public class SteeringSystemController {
     private final char STEERING_SYSTEM_ACTION_MIDDLE = 'M';
     private final char STEERING_SYSTEM_ACTION_LEFT = 'L';
     // To turn the steering a concrete amount of degrees it will be necessary to pass a number (for turn right)
-    // beteween [0,9] and a letter (for turn left) between [A,J] to use its ASCII code.
-
-    //---- Attributes ----
-
-    //---- Construction ----
+    // between [0,9] and a letter (for turn left) between [A,J] to use its ASCII code.
 
     //---- Methods ----
-    private String constructCommand(final char action) {
+    private String buildAction(final char action) {
         return STEERING_SYSTEM_ACTION_HEADER + action;
     }
 
-    public String steeringLeft() {
-        return constructCommand(STEERING_SYSTEM_ACTION_LEFT);
+    public String buildActionSteeringLeft() {
+        return buildAction(STEERING_SYSTEM_ACTION_LEFT);
     }
 
-    public String steeringLeft(final int degrees) {
-        //TODO:
-        return "";
+    public String buildActionSteeringLeft(final int degrees) {
+        if(degrees <= 0) {
+            return buildActionCenterSteering();
+        } else if(degrees >= 90) {
+            return buildActionSteeringLeft();
+        } else {
+            return buildAction(Character.toUpperCase(Character.forDigit(Math.round(degrees / 10f) + 10, 20)));
+        }
     }
 
-    public String centerSteering() {
-        return constructCommand(STEERING_SYSTEM_ACTION_MIDDLE);
+    public String buildActionCenterSteering() {
+        return buildAction(STEERING_SYSTEM_ACTION_MIDDLE);
     }
 
-    public String steeringRight(final int degrees) {
-        //TODO:
-        return "";
+    public String buildActionSteeringRight(final int degrees) {
+        if(degrees <= 0) {
+            return buildActionCenterSteering();
+        } else if(degrees >= 90) {
+            return buildActionSteeringRight();
+        } else {
+            return buildAction(Character.forDigit(Math.round(degrees / 10f), 10));
+        }
     }
 
-    public String steeringRight() {
-        return constructCommand(STEERING_SYSTEM_ACTION_RIGHT);
+    public String buildActionSteeringRight() {
+        return buildAction(STEERING_SYSTEM_ACTION_RIGHT);
     }
 }

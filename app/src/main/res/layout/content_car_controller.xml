@@ -4,25 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.widget.Button
-        android:id="@+id/btnThrottle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/throttle"
-        android:onClick="onClick"/>
+        android:orientation="horizontal">
 
-    <android.widget.Button
-        android:id="@+id/btnSteeringLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/steering_left"
-        android:onClick="onClick"/>
+        <!-- Pedals Fragment -->
+        <fragment class="es.sfernandez.raceyourtrack.carController.PedalsFragment"
+            android:id="@+id/car_controller_pedals_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    <android.widget.Button
-        android:id="@+id/btnSteeringRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/steering_right"
-        android:onClick="onClick"/>
+        <!-- Lights Fragment -->
+        <fragment class="es.sfernandez.raceyourtrack.carController.LightsFragment"
+            android:id="@+id/car_controller_lights_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- Steering Fragment -->
+        <fragment class="es.sfernandez.raceyourtrack.carController.SteeringFragment"
+            android:id="@+id/car_controller_steering_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- Transmission Fragment -->
+        <fragment class="es.sfernandez.raceyourtrack.carController.TransmissionFragment"
+            android:id="@+id/car_controller_transmission_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -17,7 +17,7 @@
     <string name="both">both</string>
     <string name="advanced_throttle">advanced throttle</string>
 
-    <string name="basic">Basic</string>
+    <string name="beginner">Beginner</string>
     <string name="realistic">Realistic</string>
     <string name="advanced">Advanced</string>
 
@@ -36,7 +36,8 @@
     <string name="cars">Cars</string>
     <string name="settings_saved">Settings saved.</string>
     <string name="custom">Custom</string>
-    <string name="accurate">Accurate</string>
+    <string name="race_driver">Race driver</string>
     <string name="unknown">Unknown</string>
+    <string name="brake">Brake</string>
 
 </resources>

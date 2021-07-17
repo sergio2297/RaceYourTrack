@@ -14,6 +14,16 @@ public final class RaceYourTrackContract {
         public static final String COLUMN_VALUE = "value";
     }
 
+    //---- CARS TABLE ----
+    public static abstract class CarsTable implements BaseColumns {
+        public static final String TABLE_NAME = "Cars";
+        public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_TRANSMISSION = "transmission";
+        public static final String COLUMN_NUM_OF_GEARS = "numOfGears";
+        public static final String COLUMN_HAS_MAIN_BEAM_LIGHTS = "hasMainBeamLights";
+        public static final String COLUMN_HAS_BLINKING_LIGHTS = "hasBlinkingLights";
+    }
+
     /*//---- LIST TABLE ----
     public static abstract class ListTable implements BaseColumns {
         public static final String TABLE_NAME = "Listado";

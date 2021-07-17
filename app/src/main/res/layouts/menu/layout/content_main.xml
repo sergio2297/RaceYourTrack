@@ -5,21 +5,21 @@
     android:layout_height="match_parent">
 
         <android.widget.Button
-            android:id="@+id/btn_connect_bluetooth"
+            android:id="@+id/btnConnectBluetooth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/connect_bluetooth"
             android:onClick="onClick"/>
 
         <android.widget.Button
-            android:id="@+id/btn_free_ride"
+            android:id="@+id/btnFreeRide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/free_ride"
             android:onClick="onClick"/>
 
         <android.widget.Button
-            android:id="@+id/btn_garage"
+            android:id="@+id/btnGarage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/garage"

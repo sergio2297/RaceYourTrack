@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import db.DataBaseUtils;
+import es.sfernandez.raceyourtrack.carController.CarControllerActivity;
 import es.sfernandez.raceyourtrack.garage.GarageActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //DataBaseUtils.deleteAllDataStored(getApplicationContext()); // TODO: Delete later
+        DataBaseUtils.deleteAllDataStored(getApplicationContext()); // TODO: Delete later
 
         // Loading view elements
-        btnConnectBluetooth = findViewById(R.id.btnConnectBluetooth);
+        btnConnectBluetooth = findViewById(R.id.btn_connect_bluetooth);
 
     }
 
@@ -32,17 +34,17 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.btnConnectBluetooth:
+            case R.id.btn_connect_bluetooth:
                 Toast.makeText(getApplicationContext(), "Boton pulsado", Toast.LENGTH_LONG).show();
                 break;
 
-            case R.id.btnFreeRide:
+            case R.id.btn_free_ride:
                 intent = new Intent(getApplicationContext(), CarControllerActivity.class);
                 intent.putExtra("ID", 10);
                 getApplicationContext().startActivity(intent);
                 break;
 
-            case R.id.btnGarage:
+            case R.id.btn_garage:
                 intent = new Intent(getApplicationContext(), GarageActivity.class);
                 intent.putExtra("ID", 10);
                 getApplicationContext().startActivity(intent);

@@ -32,13 +32,13 @@ public class GarageActivity extends AppCompatActivity {
     public void onClick(View view) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch(view.getId()) {
-            case R.id.btnCars:
-                transaction.replace(R.id.garageFragmentContainer, fragmentCars);
+            case R.id.btn_cars:
+                transaction.replace(R.id.garage_fragment_container, fragmentCars);
                 fragmentActive = fragmentCars;
                 break;
 
-            case R.id.btnSettings:
-                transaction.replace(R.id.garageFragmentContainer, fragmentSettings);
+            case R.id.btn_Settings:
+                transaction.replace(R.id.garage_fragment_container, fragmentSettings);
                 fragmentActive = fragmentSettings;
                 break;
 

@@ -1,7 +1,5 @@
 package model;
 
-import model.settings.Settings;
-
 public class Game {
 
     //---- Constants and Definitions ----
@@ -11,10 +9,11 @@ public class Game {
     private String racerName;
     private int coins;
     private boolean isCarConnected;
+    private Car selectedCar;
 
     //---- Construction ----
     private Game() {
-
+        selectedCar = Car.MUSCLE_CAR;
     }
 
     public static Game getInstance() {
@@ -25,5 +24,7 @@ public class Game {
     }
 
     //---- Methods ----
-
+    public Car getSelectedCar() {
+        return selectedCar;
+    }
 }

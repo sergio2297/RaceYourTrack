@@ -4,25 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <android.widget.Button
-            android:id="@+id/btn_connect_bluetooth"
+            android:id="@+id/btnCars"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/connect_bluetooth"
+            android:text="@string/cars"
             android:onClick="onClick"/>
 
         <android.widget.Button
-            android:id="@+id/btn_free_ride"
+            android:id="@+id/btnSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/free_ride"
+            android:text="@string/settings"
             android:onClick="onClick"/>
 
-        <android.widget.Button
-            android:id="@+id/btn_garage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/garage"
-            android:onClick="onClick"/>
+    </LinearLayout>
+
+    <!-- Dinamic Fragments Container -->
+    <FrameLayout
+        android:id="@+id/garageFragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
