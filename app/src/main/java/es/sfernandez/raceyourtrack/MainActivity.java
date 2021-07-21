@@ -2,15 +2,20 @@ package es.sfernandez.raceyourtrack;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import db.DataBaseUtils;
+import es.sfernandez.raceyourtrack.app_error_handling.AppError;
+import es.sfernandez.raceyourtrack.app_error_handling.AppErrorHelper;
+import es.sfernandez.raceyourtrack.app_error_handling.AppUnCatchableException;
+import es.sfernandez.raceyourtrack.bluetoothConnection.BluetoothActivity;
 import es.sfernandez.raceyourtrack.carController.CarControllerActivity;
 import es.sfernandez.raceyourtrack.garage.GarageActivity;
+import model.Game;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +32,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Loading view elements
         btnConnectBluetooth = findViewById(R.id.btn_connect_bluetooth);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Game.getInstance().destroyCommunicationThread();
     }
 
     //---- Methods ----
@@ -35,20 +46,26 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         switch (view.getId()) {
             case R.id.btn_connect_bluetooth:
-                Toast.makeText(getApplicationContext(), "Boton pulsado", Toast.LENGTH_LONG).show();
+                intent = new Intent(getApplicationContext(), BluetoothActivity.class);
                 break;
 
             case R.id.btn_free_ride:
-                intent = new Intent(getApplicationContext(), CarControllerActivity.class);
-                intent.putExtra("ID", 10);
-                getApplicationContext().startActivity(intent);
+                if(Game.getInstance().isCarConnected()) {
+                    intent = new Intent(getApplicationContext(), CarControllerActivity.class);
+                } else {
+                    intent = new Intent(getApplicationContext(), BluetoothActivity.class);
+                    intent.putExtra("targetActivity", CarControllerActivity.class);
+                }
                 break;
 
             case R.id.btn_garage:
+                Log.i("", "" + Game.getInstance().isCarConnected());
                 intent = new Intent(getApplicationContext(), GarageActivity.class);
-                intent.putExtra("ID", 10);
-                getApplicationContext().startActivity(intent);
                 break;
+
+            default:
+                throw new AppUnCatchableException(new AppError(AppErrorHelper.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
         }
+        getApplicationContext().startActivity(intent);
     }
 }

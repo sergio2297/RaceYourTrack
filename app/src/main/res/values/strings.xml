@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">RaceYourTrack</string>
 
-    <string name="connect_bluetooth">Connect Bluetooth</string>
     <string name="free_ride">Free Ride</string>
     <string name="code">Code</string>
     <string name="src_error">"Oops! Something isn't work properly"</string>
@@ -39,5 +38,19 @@
     <string name="race_driver">Race driver</string>
     <string name="unknown">Unknown</string>
     <string name="brake">Brake</string>
+
+    <!-- Bluetooth -->
+    <string name="connect_bluetooth">Connect Bluetooth</string>
+    <string name="bluetooth_progress_dialog_title">Connecting to your car</string>
+    <string name="looking_for_in_paired_devices">Looking for your car in paired devices list</string>
+    <string name="founded_in_paired_devices">Your car is paired to your device</string>
+    <string name="rc_car_not_paired">It seems that the car isn\'t synchronized with your device</string>
+    <string name="impossible_discovering">It\'s not possible to search for your car</string>
+    <string name="discovery_started">Looking for your car</string>
+    <string name="car_discovered">Your car has been discovered</string>
+    <string name="discovery_finished">Finishing looking for your car</string>
+    <string name="trying_to_connect">Trying to establish a connection with your car</string>
+    <string name="connected_to_your_car">Connection established</string>
+    <!-- - - - - - -->
 
 </resources>

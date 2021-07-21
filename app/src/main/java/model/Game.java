@@ -1,5 +1,9 @@
 package model;
 
+import android.bluetooth.BluetoothSocket;
+
+import model.bluetooth.BluetoothCommunicationThread;
+
 public class Game {
 
     //---- Constants and Definitions ----
@@ -8,8 +12,9 @@ public class Game {
     //---- Attributes ----
     private String racerName;
     private int coins;
-    private boolean isCarConnected;
     private Car selectedCar;
+
+    private BluetoothCommunicationThread communicationThread;
 
     //---- Construction ----
     private Game() {
@@ -26,5 +31,26 @@ public class Game {
     //---- Methods ----
     public Car getSelectedCar() {
         return selectedCar;
+    }
+
+    public boolean isCarConnected() { // FIXME: Mejorar para que informe de verdad cuando se esta conectado o no
+        return communicationThread != null && communicationThread.isConnected();
+    }
+
+    public void createCommunicationThread(final BluetoothSocket socket) {
+        if(communicationThread != null) {
+            communicationThread.cancel();
+        }
+        communicationThread = new BluetoothCommunicationThread(socket);
+    }
+
+    public void sendMessageToRcCar(final String msg) {
+        communicationThread.write(msg.getBytes());
+    }
+
+    public void destroyCommunicationThread() {
+        if(communicationThread != null && communicationThread.isAlive()) {
+            communicationThread.cancel();
+        }
     }
 }

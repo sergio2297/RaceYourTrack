@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import model.Car;
+import model.Game;
 import model.settings.configurable.TransmissionConfig;
 
 public class CarController extends Thread {
@@ -77,7 +78,10 @@ public class CarController extends Thread {
 
     private void sendCommand(final String command) {
         //TODO: send command using bluetooth
-        Log.i("", command);
+        if(!command.equals("" + SYSTEM_END_COMMAND)) { // iff the command isn't empty
+            Log.i("", "Envio comando " + command);
+            Game.getInstance().sendMessageToRcCar(command);
+        }
     }
 
     public void addTransmissionAction(final String action) {

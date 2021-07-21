@@ -3,9 +3,13 @@
     package="es.sfernandez.raceyourtrack">
 
     <!-- Bluetooth's permission -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <!--  -->
+
+
 
     <application
         android:name=".RaceYourTrackApplication"
@@ -29,6 +33,10 @@
 
         <activity
             android:name=".app_error_handling.FatalAppErrorActivity"
+            android:theme="@style/Theme.AppCompat"/>
+
+        <activity
+            android:name=".bluetoothConnection.BluetoothActivity"
             android:theme="@style/Theme.AppCompat"/>
 
         <activity
