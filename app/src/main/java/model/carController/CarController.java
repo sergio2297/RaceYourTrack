@@ -1,7 +1,5 @@
 package model.carController;
 
-import android.util.Log;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -9,6 +7,21 @@ import model.Car;
 import model.Game;
 import model.settings.configurable.TransmissionConfig;
 
+/**
+ * A CarController performance the work necessary for send the commands to the Bluetooth module with
+ * the specified period in the constants.
+ *
+ * The lifecycle is:
+ *      1º A button/component is activated by the user. This component has a listener added previously by his
+ *      respective fragment in the creation.
+ *      2º Normally, this listener has referenced an action offered by some SystemController.
+ *      3º The SystemController will build the command which will be sent to the rc car so that it
+ *      cans be interpreted by the Arduino.
+ *      4º After build the command, the SystemController add the command to the respective commandsQueue of the
+ *      CarController.
+ *      5º Lastly, the CarController every period will construct a complete command (one action for every system)
+ *      with the first action stored in every queue and send it by Bluetooth.
+ */
 public class CarController extends Thread {
 
     //---- Constants and Definitions ----
@@ -77,9 +90,7 @@ public class CarController extends Thread {
     }
 
     private void sendCommand(final String command) {
-        //TODO: send command using bluetooth
         if(!command.equals("" + SYSTEM_END_COMMAND)) { // iff the command isn't empty
-            Log.i("", "Envio comando " + command);
             Game.getInstance().sendMessageToRcCar(command);
         }
     }

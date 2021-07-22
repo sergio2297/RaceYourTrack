@@ -24,6 +24,29 @@ import es.sfernandez.raceyourtrack.R;
 import model.Game;
 import utils.viewComponents.IndeterminateProgressDialogC;
 
+/**
+ * This activity is performance the actions necessaries to establish connection with the rc car.
+ * First it will make some previous steps like check if the device supports bluetooth and if it is
+ * enabled (if not, ask the user to enable it).
+ *
+ * After that, it will run the BluetoothTryToConnectThread. This will try to connect the rc car in
+ * the paired devices. If it isn't paired, it will try to discover it. If not, the process will
+ * failure and the user will be notified of pair the device manually out of the RaceYourTrackApp.
+ *
+ * If the BluetoothTryToConnectThread find the rc car, it will throw a new Thread which work is
+ * establish the connection. BluetoothEstablishConnectionThread will performance the bind between
+ * mobile and car. When the connection is established, the work to do with the connection is done
+ * by another thread which is referenced by the Game class. This new Thread contains the socket to
+ * the rc's bluetooth module, and is used to send messages.
+ *
+ * Last but not least, when this activity is destroyed can happen two things: success or failure.
+ * But, in both cases, the onDestroy() method will leave the state of the system safe, deleting every
+ * object which could be still running. Also the activity will return to the specified activity on
+ * its creation or to the MainActivity if null.
+ *
+ * It's very important that the process of establishing the connection runs in threads apart from
+ * the main thread, if not the UI will be locked.
+ */
 public class BluetoothActivity extends AppCompatActivity {
 
     //---- Constants and Definitions ----
@@ -83,7 +106,6 @@ public class BluetoothActivity extends AppCompatActivity {
 
         if(requestCode == REQUEST_ENABLE_BLUETOOTH) {
             if(resultCode == Activity.RESULT_OK) {
-                Log.i("", "Se ha activado el bluetooth");
                 progressDialog = new IndeterminateProgressDialogC(getResources().getString(R.string.bluetooth_progress_dialog_title),"", () -> {
                     bluetoothTryToConnectThread = new BluetoothTryToConnectThread();
                     bluetoothTryToConnectThread.start();
@@ -264,7 +286,7 @@ public class BluetoothActivity extends AppCompatActivity {
                     bluetoothSocket.close();
                     return;
                 } catch (IOException closeException) {
-                    Log.e("TAG", "Could not close the client socket", closeException);
+                    Log.e(BluetoothEstablishConnectionThread.class.getCanonicalName(), "Could not close the client socket", closeException);
                 }
             }
 

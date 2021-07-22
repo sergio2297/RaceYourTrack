@@ -2,7 +2,6 @@ package es.sfernandez.raceyourtrack;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.btn_garage:
-                Log.i("", "" + Game.getInstance().isCarConnected());
                 intent = new Intent(getApplicationContext(), GarageActivity.class);
                 break;
 

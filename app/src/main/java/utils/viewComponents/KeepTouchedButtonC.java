@@ -4,6 +4,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * This custom component performance the behaviour of a button like a pedal. Meaning, the button have two states.
+ * Pressed or released. When the button is pressed it will do something, and when it is released It will
+ * do something different (normally stop doing whatever was doing when pressed).
+ *
+ * Ex.: horn.
+ */
 public class KeepTouchedButtonC {
 
     //---- Constants and Definitions ----

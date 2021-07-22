@@ -8,6 +8,12 @@ import es.sfernandez.raceyourtrack.R;
 import model.Game;
 import model.carController.CarController;
 
+/**
+ * The CarControllerActivity is like a bad boss. It simply create an instance of a CarController
+ * object (from model) and reference it with the different fragments necessary to control the car.
+ *
+ * All the work is done by the CarController and the specified fragments.
+ */
 public class CarControllerActivity extends AppCompatActivity {
 
     //---- Attributes ----

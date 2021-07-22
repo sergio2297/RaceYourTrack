@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Receives a BluetoothSocket that already has established a connection with another device
+ * Receives a BluetoothSocket that already has established a connection with another device. Allow to
+ * send commands from the app to the Bluetooth module. For receive messages from the Arduino it will
+ * be necessary to perform a Thread with a InputStream and use its in.available() method.
  */
 public class BluetoothCommunicationThread extends Thread {
 
@@ -26,7 +28,7 @@ public class BluetoothCommunicationThread extends Thread {
         try {
             tempOut = socket.getOutputStream();
         } catch (IOException e) {
-            Log.e("", "Error occurred while creating output stream", e);
+            Log.e(BluetoothCommunicationThread.class.getCanonicalName(), "Error occurred while creating output stream", e);
         }
 
         outputStream = tempOut;
@@ -39,7 +41,7 @@ public class BluetoothCommunicationThread extends Thread {
             outputStream.write(bytes);
             outputStream.flush();
         } catch (IOException e) {
-            Log.e("", "Error occurred while sending data", e);
+            Log.e(BluetoothCommunicationThread.class.getCanonicalName(), "Error occurred while sending data", e);
         }
     }
 
@@ -48,7 +50,7 @@ public class BluetoothCommunicationThread extends Thread {
         try {
             bluetoothSocket.close();
         } catch (IOException e) {
-            Log.e("", "Could not close the connect socket", e);
+            Log.e(BluetoothCommunicationThread.class.getCanonicalName(), "Could not close the connect socket", e);
         }
     }
 

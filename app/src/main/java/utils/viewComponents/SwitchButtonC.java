@@ -4,6 +4,14 @@ import android.view.View;
 import android.widget.Button;
 
 // TODO: Pasar el estilo que debe tener el boton en cada uno de los estados
+
+/**
+ * This custom component performance the behaviour os a switch button. Meaning, the button have two states.
+ * When the button is pressed it will change to the state A. It will be necessary to press it again to
+ * make it transit to the B state. Nothing special happens when the button is leaving touching.
+ *
+ * Ex.: Emergency lights.
+ */
 public class SwitchButtonC {
 
     //---- Constants and Definitions ----

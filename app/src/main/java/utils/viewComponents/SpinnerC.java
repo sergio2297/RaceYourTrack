@@ -6,6 +6,9 @@ import android.widget.ArrayAdapter;
 
 import androidx.appcompat.widget.AppCompatSpinner;
 
+/**
+ * A Spinner is like a ComboBox.
+ */
 public class SpinnerC<T> {
 
     //---- Constants and Definitions ----

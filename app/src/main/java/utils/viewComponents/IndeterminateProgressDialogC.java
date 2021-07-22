@@ -15,6 +15,11 @@ import androidx.fragment.app.FragmentManager;
 
 import es.sfernandez.raceyourtrack.R;
 
+/**
+ * IndeterminateProgressDialogC offer the possibility to execute some work in background while a
+ * Dialog is showing the user the current state with messages.
+ * Normally, the service to execute will be the start() method of a Thread.
+ */
 public class IndeterminateProgressDialogC extends DialogFragment {
 
     //---- Constants and Definitions ----

@@ -4,7 +4,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
-// TODO: implements the behaviour of push button like levas
+/**
+ * This custom component performance the behaviour of a normal button. Meaning, the button do something
+ * when the button is pressed.
+ *
+ * Ex.: cams.
+ */
 public class PushButtonC {
 
     //---- Constants and Definitions ----

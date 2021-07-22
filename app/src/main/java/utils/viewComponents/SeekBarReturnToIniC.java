@@ -4,6 +4,7 @@ import android.widget.SeekBar;
 
 /**
  * This custom component acts like a seekbar that returns to its initial position smoothie when the user stop touch it.
+ * Custom components like SeekBarAdvancedThrottleC and SeekBarSteeringWheelC extends this.
  */
 public abstract class SeekBarReturnToIniC {
 
@@ -12,6 +13,9 @@ public abstract class SeekBarReturnToIniC {
         void onProgressChange(final int progress);
     }
 
+    /**
+     * Thread used to decrease the seekbar's progress smoothly.
+     */
     private class DecreaseProgressThread extends Thread {
 
         //---- Constants and Definitions ----
