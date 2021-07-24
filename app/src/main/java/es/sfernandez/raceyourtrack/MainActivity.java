@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import db.DataBaseUtils;
 import es.sfernandez.raceyourtrack.app_error_handling.AppError;
 import es.sfernandez.raceyourtrack.app_error_handling.AppErrorHandler;
 import es.sfernandez.raceyourtrack.app_error_handling.AppUnCatchableException;
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DataBaseUtils.deleteAllDataStored(getApplicationContext()); // TODO: Delete later
+//        DataBaseUtils.deleteAllDataStored(getApplicationContext()); // TODO: Delete later
 
         // Loading view elements
         btnConnectBluetooth = findViewById(R.id.btn_connect_bluetooth);

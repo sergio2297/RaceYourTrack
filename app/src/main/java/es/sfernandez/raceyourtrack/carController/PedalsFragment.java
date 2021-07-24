@@ -26,7 +26,7 @@ import utils.viewComponents.SeekBarAdvancedThrottleC;
 public class PedalsFragment extends Fragment {
 
     //---- Constants and Definitions ----
-    private final int MINIMUM_MS_DELAY_BETWEEN_COMMANDS = 50;
+    private final int MINIMUM_MS_DELAY_BETWEEN_COMMANDS = 100;
 
     //---- Attributes ----
     private PedalsConfig pedalsConfig;
@@ -34,6 +34,7 @@ public class PedalsFragment extends Fragment {
     private final LightsSystemController lightsSystemController;
     private final TransmissionSystemController transmissionSystemController;
     private boolean isCarBraking = false, isCarAccelerating = false;
+    private String lastCommandSent = "";
     private long lastAdvancedThrottleCommandTimestamp = -MINIMUM_MS_DELAY_BETWEEN_COMMANDS;
 
     //---- View Elements ----
@@ -141,14 +142,24 @@ public class PedalsFragment extends Fragment {
         // The advanced throttle will send commands with some delay restrictions to avoid collapse the communication queue
         if(seekBarAdvancedThrottle.isVisible()) {
             seekBarAdvancedThrottle.setListener((progress) -> {
+                String command = lastCommandSent;
                 if(progress == 0) {
-                    carController.addTransmissionAction(transmissionSystemController.buildActionStopThrottle());
+                    command = transmissionSystemController.buildActionStopThrottle();
+                    isCarAccelerating = false;
                 } else if(!isCarAccelerating) {
                     carController.addTransmissionAction(transmissionSystemController.buildActionThrottle());
+                    command = transmissionSystemController.buildActionShiftTo((int) (progress / transmissionSystemController.MAX_NUM_OF_GEARS));
                     isCarAccelerating = true;
+                } else if(progress == 89) { // Max progress of the seekBar (see layout)
+                    command = transmissionSystemController.buildActionShiftTo(transmissionSystemController.MAX_NUM_OF_GEARS);
                 } else if(System.currentTimeMillis() - lastAdvancedThrottleCommandTimestamp > MINIMUM_MS_DELAY_BETWEEN_COMMANDS) {
-                    carController.addTransmissionAction(transmissionSystemController.buildActionShiftTo((int)(progress / 9)));
+                    command = transmissionSystemController.buildActionShiftTo((int)(progress / transmissionSystemController.MAX_NUM_OF_GEARS));
                     lastAdvancedThrottleCommandTimestamp = System.currentTimeMillis();
+                }
+
+                if(!command.equals(lastCommandSent)) {
+                    carController.addTransmissionAction(command);
+                    lastCommandSent = command;
                 }
             });
         }

@@ -24,7 +24,7 @@ import utils.viewComponents.SeekBarSteeringWheelC;
 public class SteeringFragment extends Fragment {
 
     //---- Constants and Definitions ----
-    private final int MINIMUM_MS_DELAY_BETWEEN_COMMANDS = 50;
+    private final int MINIMUM_MS_DELAY_BETWEEN_COMMANDS = 100;
 
     //---- Attributes ----
     private SteeringConfig steeringConfig;

@@ -4,7 +4,7 @@ public class TransmissionSystemController {
 
     //---- Constants and Definitions ----
     private final int MIN_NUM_OF_GEARS = 3;
-    private final int MAX_NUM_OF_GEARS = 9;
+    public final int MAX_NUM_OF_GEARS = 9;
     private final int ASCII_CODE_a = 97;
 
     /*

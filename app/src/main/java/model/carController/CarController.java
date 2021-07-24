@@ -1,5 +1,7 @@
 package model.carController;
 
+import android.util.Log;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -91,6 +93,7 @@ public class CarController extends Thread {
 
     private void sendCommand(final String command) {
         if(!command.equals("" + SYSTEM_END_COMMAND)) { // iff the command isn't empty
+            Log.i("---", command);
             Game.getInstance().sendMessageToRcCar(command);
         }
     }

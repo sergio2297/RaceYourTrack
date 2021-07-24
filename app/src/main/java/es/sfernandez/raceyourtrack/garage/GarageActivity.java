@@ -75,8 +75,7 @@ public class GarageActivity extends AppCompatActivity {
                 break;
 
         }
-        transaction.addToBackStack(null); // FIXME: ???
-        transaction.commit();
+        transaction.addToBackStack(null).commit();
     }
 
 }
