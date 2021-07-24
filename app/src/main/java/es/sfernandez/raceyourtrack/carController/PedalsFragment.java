@@ -154,11 +154,11 @@ public class PedalsFragment extends Fragment {
                     command = transmissionSystemController.buildActionShiftTo(transmissionSystemController.MAX_NUM_OF_GEARS);
                 } else if(System.currentTimeMillis() - lastAdvancedThrottleCommandTimestamp > MINIMUM_MS_DELAY_BETWEEN_COMMANDS) {
                     command = transmissionSystemController.buildActionShiftTo((int)(progress / transmissionSystemController.MAX_NUM_OF_GEARS));
-                    lastAdvancedThrottleCommandTimestamp = System.currentTimeMillis();
                 }
 
                 if(!command.equals(lastCommandSent)) {
                     carController.addTransmissionAction(command);
+                    lastAdvancedThrottleCommandTimestamp = System.currentTimeMillis();
                     lastCommandSent = command;
                 }
             });

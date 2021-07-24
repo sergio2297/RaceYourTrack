@@ -30,6 +30,7 @@ public class SteeringFragment extends Fragment {
     private SteeringConfig steeringConfig;
     private CarController carController;
     private SteeringSystemController steeringSystemController;
+    private String lastCommandSent = "";
     private long lastSteeringCommandTimestamp = -MINIMUM_MS_DELAY_BETWEEN_COMMANDS;
 
     //---- View Elements ----
@@ -95,14 +96,24 @@ public class SteeringFragment extends Fragment {
         // The steeringWheel will send commands with some delay restrictions to avoid collapse the communication queue
         if(seekBarSteeringWheel.isVisible()) {
             seekBarSteeringWheel.setListener((progress) -> {
+                String command = lastCommandSent;
                 if(progress == 90) {
-                    carController.addSteeringAction(steeringSystemController.buildActionCenterSteering());
+                    command = steeringSystemController.buildActionCenterSteering();
+                } else if(progress == 0) {
+                    command = steeringSystemController.buildActionSteeringLeft();
+                } else if(progress == 180) {
+                    command = steeringSystemController.buildActionSteeringRight();
                 } else if(System.currentTimeMillis() - lastSteeringCommandTimestamp > MINIMUM_MS_DELAY_BETWEEN_COMMANDS) {
                     int degrees = Math.abs(90 - progress);
-                    carController.addSteeringAction((progress - 90) <= 0 ?
+                    command = (progress - 90) <= 0 ?
                             steeringSystemController.buildActionSteeringLeft(degrees) :
-                            steeringSystemController.buildActionSteeringRight(degrees));
+                            steeringSystemController.buildActionSteeringRight(degrees);
+                }
+
+                if(!command.equals(lastCommandSent)) {
+                    carController.addSteeringAction(command);
                     lastSteeringCommandTimestamp = System.currentTimeMillis();
+                    lastCommandSent = command;
                 }
             });
         }
