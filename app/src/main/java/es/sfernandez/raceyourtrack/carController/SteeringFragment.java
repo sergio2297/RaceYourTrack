@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import es.sfernandez.raceyourtrack.R;
 import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
 import es.sfernandez.raceyourtrack.app_error_handling.AppError;
-import es.sfernandez.raceyourtrack.app_error_handling.AppErrorHelper;
+import es.sfernandez.raceyourtrack.app_error_handling.AppErrorHandler;
 import es.sfernandez.raceyourtrack.app_error_handling.AppUnCatchableException;
 import model.carController.CarController;
 import model.carController.SteeringSystemController;
@@ -76,7 +76,7 @@ public class SteeringFragment extends Fragment {
             btnArrowLeft.setVisible(false);
             btnArrowRight.setVisible(false);
         } else {
-            throw new AppUnCatchableException(new AppError(AppErrorHelper.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
+            throw new AppUnCatchableException(new AppError(AppErrorHandler.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
         }
     }
 

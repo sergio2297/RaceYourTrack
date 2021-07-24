@@ -3,7 +3,7 @@ package model.settings.configurable;
 import es.sfernandez.raceyourtrack.R;
 import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
 import es.sfernandez.raceyourtrack.app_error_handling.AppError;
-import es.sfernandez.raceyourtrack.app_error_handling.AppErrorHelper;
+import es.sfernandez.raceyourtrack.app_error_handling.AppErrorHandler;
 import es.sfernandez.raceyourtrack.app_error_handling.AppUnCatchableException;
 
 public class DrivingModeConfig extends ConfigurableProperty {
@@ -63,7 +63,7 @@ public class DrivingModeConfig extends ConfigurableProperty {
         } else if(name.equalsIgnoreCase(SENSATIONAL.getName())) {
             return SENSATIONAL;
         } else {
-            throw new AppUnCatchableException(new AppError(AppErrorHelper.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
+            throw new AppUnCatchableException(new AppError(AppErrorHandler.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
         }
     }
 }

@@ -20,7 +20,7 @@ public class AppError {
         this.msg = msg;
         this.context = context;
 
-        AppErrorHelper.handleError(this);
+        AppErrorHandler.handleError(this);
     }
 
     //---- Methods ----

@@ -2,6 +2,12 @@ package model;
 
 import android.bluetooth.BluetoothSocket;
 
+import java.io.IOException;
+
+import es.sfernandez.raceyourtrack.R;
+import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
+import es.sfernandez.raceyourtrack.app_error_handling.AppError;
+import es.sfernandez.raceyourtrack.app_error_handling.AppErrorHandler;
 import model.bluetooth.BluetoothCommunicationThread;
 
 public class Game {
@@ -15,6 +21,7 @@ public class Game {
     private Car selectedCar;
 
     private BluetoothCommunicationThread communicationThread;
+    private boolean errorHasHappenedBefore = false;
 
     //---- Construction ----
     private Game() {
@@ -33,24 +40,34 @@ public class Game {
         return selectedCar;
     }
 
-    public boolean isCarConnected() { // FIXME: Mejorar para que informe de verdad cuando se esta conectado o no
+    public boolean isCarConnected() {
         return communicationThread != null && communicationThread.isConnected();
     }
 
     public void createCommunicationThread(final BluetoothSocket socket) {
         if(communicationThread != null) {
-            communicationThread.cancel();
+            communicationThread.closeCommunication();
         }
         communicationThread = new BluetoothCommunicationThread(socket);
+        errorHasHappenedBefore = false;
     }
 
     public void sendMessageToRcCar(final String msg) {
-        communicationThread.write(msg.getBytes());
+        try {
+            communicationThread.write(msg.getBytes());
+        } catch(IOException ex) {
+            if(!errorHasHappenedBefore) { // With this, we control don't throw more than one error when a instruction implies more than one command (like press the throttle button)
+                errorHasHappenedBefore = true;
+                new AppError(AppErrorHandler.CodeErrors.BLUETOOTH_CONNECTION_LOST,
+                        RaceYourTrackApplication.getContext().getResources().getString(R.string.lost_bluetooth_connection),
+                        RaceYourTrackApplication.getContext());
+            }
+        }
     }
 
     public void destroyCommunicationThread() {
-        if(communicationThread != null && communicationThread.isAlive()) {
-            communicationThread.cancel();
+        if(communicationThread != null) {
+            communicationThread.closeCommunication();
         }
     }
 }

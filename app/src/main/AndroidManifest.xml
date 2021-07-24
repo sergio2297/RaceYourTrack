@@ -42,12 +42,8 @@
         <activity
             android:name=".carController.CarControllerActivity"
             android:label="@string/free_ride"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
         </activity>
 
         <activity

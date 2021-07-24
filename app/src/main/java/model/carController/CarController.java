@@ -27,7 +27,7 @@ public class CarController extends Thread {
     //---- Constants and Definitions ----
     private final int PERIOD_MS = 50;
     private final char SYSTEM_END_ACTION = ';';
-    private final char SYSTEM_END_COMMAND = '$';
+    public static final char SYSTEM_END_COMMAND = '$';
     private final char SYSTEM_NO_ACTION_CODE =  ' ';
 
     //---- Attributes ----
@@ -106,4 +106,5 @@ public class CarController extends Thread {
     public void addLightsAction(final String action) {
         queueLightActions.add(action);
     }
+
 }

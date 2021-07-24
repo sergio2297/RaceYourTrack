@@ -6,6 +6,8 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import model.carController.CarController;
+
 /**
  * Receives a BluetoothSocket that already has established a connection with another device. Allow to
  * send commands from the app to the Bluetooth module. For receive messages from the Arduino it will
@@ -35,18 +37,19 @@ public class BluetoothCommunicationThread extends Thread {
     }
 
     //---- Methods ----
-    // Call this from the main activity to send data to the remote device.
-    public void write(byte[] bytes) {
-        try {
-            outputStream.write(bytes);
-            outputStream.flush();
-        } catch (IOException e) {
-            Log.e(BluetoothCommunicationThread.class.getCanonicalName(), "Error occurred while sending data", e);
-        }
+    /**
+     * Call this from the main activity to send data to the remote device.
+     * @throws IOException if the bytes haven't be sent correctly
+     */
+    public void write(byte[] bytes) throws IOException {
+        outputStream.write(bytes);
+        outputStream.flush();
     }
 
-    // Call this method from the main activity to shut down the connection.
-    public void cancel() {
+    /**
+     * Call this method from the main activity to shut down the connection.
+     */
+    public void closeCommunication() {
         try {
             bluetoothSocket.close();
         } catch (IOException e) {
@@ -54,7 +57,17 @@ public class BluetoothCommunicationThread extends Thread {
         }
     }
 
+    /**
+     * The method isConnected() will return true if one connection has been established. So is
+     * independent of the current state of the connection. For that, we will try to send a empty
+     * command, and if we get an Exception it's mean that the connection isn't available no more.
+     */
     public boolean isConnected() {
-        return bluetoothSocket.isConnected(); // FIXME: Control when the device disable bluetooth
+        try {
+            outputStream.write(CarController.SYSTEM_END_COMMAND);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
     }
 }

@@ -140,8 +140,9 @@ public class BluetoothActivity extends AppCompatActivity {
         }
 
         if(processSuccessful == false || targetActivityOnFinish == null) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            getApplicationContext().startActivity(intent);
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
         } else if(processSuccessful) {
             Intent intent = new Intent(getApplicationContext(), targetActivityOnFinish);
             getApplicationContext().startActivity(intent);
@@ -281,7 +282,7 @@ public class BluetoothActivity extends AppCompatActivity {
                 }
             }
 
-            if(attempt == MAX_NUM_ATTEMPTS) {
+            if(attempt >= MAX_NUM_ATTEMPTS) {
                 try {
                     bluetoothSocket.close();
                     return;
