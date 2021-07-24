@@ -43,10 +43,11 @@ public class MainActivity extends AppCompatActivity {
             btnConnectBluetooth.setText(getResources().getString(R.string.disconnect_bluetooth));
         }
 
-        String errorMsg = getIntent().getStringExtra("ErrorMsg");
+        String errorMsg = getIntent().getStringExtra("ERROR_MSG");
         if(errorMsg != null) {
             Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show();
         }
+
     }
 
     @Override

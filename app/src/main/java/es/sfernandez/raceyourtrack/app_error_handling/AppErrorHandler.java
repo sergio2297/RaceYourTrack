@@ -36,7 +36,6 @@ public class AppErrorHandler {
         } else if(MIN_BLUETOOTH_ERROR_CODE <= errorCode && errorCode <= MAX_BLUETOOTH_ERROR_CODE) { // Bluetooth's errors
             Intent intent = new Intent(error.getContext(), MainActivity.class);
             intent.putExtra("ERROR_MSG", error.getMsg());
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Stop all other activities and push on top Main
             error.getContext().startActivity(intent);
         } else if(MIN_INPUT_ERROR_CODE <= errorCode && errorCode <= MAX_INPUT_ERROR_CODE) { // User input's errors
             Toast.makeText(error.getContext(), error.getMsg(), Toast.LENGTH_LONG).show();
