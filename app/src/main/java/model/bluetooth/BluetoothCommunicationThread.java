@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothSocket;
 import android.util.Log;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 
 import model.carController.CarController;
@@ -18,14 +19,26 @@ public class BluetoothCommunicationThread extends Thread {
     //---- Constants and Definitions ----
 
     //---- Attributes ----
+    private boolean stillConnected = false;
     private final BluetoothSocket bluetoothSocket;
+    private final InputStream inputStream;
     private final OutputStream outputStream;
+    private byte[] buffer;
 
     //---- Constructor ----
     public BluetoothCommunicationThread(final BluetoothSocket socket) {
         bluetoothSocket = socket;
 
-        // Get the output streams
+        // Get the input stream
+        InputStream tempIn = null;
+        try {
+            tempIn = socket.getInputStream();
+        } catch (IOException e) {
+            Log.e(BluetoothCommunicationThread.class.getCanonicalName(), "Error occurred while creating input stream", e);
+        }
+        inputStream = tempIn;
+
+        // Get the output stream
         OutputStream tempOut = null;
         try {
             tempOut = socket.getOutputStream();
@@ -37,6 +50,30 @@ public class BluetoothCommunicationThread extends Thread {
     }
 
     //---- Methods ----
+    @Override
+    public void run() {
+        buffer = new byte[1024];
+        int numBytes; // bytes returned from read()
+
+        // Keep listening to the InputStream until an exception occurs or the connection is finished.
+        stillConnected = true;
+        while (stillConnected) {
+            try {
+                // Read from the InputStream.
+                String readMessage = "";
+                numBytes = inputStream.read(buffer);
+                for(int i = 0; i < numBytes; ++i) {
+                    readMessage += (char)((int)buffer[i]);
+                }
+                Log.i("------", readMessage);
+
+            } catch (IOException e) {
+                Log.d(BluetoothCommunicationThread.class.getCanonicalName(), "Input stream was disconnected", e);
+                break;
+            }
+        }
+    }
+
     /**
      * Call this from the main activity to send data to the remote device.
      * @throws IOException if the bytes haven't be sent correctly
@@ -52,6 +89,7 @@ public class BluetoothCommunicationThread extends Thread {
     public void closeCommunication() {
         try {
             bluetoothSocket.close();
+            stillConnected = false;
         } catch (IOException e) {
             Log.e(BluetoothCommunicationThread.class.getCanonicalName(), "Could not close the connect socket", e);
         }

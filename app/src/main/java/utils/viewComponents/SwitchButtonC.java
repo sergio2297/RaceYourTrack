@@ -3,8 +3,6 @@ package utils.viewComponents;
 import android.view.View;
 import android.widget.Button;
 
-// TODO: Pasar el estilo que debe tener el boton en cada uno de los estados
-
 /**
  * This custom component performance the behaviour os a switch button. Meaning, the button have two states.
  * When the button is pressed it will change to the state A. It will be necessary to press it again to
@@ -24,7 +22,7 @@ public class SwitchButtonC {
 
     //---- Attributes ----
     private final Button button;
-    private boolean isActive;
+    private boolean isSelected;
     private OnActivateListener onActivateListener;
     private OnDeactivateListener onDeactivateListener;
 
@@ -32,14 +30,15 @@ public class SwitchButtonC {
     public SwitchButtonC(final Button btn) {
         this.button = btn;
         this.button.setOnClickListener(e -> {
-            if(isActive) {
+            if(isSelected) {
                 onDeactivateListener.onDeactivate();
             } else {
                 onActivateListener.onActivate();
             }
-            isActive = !isActive;
+            isSelected = !isSelected;
+            button.setSelected(isSelected);
         });
-        this.isActive = false;
+        this.isSelected = false;
     }
 
     //---- Methods ----

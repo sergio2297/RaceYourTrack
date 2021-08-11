@@ -1,39 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_up_arrow"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Forward"/>
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_down_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="backward"/>
+        <Button
+            android:id="@+id/btn_up_arrow"
+            android:layout_width="@dimen/button_arrow_pedals_side"
+            android:layout_height="@dimen/button_arrow_pedals_side"
+            android:background="@drawable/up_arrow_pedals_button"/>
 
-    <Button
-        android:id="@+id/btn_throttle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/throttle"/>
+        <Button
+            android:id="@+id/btn_down_arrow"
+            android:layout_width="@dimen/button_arrow_pedals_side"
+            android:layout_height="@dimen/button_arrow_pedals_side"
+            android:background="@drawable/down_arrow_pedals_button"/>
 
-    <Button
-        android:id="@+id/btn_brake"
-        android:layout_width="wrap_content"
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/brake"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_brake"
+            android:layout_width="@dimen/button_both_pedal_width"
+            android:layout_height="match_parent"
+            android:background="@drawable/brake_pedals_button"/>
+
+        <Button
+            android:id="@+id/btn_throttle"
+            android:layout_width="@dimen/button_both_pedal_width"
+            android:layout_height="match_parent"
+            android:background="@drawable/throttle_pedals_button"/>
+
+    </LinearLayout>
 
     <SeekBar
         android:id="@+id/seek_bar_advanced_pedal"
-        android:layout_width="200px"
-        android:layout_height="200px"
+        android:layout_width="@dimen/advanced_throttle_seek_bar_height"
+        android:layout_height="@dimen/advanced_throttle_seek_bar_width"
         android:min="0"
         android:max="89"
         android:progress="0"
-        android:rotation="270"/>
-</LinearLayout>
+        android:rotation="270"
+        android:thumb="@drawable/advanced_throttle_seek_bar_thumb"
+        android:progressDrawable="@drawable/advanced_throttle_seek_bar_progress"/>
+</FrameLayout>

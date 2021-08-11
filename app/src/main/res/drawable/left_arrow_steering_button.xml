@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="false">
+
+                <rotate
+                    android:fromDegrees="-90"
+                    android:toDegrees="180"
+                    android:pivotX="50%"
+                    android:pivotY="50%">
+
+                    <bitmap android:gravity="fill"
+                        android:src="@drawable/png_direction_arrow_not_pressed"
+                        android:width="@dimen/button_arrow_pedals_side"
+                        android:height="@dimen/button_arrow_pedals_side"/>
+
+                </rotate>
+
+    </item>
+
+    <item android:state_pressed="true">
+
+        <rotate
+            android:fromDegrees="-90"
+            android:toDegrees="180"
+            android:pivotX="50%"
+            android:pivotY="50%">
+
+            <bitmap android:gravity="fill"
+                android:src="@drawable/png_direction_arrow_pressed"
+                android:width="@dimen/button_arrow_pedals_side"
+                android:height="@dimen/button_arrow_pedals_side"/>
+
+        </rotate>
+
+    </item>
+
+</selector>

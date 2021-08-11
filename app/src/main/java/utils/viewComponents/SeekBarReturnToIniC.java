@@ -2,6 +2,9 @@ package utils.viewComponents;
 
 import android.widget.SeekBar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This custom component acts like a seekbar that returns to its initial position smoothie when the user stop touch it.
  * Custom components like SeekBarAdvancedThrottleC and SeekBarSteeringWheelC extends this.
@@ -56,7 +59,7 @@ public abstract class SeekBarReturnToIniC {
 
     //---- Attributes ----
     protected final SeekBar seekBar;
-    protected OnProgressChangeListener listener;
+    protected List<OnProgressChangeListener> listeners;
     protected final int startProgress, decreaseRate;
     private DecreaseProgressThread decreaseProgressThread = null;
 
@@ -71,10 +74,14 @@ public abstract class SeekBarReturnToIniC {
 
     //---- Methods ----
     private void initializeListeners() {
+        this.listeners = new ArrayList<>();
+
         this.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
-                listener.onProgressChange(progress);
+                for(OnProgressChangeListener listener : listeners) {
+                    listener.onProgressChange(progress);
+                }
             }
 
             @Override
@@ -93,12 +100,12 @@ public abstract class SeekBarReturnToIniC {
         });
     }
 
-    public void setListener(final OnProgressChangeListener listener) {
-        this.listener = listener;
+    public void addListener(final OnProgressChangeListener listener) {
+        this.listeners.add(listener);
     }
 
-    public void setVisible(final boolean visible) {
-        this.seekBar.setVisibility(visible ? SeekBar.VISIBLE : SeekBar.INVISIBLE);
+    public void setVisible(final boolean visible, final boolean gone) {
+        this.seekBar.setVisibility(visible ? SeekBar.VISIBLE : gone ? SeekBar.GONE : SeekBar.INVISIBLE);
     }
 
     public boolean isVisible() {

@@ -24,7 +24,7 @@ import utils.viewComponents.SeekBarSteeringWheelC;
 public class SteeringFragment extends Fragment {
 
     //---- Constants and Definitions ----
-    private final int MINIMUM_MS_DELAY_BETWEEN_COMMANDS = 100;
+    private final int MINIMUM_MS_DELAY_BETWEEN_COMMANDS = 425;
 
     //---- Attributes ----
     private SteeringConfig steeringConfig;
@@ -72,10 +72,10 @@ public class SteeringFragment extends Fragment {
         seekBarSteeringWheel = new SeekBarSteeringWheelC(getView().findViewById(R.id.seek_bar_steering_wheel));
 
         if(steeringConfig.equals(SteeringConfig.ARROWS)) {
-            seekBarSteeringWheel.setVisible(false);
+            seekBarSteeringWheel.setVisible(false, true);
         } else if(steeringConfig.equals(SteeringConfig.STEERING_WHEEL)) {
-            btnArrowLeft.setVisible(false);
-            btnArrowRight.setVisible(false);
+            btnArrowLeft.setVisible(false, true);
+            btnArrowRight.setVisible(false, true);
         } else {
             throw new AppUnCatchableException(new AppError(AppErrorHandler.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
         }
@@ -95,7 +95,7 @@ public class SteeringFragment extends Fragment {
 
         // The steeringWheel will send commands with some delay restrictions to avoid collapse the communication queue
         if(seekBarSteeringWheel.isVisible()) {
-            seekBarSteeringWheel.setListener((progress) -> {
+            seekBarSteeringWheel.addListener((progress) -> {
                 String command = lastCommandSent;
                 if(progress == 90) {
                     command = steeringSystemController.buildActionCenterSteering();

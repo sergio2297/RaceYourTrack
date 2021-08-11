@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- BEGIN BUTTON DIMENSIONS -->
+    <dimen name="button_stroke_width">2dp</dimen>
+    <dimen name="button_lights_side">45dp</dimen>
+    <dimen name="button_arrow_steering_side">100dp</dimen>
+    <dimen name="seek_bar_steering_wheel_side">200dp</dimen>
+    <dimen name="button_arrow_pedals_side">100dp</dimen>
+    <dimen name="button_both_pedal_height">175dp</dimen>
+    <dimen name="button_both_pedal_width">100dp</dimen>
+    <dimen name="advanced_throttle_seek_bar_width">450px</dimen>
+    <dimen name="advanced_throttle_seek_bar_height">450px</dimen>
+    <!--<dimen name="button_lights_radius">5dp</dimen>
+    <dimen name="button_stroke">2dp</dimen>
+    <dimen name="list_item_button_radius">20dp</dimen>
+    <dimen name="list_item_button_stroke">1dp</dimen>
+    <dimen name="button_change_units_side">30dp</dimen>
+    <dimen name="button_change_units_width">@dimen/button_change_units_side</dimen>
+    <dimen name="button_change_units_height">@dimen/button_change_units_side</dimen>
+
+    <dimen name="between_buttons_margin">8dp</dimen>
+    <dimen name="button_preferred_margin">10dp</dimen>
+    <dimen name="button_preferred_padding">8dp</dimen>-->
+    <!-- END BUTTON DIMENSIONS -->
+
+</resources>

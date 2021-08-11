@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.RaceYourTrack" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.RaceYourTrack" parent="Theme.AppCompat">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -13,4 +13,81 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.RaceYourTrack.NoActionBar" parent="Theme.RaceYourTrack">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
+    <!-- BEGIN BUTTONS STYLES -->
+    <style name="LightsButtonOFF" parent="@android:style/Widget.Button">
+        <item name="android:width">300px</item>
+        <item name="android:height">30px</item>
+        <item name="android:background">@drawable/dipped_lights_button</item>
+    </style>
+
+
+    <!--<style name="AppButton" parent="@android:style/Widget.Button">
+        <item name="android:textAppearance">@style/AppFont</item>
+        <item name="android:padding">@dimen/button_preferred_padding</item>
+    </style>
+
+    <style name="AppButton.MainShoppingListButton" parent="AppButton">
+        <item name="android:background">@drawable/main_button_shopping_list</item>
+        <item name="android:textColor" android:state_enabled="false">@color/black</item>
+    </style>
+
+    <style name="AppButton.MainStockButton" parent="AppButton">
+        <item name="android:background">@drawable/main_button_stock</item>
+        <item name="android:textColor" android:state_enabled="false">@color/black</item>
+    </style>
+
+    <style name="AppButton.MainStockShoppingListButton" parent="AppButton">
+        <item name="android:background">@drawable/main_button_stock_shopping_list</item>
+        <item name="android:textColor" android:state_enabled="false">@color/black</item>
+    </style>
+
+    <style name="AppButton.NegativeButton" parent="AppButton">
+        <item name="android:background">@drawable/button_negative</item>
+        <item name="android:layout_margin">@dimen/button_preferred_margin</item>
+    </style>
+
+    <style name="AppButton.NeutralButton" parent="AppButton">
+        <item name="android:background">@drawable/button_neutral</item>
+        <item name="android:layout_margin">@dimen/button_preferred_margin</item>
+    </style>
+
+    <style name="AppButton.PositiveButton" parent="AppButton">
+        <item name="android:background">@drawable/button_positive</item>
+        <item name="android:layout_margin">@dimen/button_preferred_margin</item>
+    </style>
+
+    <style name="AppButton.ActionButton" parent="AppButton">
+        <item name="android:background">@drawable/button_action</item>
+        <item name="android:layout_margin">@dimen/button_preferred_margin</item>
+    </style>
+
+    <style name="AppButton.UpdateUnitButton" parent="AppButton">
+        <item name="android:layout_height">@dimen/button_change_units_height</item>
+        <item name="android:layout_width">@dimen/button_change_units_width</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
+    <style name="AppButton.UpdateUnitButton.AddUnitButton" parent="AppButton.UpdateUnitButton">
+        <item name="android:background">@drawable/button_add_unit</item>
+    </style>
+
+    <style name="AppButton.UpdateUnitButton.RemoveUnitButton" parent="AppButton.UpdateUnitButton">
+        <item name="android:background">@drawable/button_remove_unit</item>
+    </style>
+
+    <style name="AppButton.RemoveButton" parent="AppButton">
+        <item name="android:layout_height">@dimen/button_change_units_height</item>
+        <item name="android:layout_width">@dimen/button_change_units_width</item>
+        <item name="android:background">@drawable/button_remove</item>
+    </style>-->
+    <!-- END BUTTONS STYLES -->
+
 </resources>

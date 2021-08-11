@@ -5,6 +5,31 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
+    <!-- RaceYourTrack palette -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#FFFF0000</color>
+    <color name="dark_gray">#FF545757</color>
+    <color name="light_blue">#FF86C5E1</color>
+    <color name="blue">#FF3581C5</color>
+    <color name="dark_blue">#FF124C8A</color>
+
+    <!-- Other colors -->
+    <color name="light_yellow">#FFFFFF66</color>
+    <color name="automobile_yellow">#FFF7B500</color>
+    <color name="dark_red">#FFA50000</color>
+    <color name="silver">#FFC0C0C0</color>
+    <color name="light_green">#FF90EE90</color>
+
+    <!-- Buttons -->
+    <color name="dipped_lights_button_off_color">@color/light_blue</color>
+    <color name="dipped_lights_button_on_color">@color/dark_blue</color>
+    <color name="main_lights_button_off_color">@color/light_blue</color>
+    <color name="main_lights_button_on_color">@color/dark_blue</color>
+    <color name="emergency_lights_button_off_color">@color/red</color>
+    <color name="emergency_lights_button_on_color">@color/dark_red</color>
+    <color name="blinking_lights_button_off_color">@color/light_yellow</color>
+    <color name="blinking_lights_button_on_color">@color/automobile_yellow</color>
+    <color name="advanced_throttle_progress_color">@color/light_green</color>
 </resources>

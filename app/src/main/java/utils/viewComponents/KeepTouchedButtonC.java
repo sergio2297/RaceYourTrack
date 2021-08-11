@@ -57,8 +57,8 @@ public class KeepTouchedButtonC {
         this.onReleaseListener = listener;
     }
 
-    public void setVisible(boolean visible) {
-        this.button.setVisibility( visible ? View.VISIBLE : View.INVISIBLE);
+    public void setVisible(final boolean visible, final boolean gone) {
+        this.button.setVisibility( visible ? View.VISIBLE : gone ? View.GONE : View.INVISIBLE);
     }
 
     public boolean isVisible() {

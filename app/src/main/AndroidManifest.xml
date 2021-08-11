@@ -24,7 +24,7 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat">
+            android:theme="@style/Theme.RaceYourTrack">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -33,17 +33,17 @@
 
         <activity
             android:name=".app_error_handling.FatalAppErrorActivity"
-            android:theme="@style/Theme.AppCompat"/>
+            android:theme="@style/Theme.RaceYourTrack"/>
 
         <activity
             android:name=".bluetoothConnection.BluetoothActivity"
-            android:theme="@style/Theme.AppCompat"/>
+            android:theme="@style/Theme.RaceYourTrack"/>
 
         <activity
             android:name=".carController.CarControllerActivity"
             android:label="@string/free_ride"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat">
+            android:theme="@style/Theme.RaceYourTrack.NoActionBar">
         </activity>
 
         <activity
@@ -51,7 +51,7 @@
             android:label="@string/garage"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat">
+            android:theme="@style/Theme.RaceYourTrack">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

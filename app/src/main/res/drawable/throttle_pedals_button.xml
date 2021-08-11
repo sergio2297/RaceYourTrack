@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="false">
+        <bitmap android:gravity="center"
+            android:src="@drawable/png_throttle_pedal_not_pressed"
+            android:tintMode="src_in"
+            android:width="@dimen/button_both_pedal_width"
+            android:height="@dimen/button_both_pedal_height"/>
+    </item>
+
+    <item android:state_pressed="true">
+        <bitmap android:gravity="center"
+            android:src="@drawable/png_throttle_pedal_pressed"
+            android:tintMode="src_in"
+            android:width="@dimen/button_both_pedal_width"
+            android:height="@dimen/button_both_pedal_height"/>
+    </item>
+
+</selector>

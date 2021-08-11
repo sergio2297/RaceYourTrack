@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
     <Button
         android:id="@+id/btn_left_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Left"/>
+        android:layout_width="@dimen/button_arrow_steering_side"
+        android:layout_height="@dimen/button_arrow_steering_side"
+        android:background="@drawable/left_arrow_steering_button"/>
 
     <Button
         android:id="@+id/btn_right_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Right"/>
+        android:layout_width="@dimen/button_arrow_steering_side"
+        android:layout_height="@dimen/button_arrow_steering_side"
+        android:background="@drawable/right_arrow_steering_button"/>
 
     <SeekBar
         android:id="@+id/seek_bar_steering_wheel"
-        android:layout_width="500px"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/seek_bar_steering_wheel_side"
+        android:layout_height="@dimen/seek_bar_steering_wheel_side"
         android:min="0"
         android:max="180"
-        android:progress="90"/>
+        android:progress="90"
+        android:background="@drawable/steering_wheel_rotate_drawable"
+        android:thumb="@drawable/steering_wheel_seek_bar_thumb"
+        android:progressDrawable="@drawable/steering_wheel_seek_bar_progress"/>
 
 </LinearLayout>

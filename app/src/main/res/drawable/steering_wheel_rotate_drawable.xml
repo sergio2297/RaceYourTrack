@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromDegrees="-180"
+    android:toDegrees="180"
+    android:pivotX="50%"
+    android:pivotY="50%">
+
+    <bitmap android:gravity="fill"
+        android:src="@drawable/png_steering_wheel"
+        android:width="@dimen/button_arrow_pedals_side"
+        android:height="@dimen/button_arrow_pedals_side"/>
+
+</rotate>

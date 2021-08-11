@@ -80,18 +80,18 @@ public class PedalsFragment extends Fragment {
         seekBarAdvancedThrottle = new SeekBarAdvancedThrottleC((SeekBar) getView().findViewById(R.id.seek_bar_advanced_pedal));
 
         if(pedalsConfig.equals(PedalsConfig.ARROWS)) {
-            btnThrottle.setVisible(false);
-            btnBrake.setVisible(false);
-            seekBarAdvancedThrottle.setVisible(false);
+            btnThrottle.setVisible(false, true);
+            btnBrake.setVisible(false, true);
+            seekBarAdvancedThrottle.setVisible(false, true);
         } else if(pedalsConfig.equals(PedalsConfig.BOTH)) {
-            btnArrowUp.setVisible(false);
-            btnArrowDown.setVisible(false);
-            seekBarAdvancedThrottle.setVisible(false);
+            btnArrowUp.setVisible(false, true);
+            btnArrowDown.setVisible(false, true);
+            seekBarAdvancedThrottle.setVisible(false, true);
         } else if(pedalsConfig.equals(PedalsConfig.ADVANCED)) {
-            btnArrowUp.setVisible(false);
-            btnArrowDown.setVisible(false);
-            btnThrottle.setVisible(false);
-            btnBrake.setVisible(false);
+            btnArrowUp.setVisible(false, true);
+            btnArrowDown.setVisible(false, true);
+            btnThrottle.setVisible(false, true);
+            btnBrake.setVisible(false, true);
         } else {
             throw new AppUnCatchableException(new AppError(AppErrorHandler.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
         }
@@ -141,7 +141,7 @@ public class PedalsFragment extends Fragment {
 
         // The advanced throttle will send commands with some delay restrictions to avoid collapse the communication queue
         if(seekBarAdvancedThrottle.isVisible()) {
-            seekBarAdvancedThrottle.setListener((progress) -> {
+            seekBarAdvancedThrottle.addListener((progress) -> {
                 String command = lastCommandSent;
                 if(progress == 0) {
                     command = transmissionSystemController.buildActionStopThrottle();

@@ -1,6 +1,7 @@
 package model;
 
 import android.bluetooth.BluetoothSocket;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -49,6 +50,7 @@ public class Game {
             communicationThread.closeCommunication();
         }
         communicationThread = new BluetoothCommunicationThread(socket);
+        communicationThread.start();
         errorHasHappenedBefore = false;
     }
 
@@ -68,6 +70,11 @@ public class Game {
     public void destroyCommunicationThread() {
         if(communicationThread != null) {
             communicationThread.closeCommunication();
+            try {
+                communicationThread.join();
+            } catch (InterruptedException ex) {
+                Log.i(Game.class.getCanonicalName(), "This should never happen");
+            }
         }
     }
 }

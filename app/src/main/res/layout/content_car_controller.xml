@@ -1,38 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Pedals Fragment -->
-        <fragment class="es.sfernandez.raceyourtrack.carController.PedalsFragment"
-            android:id="@+id/car_controller_pedals_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- Lights Fragment -->
-        <fragment class="es.sfernandez.raceyourtrack.carController.LightsFragment"
-            android:id="@+id/car_controller_lights_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
 
         <!-- Steering Fragment -->
         <fragment class="es.sfernandez.raceyourtrack.carController.SteeringFragment"
             android:id="@+id/car_controller_steering_fragment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
         <!-- Transmission Fragment -->
-        <fragment class="es.sfernandez.raceyourtrack.carController.TransmissionFragment"
+        <!--<fragment class="es.sfernandez.raceyourtrack.carController.TransmissionFragment"
             android:id="@+id/car_controller_transmission_fragment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" />-->
+
+        <!-- Lights Fragment -->
+        <fragment class="es.sfernandez.raceyourtrack.carController.LightsFragment"
+            android:id="@+id/car_controller_lights_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="2">
+
+        <!-- Pedals Fragment -->
+        <fragment class="es.sfernandez.raceyourtrack.carController.PedalsFragment"
+            android:id="@+id/car_controller_pedals_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"/>
+
+    </FrameLayout>
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package es.sfernandez.raceyourtrack.carController;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,6 +37,16 @@ public class CarControllerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_controller);
 
+        // Enables regular immersive mode.
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         // Loading view elements
         lightsFragment = (LightsFragment) getSupportFragmentManager().findFragmentById(R.id.car_controller_lights_fragment);
         lightsFragment.setCarController(carController);
@@ -45,9 +56,9 @@ public class CarControllerActivity extends AppCompatActivity {
 
         steeringFragment = (SteeringFragment) getSupportFragmentManager().findFragmentById(R.id.car_controller_steering_fragment);
         steeringFragment.setCarController(carController);
-
-        transmissionFragment = (TransmissionFragment) getSupportFragmentManager().findFragmentById(R.id.car_controller_transmission_fragment);
-        transmissionFragment.setCarController(carController);
+//
+//        transmissionFragment = (TransmissionFragment) getSupportFragmentManager().findFragmentById(R.id.car_controller_transmission_fragment);
+//        transmissionFragment.setCarController(carController);
     }
 
     @Override
