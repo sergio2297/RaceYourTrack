@@ -10,14 +10,11 @@ import android.widget.Button;
  *
  * Ex.: cams.
  */
-public class PushButtonC {
+public class GearButtonC {
 
     //---- Constants and Definitions ----
     public interface OnPressListener {
         void onButtonPressed();
-    }
-    public interface OnReleaseListener {
-        void onButtonRelease();
     }
 
     // https://stackoverflow.com/questions/22606977/how-can-i-get-button-pressed-time-when-i-holding-button-on
@@ -25,10 +22,9 @@ public class PushButtonC {
     //---- Attributes ----
     private final Button button;
     private OnPressListener onPressListener;
-    private OnReleaseListener onReleaseListener;
 
     //---- Construction ----
-    public PushButtonC(final Button btn) {
+    public GearButtonC(final Button btn) {
         this.button = btn;
         this.button.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -36,10 +32,6 @@ public class PushButtonC {
                 switch(event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         onPressListener.onButtonPressed();
-                        break;
-
-                    case MotionEvent.ACTION_UP:
-                        onReleaseListener.onButtonRelease();
                         break;
                 }
                 return false;
@@ -52,12 +44,8 @@ public class PushButtonC {
         this.onPressListener = listener;
     }
 
-    public void setOnReleaseListener(final OnReleaseListener listener) {
-        this.onReleaseListener = listener;
-    }
-
-    public void setVisible(boolean visible) {
-        this.button.setVisibility( visible ? View.VISIBLE : View.INVISIBLE);
+    public void setVisible(final boolean visible, final boolean gone) {
+        this.button.setVisibility( visible ? View.VISIBLE : gone ? View.GONE : View.INVISIBLE);
     }
 
     public boolean isVisible() {

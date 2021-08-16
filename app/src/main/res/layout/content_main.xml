@@ -4,25 +4,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <android.widget.Button
-            android:id="@+id/btn_connect_bluetooth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/connect_bluetooth"
-            android:onClick="onClick"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="@dimen/large_padding">
+
+                <android.widget.Button
+                    android:id="@+id/btn_free_ride"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:text="@string/free_ride"
+                    android:background="@drawable/free_ride_button"
+                    android:onClick="onClick"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:orientation="vertical"
+                    android:padding="@dimen/normal_padding">
+
+                        <android.widget.Button
+                            android:id="@+id/btn_connect_bluetooth"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/connect_bluetooth"
+                            android:background="@drawable/connect_bluetooth_button"/>
+
+                        <android.widget.Button
+                            android:id="@+id/btn_garage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/garage"
+                            android:background="@drawable/garage_button"/>
+
+                </LinearLayout>
+
+        </LinearLayout>
 
         <android.widget.Button
-            android:id="@+id/btn_free_ride"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/free_ride"
-            android:onClick="onClick"/>
-
-        <android.widget.Button
-            android:id="@+id/btn_garage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/garage"
+            android:id="@+id/btn_play"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/normal_padding"
+            android:text="Play"
+            android:background="@drawable/play_button"
             android:onClick="onClick"/>
 
 </LinearLayout>

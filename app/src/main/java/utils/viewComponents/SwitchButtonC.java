@@ -30,9 +30,9 @@ public class SwitchButtonC {
     public SwitchButtonC(final Button btn) {
         this.button = btn;
         this.button.setOnClickListener(e -> {
-            if(isSelected) {
+            if(isSelected && onDeactivateListener != null) {
                 onDeactivateListener.onDeactivate();
-            } else {
+            } else if(onActivateListener != null) {
                 onActivateListener.onActivate();
             }
             isSelected = !isSelected;
@@ -56,5 +56,19 @@ public class SwitchButtonC {
 
     public boolean isVisible() {
         return button.getVisibility() == Button.VISIBLE ? true : false;
+    }
+
+    public void setText(final String text) {
+        this.button.setText(text);
+    }
+
+    public void select() {
+        isSelected = true;
+        button.setSelected(isSelected);
+    }
+
+    public void deselect() {
+        isSelected = false;
+        button.setSelected(isSelected);
     }
 }

@@ -4,9 +4,10 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal|center_vertical">
 
         <Button
             android:id="@+id/btn_up_arrow"
@@ -25,7 +26,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal|bottom">
 
         <Button
             android:id="@+id/btn_brake"
@@ -45,6 +47,7 @@
         android:id="@+id/seek_bar_advanced_pedal"
         android:layout_width="@dimen/advanced_throttle_seek_bar_height"
         android:layout_height="@dimen/advanced_throttle_seek_bar_width"
+        android:layout_gravity="bottom"
         android:min="0"
         android:max="89"
         android:progress="0"

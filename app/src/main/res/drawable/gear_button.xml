@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="false">
+        <layer-list>
+            <item>
+                <shape xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:shape="oval">
+                    <stroke android:width="2px"/>
+                    <size android:width="@dimen/button_gear_side" android:height="@dimen/button_gear_side"/>
+                    <solid android:color="@color/gear_button_not_pressed_color"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <item android:state_pressed="true" >
+        <layer-list>
+            <item>
+                <shape xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:shape="oval">
+                    <stroke android:width="2px"/>
+                    <size android:width="@dimen/button_gear_side" android:height="@dimen/button_gear_side"/>
+                    <solid android:color="@color/gear_button_pressed_color"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+</selector>

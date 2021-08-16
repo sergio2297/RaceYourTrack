@@ -1,33 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_down_shift"
-        android:layout_width="wrap_content"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Down shift"/>
+        android:layout_gravity="center_vertical">
 
-    <Button
-        android:id="@+id/btn_up_shift"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Up shift"/>
+        <LinearLayout
+            android:id="@+id/lyt_manual_sequential_shift"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btn_neutral"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Neutral"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="@dimen/normal_padding"
+                android:layout_gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/btn_reverse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reverse"/>
+                <Button
+                    android:id="@+id/btn_up_shift"
+                    android:layout_width="@dimen/button_gear_side"
+                    android:layout_height="@dimen/button_gear_side"
+                    android:layout_marginRight="@dimen/large_padding"
+                    android:text="-"
+                    android:textSize="@dimen/gear_character_size"
+                    android:background="@drawable/gear_button"/>
 
-    <!-- TODO: H Shift -->
+                <Button
+                    android:id="@+id/btn_down_shift"
+                    android:layout_width="@dimen/button_gear_side"
+                    android:layout_height="@dimen/button_gear_side"
+                    android:layout_marginLeft="@dimen/large_padding"
+                    android:text="+"
+                    android:textSize="@dimen/gear_character_size"
+                    android:background="@drawable/gear_button"/>
 
-</LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_neutral_sequential_shift"
+                android:layout_width="@dimen/button_gear_side"
+                android:layout_height="@dimen/button_gear_side"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/large_padding"
+                android:layout_marginBottom="@dimen/normal_padding"
+                android:text="N"
+                android:textSize="@dimen/gear_character_size"
+                android:background="@drawable/gear_button"/>
+
+            <Button
+                android:id="@+id/btn_reverse_sequential_shift"
+                android:layout_width="@dimen/button_gear_side"
+                android:layout_height="@dimen/button_gear_side"
+                android:layout_gravity="center"
+                android:text="R"
+                android:textSize="@dimen/gear_character_size"
+                android:background="@drawable/gear_button"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyt_automatic_shift_with_pedals"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/btn_forward"
+                android:layout_width="@dimen/button_gear_side"
+                android:layout_height="@dimen/button_gear_side"
+                android:layout_marginVertical="@dimen/normal_padding"
+                android:text="F"
+                android:textSize="@dimen/gear_character_size"
+                android:background="@drawable/gear_button"/>
+
+            <Button
+                android:id="@+id/btn_neutral_automatic_shift"
+                android:layout_width="@dimen/button_gear_side"
+                android:layout_height="@dimen/button_gear_side"
+                android:layout_marginVertical="@dimen/normal_padding"
+                android:text="N"
+                android:textSize="@dimen/gear_character_size"
+                android:background="@drawable/gear_button"/>
+
+            <Button
+                android:id="@+id/btn_reverse_automatic_shift"
+                android:layout_width="@dimen/button_gear_side"
+                android:layout_height="@dimen/button_gear_side"
+                android:layout_marginVertical="@dimen/normal_padding"
+                android:text="R"
+                android:textSize="@dimen/gear_character_size"
+                android:background="@drawable/gear_button"/>
+
+        </LinearLayout>
+
+        <!-- TODO: H Shift -->
+
+    </LinearLayout>
+
+</FrameLayout>

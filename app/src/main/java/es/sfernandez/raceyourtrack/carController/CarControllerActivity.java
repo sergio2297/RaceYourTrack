@@ -56,9 +56,9 @@ public class CarControllerActivity extends AppCompatActivity {
 
         steeringFragment = (SteeringFragment) getSupportFragmentManager().findFragmentById(R.id.car_controller_steering_fragment);
         steeringFragment.setCarController(carController);
-//
-//        transmissionFragment = (TransmissionFragment) getSupportFragmentManager().findFragmentById(R.id.car_controller_transmission_fragment);
-//        transmissionFragment.setCarController(carController);
+
+        transmissionFragment = (TransmissionFragment) getSupportFragmentManager().findFragmentById(R.id.car_controller_transmission_fragment);
+        transmissionFragment.setCarController(carController);
     }
 
     @Override

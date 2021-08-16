@@ -26,7 +26,7 @@ public class Game {
 
     //---- Construction ----
     private Game() {
-        selectedCar = Car.MUSCLE_CAR;
+        selectedCar = Car.SPORT_CAR;
     }
 
     public static Game getInstance() {

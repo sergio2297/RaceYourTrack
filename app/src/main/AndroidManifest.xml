@@ -9,8 +9,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <!--  -->
 
-
-
     <application
         android:name=".RaceYourTrackApplication"
         android:allowBackup="true"
@@ -43,7 +41,7 @@
             android:name=".carController.CarControllerActivity"
             android:label="@string/free_ride"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.RaceYourTrack.NoActionBar">
+            android:theme="@style/Theme.RaceYourTrack">
         </activity>
 
         <activity

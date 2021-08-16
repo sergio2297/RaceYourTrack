@@ -2,23 +2,22 @@ package es.sfernandez.raceyourtrack;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import es.sfernandez.raceyourtrack.app_error_handling.AppError;
-import es.sfernandez.raceyourtrack.app_error_handling.AppErrorHandler;
-import es.sfernandez.raceyourtrack.app_error_handling.AppUnCatchableException;
 import es.sfernandez.raceyourtrack.bluetoothConnection.BluetoothActivity;
 import es.sfernandez.raceyourtrack.carController.CarControllerActivity;
 import es.sfernandez.raceyourtrack.garage.GarageActivity;
 import model.Game;
+import utils.viewComponents.SwitchButtonC;
 
 public class MainActivity extends AppCompatActivity {
 
     //---- View Elements ----
+    private SwitchButtonC btnGarage, btnPlay;
     private Button btnConnectBluetooth, btnFreeRide;
 
     //---- Activity Methods ----
@@ -31,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
 
         // Loading view elements
         btnConnectBluetooth = findViewById(R.id.btn_connect_bluetooth);
+        btnConnectBluetooth.setOnClickListener( click -> btnConnectBluetoothOnClick());
+
+        btnFreeRide = findViewById(R.id.btn_free_ride);
+        btnFreeRide.setOnClickListener( click -> btnFreeRideOnClick());
+
+        btnGarage = new SwitchButtonC(findViewById(R.id.btn_garage));
+        btnGarage.setOnActivateListener( () -> btnGarageOnClick());
+
+        btnPlay = new SwitchButtonC(findViewById(R.id.btn_play));
+        btnPlay.setOnActivateListener( () -> btnPlayOnClick());
     }
 
     @Override
@@ -39,8 +48,10 @@ public class MainActivity extends AppCompatActivity {
 
         if(!Game.getInstance().isCarConnected()) {
             btnConnectBluetooth.setText(getResources().getString(R.string.connect_bluetooth));
+            btnConnectBluetooth.setBackgroundResource(R.drawable.png_connect_bluetooth);
         } else {
             btnConnectBluetooth.setText(getResources().getString(R.string.disconnect_bluetooth));
+            btnConnectBluetooth.setBackgroundResource(R.drawable.png_disconnect_bluetooth);
         }
 
         String errorMsg = getIntent().getStringExtra("ERROR_MSG");
@@ -48,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show();
         }
 
+        btnGarage.deselect();
     }
 
     @Override
@@ -59,25 +71,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---- Methods ----
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_connect_bluetooth:
-                btnConnectBluetoothOnClick();
-                break;
-
-            case R.id.btn_free_ride:
-                btnFreeRideOnClick();
-                break;
-
-            case R.id.btn_garage:
-                btnGarageOnClick();
-                break;
-
-            default:
-                throw new AppUnCatchableException(new AppError(AppErrorHandler.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
-        }
-    }
-
     private void btnConnectBluetoothOnClick() {
         if(!Game.getInstance().isCarConnected()) {
             Intent intent = new Intent(getApplicationContext(), BluetoothActivity.class);
@@ -89,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void btnFreeRideOnClick() {
+        btnFreeRide.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_free_ride_button));
         Intent intent;
         if(Game.getInstance().isCarConnected()) {
             intent = new Intent(getApplicationContext(), CarControllerActivity.class);
@@ -102,5 +96,9 @@ public class MainActivity extends AppCompatActivity {
     private void btnGarageOnClick() {
         Intent intent = new Intent(getApplicationContext(), GarageActivity.class);
         getApplicationContext().startActivity(intent);
+    }
+
+    private void btnPlayOnClick() {
+        Toast.makeText(this, "Play", Toast.LENGTH_SHORT).show();
     }
 }

@@ -17,11 +17,12 @@ import es.sfernandez.raceyourtrack.app_error_handling.AppUnCatchableException;
 import model.Car;
 import model.Game;
 import model.carController.CarController;
+import model.carController.LightsSystemController;
 import model.carController.TransmissionSystemController;
 import model.settings.Settings;
 import model.settings.configurable.PedalsConfig;
 import model.settings.configurable.TransmissionConfig;
-import utils.viewComponents.PushButtonC;
+import utils.viewComponents.GearButtonC;
 
 public class TransmissionFragment extends Fragment {
 
@@ -29,21 +30,23 @@ public class TransmissionFragment extends Fragment {
     private TransmissionConfig transmissionConfig;
     private CarController carController;
     private TransmissionSystemController transmissionSystemController;
+    private LightsSystemController lightsSystemController;
 
     //---- View Elements ----
-    private PushButtonC btnDownShift, btnUpShift, btnNeutral, btnReverse;
+    private GearButtonC btnDownShift, btnUpShift, btnForward, btnNeutral, btnReverse;
 
     //---- Constructor ----
     public TransmissionFragment() {
         transmissionSystemController = new TransmissionSystemController();
+        lightsSystemController = new LightsSystemController();
+
+        transmissionConfig = Settings.getInstance().getTransmissionConfig();
     }
 
     //---- Fragment Methods ----
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        transmissionConfig = Settings.getInstance().getTransmissionConfig();
     }
 
     @Override
@@ -63,51 +66,67 @@ public class TransmissionFragment extends Fragment {
 
     //---- Methods ----
     private void initializeViewElements() {
-        btnDownShift = new PushButtonC((Button) getView().findViewById(R.id.btn_down_shift));
-        btnUpShift = new PushButtonC((Button) getView().findViewById(R.id.btn_up_shift));
-        btnNeutral = new PushButtonC((Button) getView().findViewById(R.id.btn_neutral));
-        btnReverse = new PushButtonC((Button) getView().findViewById(R.id.btn_reverse));
+        btnDownShift = new GearButtonC((Button) getView().findViewById(R.id.btn_down_shift));
+        btnUpShift = new GearButtonC((Button) getView().findViewById(R.id.btn_up_shift));
+        btnForward = new GearButtonC((Button) getView().findViewById(R.id.btn_forward));
+
+        View lytAutomaticShiftWithPedals = getView().findViewById(R.id.lyt_automatic_shift_with_pedals);
+        View lytManualSequentialShift = getView().findViewById(R.id.lyt_manual_sequential_shift);
+        // TODO: H Shift
 
         if(Settings.getInstance().getPedalsConfig().equals(PedalsConfig.ARROWS)) {
-            btnNeutral.setVisible(false);
-            btnReverse.setVisible(false);
-        }
-        if(transmissionConfig.equals(TransmissionConfig.AUTOMATIC)) {
-            btnDownShift.setVisible(false);
-            btnUpShift.setVisible(false);
-        } else if(transmissionConfig.equals(TransmissionConfig.MANUAL)) {
-            Car selectedCar = Game.getInstance().getSelectedCar();
-            if(selectedCar.getTransmissionConfig().equals(TransmissionConfig.H_SHIFT)) {
-                btnDownShift.setVisible(false);
-                btnUpShift.setVisible(false);
-            } else {
-                btnDownShift.setVisible(true);
-                btnUpShift.setVisible(true);
-            }
+            lytAutomaticShiftWithPedals.setVisibility(View.GONE);
+            lytManualSequentialShift.setVisibility(View.GONE);
         } else {
-            throw new AppUnCatchableException(new AppError(AppErrorHandler.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
+            if(transmissionConfig.equals(TransmissionConfig.AUTOMATIC)) {
+                lytManualSequentialShift.setVisibility(View.GONE);
+                btnNeutral = new GearButtonC((Button) getView().findViewById(R.id.btn_neutral_automatic_shift));
+                btnReverse = new GearButtonC((Button) getView().findViewById(R.id.btn_reverse_automatic_shift));
+            } else if(transmissionConfig.equals(TransmissionConfig.MANUAL)) {
+                lytAutomaticShiftWithPedals.setVisibility(View.GONE);
+                Car selectedCar = Game.getInstance().getSelectedCar();
+                if(selectedCar.getTransmissionConfig().equals(TransmissionConfig.H_SHIFT)) {
+                    lytManualSequentialShift.setVisibility(View.GONE);
+                    //TODO:
+                } else {
+                    // TODO:
+                    btnNeutral = new GearButtonC((Button) getView().findViewById(R.id.btn_neutral_sequential_shift));
+                    btnReverse = new GearButtonC((Button) getView().findViewById(R.id.btn_reverse_sequential_shift));
+                }
+            } else {
+                throw new AppUnCatchableException(new AppError(AppErrorHandler.CodeErrors.MUST_NOT_HAPPEN, RaceYourTrackApplication.getContext().getResources().getString(R.string.src_error), RaceYourTrackApplication.getContext()));
+            }
         }
     }
 
     private void addListenersToViewElements() {
         if(btnDownShift.isVisible()) {
             btnDownShift.setOnPressListener(() -> carController.addTransmissionAction(transmissionSystemController.buildActionShiftDown()));
-            btnDownShift.setOnReleaseListener(() -> {});
         }
 
         if(btnUpShift.isVisible()) {
             btnUpShift.setOnPressListener(() -> carController.addTransmissionAction(transmissionSystemController.buildActionShiftUp()));
-            btnUpShift.setOnReleaseListener(() -> {});
         }
 
-        if(btnNeutral.isVisible()) {
-            btnNeutral.setOnPressListener(() -> carController.addTransmissionAction(transmissionSystemController.buildActionNeutral()));
-            btnNeutral.setOnReleaseListener(() -> {});
+        if(btnForward.isVisible()) {
+            btnForward.setOnPressListener(() -> {
+                carController.addTransmissionAction(transmissionSystemController.buildActionShiftTo(1));
+                carController.addLightsAction(lightsSystemController.buildActionTurnOffReverseLights());
+            });
         }
 
-        if(btnReverse.isVisible()) {
-            btnReverse.setOnPressListener(() -> carController.addTransmissionAction(transmissionSystemController.buildActionReverse()));
-            btnReverse.setOnReleaseListener(() -> {});
+        if(btnNeutral != null && btnNeutral.isVisible()) {
+            btnNeutral.setOnPressListener(() -> {
+                carController.addTransmissionAction(transmissionSystemController.buildActionNeutral());
+                carController.addLightsAction(lightsSystemController.buildActionTurnOffReverseLights());
+            });
+        }
+
+        if(btnReverse != null && btnReverse.isVisible()) {
+            btnReverse.setOnPressListener(() -> {
+                carController.addTransmissionAction(transmissionSystemController.buildActionReverse());
+                carController.addLightsAction(lightsSystemController.buildActionTurnOnReverseLights());
+            });
         }
     }
 

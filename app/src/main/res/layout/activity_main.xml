@@ -9,6 +9,11 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/png_race_your_track_logo_no_gradient"/>
+
     <include layout="@layout/content_main"/>
 
 </LinearLayout>

@@ -64,4 +64,8 @@ public class KeepTouchedButtonC {
     public boolean isVisible() {
         return button.getVisibility() == Button.VISIBLE ? true : false;
     }
+
+    public void setText(final String text) {
+        this.button.setText(text);
+    }
 }

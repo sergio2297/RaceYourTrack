@@ -31,5 +31,7 @@
     <color name="emergency_lights_button_on_color">@color/dark_red</color>
     <color name="blinking_lights_button_off_color">@color/light_yellow</color>
     <color name="blinking_lights_button_on_color">@color/automobile_yellow</color>
+    <color name="gear_button_not_pressed_color">@color/silver</color>
+    <color name="gear_button_pressed_color">@color/dark_gray</color>
     <color name="advanced_throttle_progress_color">@color/light_green</color>
 </resources>
