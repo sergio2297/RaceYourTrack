@@ -34,4 +34,13 @@
     <color name="gear_button_not_pressed_color">@color/silver</color>
     <color name="gear_button_pressed_color">@color/dark_gray</color>
     <color name="advanced_throttle_progress_color">@color/light_green</color>
+
+    <!-- Containers -->
+    <color name="exterior_container_color">@color/dark_blue</color>
+    <color name="intermediate_container_color">@color/blue</color>
+    <color name="interior_container_color">@color/light_blue</color>
+
+    <!-- App Colors -->
+    <color name="light_font_color">@color/white</color>
+    <color name="dark_font_color">@color/black</color>
 </resources>

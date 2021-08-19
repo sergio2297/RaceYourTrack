@@ -11,6 +11,13 @@
         android:orientation="vertical"
         android:layout_weight="3">
 
+        <!-- Car Info Fragment -->
+        <fragment class="es.sfernandez.raceyourtrack.carController.CarInfoFragment"
+            android:id="@+id/car_controller_info_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"/>
+
         <!-- Steering Fragment -->
         <fragment class="es.sfernandez.raceyourtrack.carController.SteeringFragment"
             android:id="@+id/car_controller_steering_fragment"

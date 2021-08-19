@@ -3,7 +3,6 @@ package es.sfernandez.raceyourtrack.garage;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,14 +12,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import es.sfernandez.raceyourtrack.MainActivity;
 import es.sfernandez.raceyourtrack.R;
+import utils.viewComponents.SwitchButtonC;
 
 public class GarageActivity extends AppCompatActivity {
 
     //---- Attributes ----
 
     //---- View Elements ----
-    private Fragment fragmentSettings, fragmentCars;
+    private Fragment fragmentWelcome, fragmentCars, fragmentSettings;
     private Fragment fragmentActive;
+
+    private SwitchButtonC btnCars, btnSettings;
 
     //---- Activity Methods ----
     @Override
@@ -28,8 +30,12 @@ public class GarageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_garage);
 
-        fragmentSettings = new SettingsFragment();
+        initializeViewElements();
+        addListenersToViewElements();
+
+        fragmentWelcome = new DialogFragment();
         fragmentCars = new DialogFragment();
+        fragmentSettings = new SettingsFragment();
     }
 
     @Override
@@ -61,21 +67,33 @@ public class GarageActivity extends AppCompatActivity {
     }
 
     //---- Methods ----
-    public void onClick(View view) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        switch(view.getId()) {
-            case R.id.btn_cars:
-                transaction.replace(R.id.garage_fragment_container, fragmentCars);
-                fragmentActive = fragmentCars;
-                break;
-
-            case R.id.btn_Settings:
-                transaction.replace(R.id.garage_fragment_container, fragmentSettings);
-                fragmentActive = fragmentSettings;
-                break;
-
-        }
-        transaction.addToBackStack(null).commit();
+    private void initializeViewElements() {
+        btnCars = new SwitchButtonC(findViewById(R.id.btn_cars));
+        btnSettings = new SwitchButtonC(findViewById(R.id.btn_settings));
     }
 
+    private void addListenersToViewElements() {
+        btnCars.setOnActivateListener( () -> {
+            btnSettings.deselect();
+            moveToFragment(fragmentCars);
+        });
+        btnCars.setOnDeactivateListener( () -> {
+            moveToFragment(fragmentWelcome);
+        });
+
+        btnSettings.setOnActivateListener( () -> {
+            btnCars.deselect();
+            moveToFragment(fragmentSettings);
+        });
+        btnSettings.setOnDeactivateListener( () -> {
+            moveToFragment(fragmentWelcome);
+        });
+    }
+
+    private void moveToFragment(final Fragment fragmentToMove) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.garage_fragment_container, fragmentToMove);
+        fragmentActive = fragmentToMove;
+        transaction.addToBackStack(null).commit();
+    }
 }

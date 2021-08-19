@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if(!Game.getInstance().isCarConnected()) {
+        if (!Game.getInstance().isCarConnected()) {
             btnConnectBluetooth.setText(getResources().getString(R.string.connect_bluetooth));
             btnConnectBluetooth.setBackgroundResource(R.drawable.png_connect_bluetooth);
         } else {
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         String errorMsg = getIntent().getStringExtra("ERROR_MSG");
-        if(errorMsg != null) {
+        if (errorMsg != null) {
             Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show();
         }
 
@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        // FIXME: Cuando vuelvo del Free Ride se llama a este método porque estoy creando una nueva MainActivity al hacer el intent
         Game.getInstance().destroyCommunicationThread();
     }
 

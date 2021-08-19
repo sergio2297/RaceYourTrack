@@ -12,7 +12,7 @@ public class PedalsConfig extends ConfigurableProperty {
     public static final PedalsConfig UNKNOWN = new PedalsConfig('U', RaceYourTrackApplication.getContext().getResources().getString(R.string.unknown));
     public static final PedalsConfig ARROWS = new PedalsConfig('A', RaceYourTrackApplication.getContext().getResources().getString(R.string.arrows));
     public static final PedalsConfig BOTH = new PedalsConfig('B', RaceYourTrackApplication.getContext().getResources().getString(R.string.both));
-    public static final PedalsConfig ADVANCED = new PedalsConfig('T', RaceYourTrackApplication.getContext().getResources().getString(R.string.advanced));
+    public static final PedalsConfig ADVANCED = new PedalsConfig('T', RaceYourTrackApplication.getContext().getResources().getString(R.string.advanced_throttle));
 
     private static final PedalsConfig[] VALUES = new PedalsConfig[] {UNKNOWN, ARROWS, BOTH, ADVANCED};
     private static final PedalsConfig[] SELECTABLE_VALUES = new PedalsConfig[] {ARROWS, BOTH, ADVANCED};

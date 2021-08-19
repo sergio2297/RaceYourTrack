@@ -141,7 +141,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
         if(processSuccessful == false || targetActivityOnFinish == null) {
             Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
         } else if(processSuccessful) {
             Intent intent = new Intent(getApplicationContext(), targetActivityOnFinish);

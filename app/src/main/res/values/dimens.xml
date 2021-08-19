@@ -5,6 +5,9 @@
     <dimen name="small_padding">3dp</dimen>
     <dimen name="normal_padding">5dp</dimen>
     <dimen name="large_padding">10dp</dimen>
+    <dimen name="h1_character_size">22dp</dimen>
+    <dimen name="h2_character_size">18dp</dimen>
+    <dimen name="h3_character_size">15dp</dimen>
     <!-- END APP DIMENS -->
 
 
@@ -29,5 +32,13 @@
     <dimen name="advanced_throttle_seek_bar_width">450px</dimen>
     <dimen name="advanced_throttle_seek_bar_height">450px</dimen>
     <!-- END BUTTON DIMENSIONS -->
+
+    <!-- BEGIN CONTAINER DIMENS -->
+    <dimen name="container_big_stroke_width">5dp</dimen>
+    <dimen name="container_normal_stroke_width">3dp</dimen>
+    <dimen name="container_small_stroke_width">1dp</dimen>
+    <dimen name="container_radius">4dp</dimen>
+    <dimen name="normal_spacing">8dp</dimen>
+    <!-- END CONTAINER DIMENS -->
 
 </resources>

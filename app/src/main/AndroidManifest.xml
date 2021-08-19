@@ -35,12 +35,14 @@
 
         <activity
             android:name=".bluetoothConnection.BluetoothActivity"
+            android:noHistory="true"
             android:theme="@style/Theme.RaceYourTrack"/>
 
         <activity
             android:name=".carController.CarControllerActivity"
             android:label="@string/free_ride"
             android:screenOrientation="landscape"
+            android:noHistory="true"
             android:theme="@style/Theme.RaceYourTrack">
         </activity>
 
@@ -49,6 +51,7 @@
             android:label="@string/garage"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
+            android:noHistory="true"
             android:theme="@style/Theme.RaceYourTrack">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

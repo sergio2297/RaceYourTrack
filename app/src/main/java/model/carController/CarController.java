@@ -33,6 +33,10 @@ public class CarController extends Thread {
     private final char SYSTEM_NO_ACTION_CODE =  ' ';
 
     //---- Attributes ----
+    // TODO: Car info
+//    private final String carName;
+//    private int currentGear;
+
     private boolean endExecution = false;
 
     private Queue<String> queueTransmissionActions = new LinkedList<String>();
@@ -41,6 +45,8 @@ public class CarController extends Thread {
 
     //---- Construction ----
     public CarController(final Car car) {
+//        carName = car.getName();
+
         configRcCar(car);
         start();
     }

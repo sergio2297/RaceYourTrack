@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- http://android-er.blogspot.com/2010/12/custom-arrayadapter-for-spinner-with.html -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,21 +13,23 @@
 
         <android.widget.Button
             android:id="@+id/btn_cars"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cars"
-            android:onClick="onClick"/>
+            android:layout_weight="1"
+            android:background="@drawable/garage_background_style_buttons"
+            android:text="@string/cars"/>
 
         <android.widget.Button
-            android:id="@+id/btn_Settings"
-            android:layout_width="wrap_content"
+            android:id="@+id/btn_settings"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/settings"
-            android:onClick="onClick"/>
+            android:layout_weight="1"
+            android:background="@drawable/garage_background_style_buttons"
+            android:text="@string/settings"/>
 
     </LinearLayout>
 
-    <!-- Dinamic Fragments Container -->
+    <!-- Dynamic Fragments Container -->
     <FrameLayout
         android:id="@+id/garage_fragment_container"
         android:layout_width="match_parent"

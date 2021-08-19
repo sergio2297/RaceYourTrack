@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="10px">
 
     </LinearLayout>
 
@@ -16,13 +17,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="@dimen/normal_spacing"
+        android:background="@drawable/exterior_container">
 
-        <TextView
+        <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="textStart"
-            android:text="@string/controls"/>
+            android:text="@string/controls"/>-->
 
         <!-- TODO: Insert Line -->
 
@@ -31,18 +34,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="3px">
+            android:layout_marginLeft="15px"
+            android:layout_marginVertical="10px">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textAlignment="textStart"
+                android:textSize="@dimen/h1_character_size"
+                android:textColor="@color/light_font_color"
                 android:text="@string/driving_mode"/>
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinner_driving_mode"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:popupBackground="@drawable/interior_container"/>
 
         </LinearLayout>
 
@@ -58,18 +65,24 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="@dimen/small_padding"
+                android:background="@drawable/intermediate_container">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textAlignment="textStart"
+                    android:textSize="@dimen/h2_character_size"
+                    android:textColor="@color/light_font_color"
                     android:text="@string/steering_wheel_title"/>
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_steering_wheel"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:spinnerMode="dropdown"
+                    android:popupBackground="@drawable/interior_container"/>
 
             </LinearLayout>
 
@@ -77,18 +90,24 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginVertical="@dimen/normal_spacing"
+                android:padding="@dimen/small_padding"
+                android:background="@drawable/intermediate_container">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textAlignment="textStart"
+                    android:textSize="@dimen/h2_character_size"
+                    android:textColor="@color/light_font_color"
                     android:text="@string/transmission"/>
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_transmission"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:popupBackground="@drawable/interior_container"/>
 
             </LinearLayout>
 
@@ -96,18 +115,24 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/normal_spacing"
+                android:padding="@dimen/small_padding"
+                android:background="@drawable/intermediate_container">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textAlignment="textStart"
+                    android:textSize="@dimen/h2_character_size"
+                    android:textColor="@color/light_font_color"
                     android:text="@string/pedals"/>
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_pedals"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:popupBackground="@drawable/interior_container"/>
 
             </LinearLayout>
 

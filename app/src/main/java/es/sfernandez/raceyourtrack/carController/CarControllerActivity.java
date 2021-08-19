@@ -1,10 +1,12 @@
 package es.sfernandez.raceyourtrack.carController;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import es.sfernandez.raceyourtrack.MainActivity;
 import es.sfernandez.raceyourtrack.R;
 import model.Game;
 import model.carController.CarController;
@@ -63,9 +65,20 @@ public class CarControllerActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         carController.terminate();
+
+        /*
+         * This will return to the Main Activity without destroy and create it again. That's to
+         * avoid disconnect from the RC car.
+         */
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        super.onDestroy();
     }
+
+    @Override
+    public void onBackPressed() { finish(); }
 
     //---- Methods ----
 
