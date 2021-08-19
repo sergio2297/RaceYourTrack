@@ -47,11 +47,9 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         if (!Game.getInstance().isCarConnected()) {
-            btnConnectBluetooth.setText(getResources().getString(R.string.connect_bluetooth));
-            btnConnectBluetooth.setBackgroundResource(R.drawable.png_connect_bluetooth);
+            btnConnectBluetooth.setBackgroundResource(R.drawable.connect_bluetooth_button);
         } else {
-            btnConnectBluetooth.setText(getResources().getString(R.string.disconnect_bluetooth));
-            btnConnectBluetooth.setBackgroundResource(R.drawable.png_disconnect_bluetooth);
+            btnConnectBluetooth.setBackgroundResource(R.drawable.disconnect_bluetooth_button);
         }
 
         String errorMsg = getIntent().getStringExtra("ERROR_MSG");

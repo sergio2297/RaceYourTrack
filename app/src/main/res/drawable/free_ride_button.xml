@@ -14,6 +14,10 @@
                 <bitmap android:gravity="fill"
                     android:src="@drawable/png_free_ride_button"/>
             </item>
+            <item>
+                <bitmap android:gravity="center"
+                    android:src="@drawable/png_text_conduccion_libre"/>
+            </item>
         </layer-list>
     </item>
 
@@ -30,6 +34,10 @@
             <item>
                 <bitmap android:gravity="fill"
                     android:src="@drawable/png_free_ride_button"/>
+            </item>
+            <item>
+                <bitmap android:gravity="center"
+                    android:src="@drawable/png_text_conduccion_libre"/>
             </item>
         </layer-list>
     </item>

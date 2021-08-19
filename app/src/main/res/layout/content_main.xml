@@ -16,7 +16,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:text="@string/free_ride"
                     android:background="@drawable/free_ride_button"
                     android:onClick="onClick"/>
 
@@ -32,7 +31,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="@string/connect_bluetooth"
                             android:background="@drawable/connect_bluetooth_button"/>
 
                         <android.widget.Button
@@ -40,7 +38,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="@string/garage"
                             android:background="@drawable/garage_button"/>
 
                 </LinearLayout>
@@ -53,7 +50,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="@dimen/normal_padding"
-            android:text="@string/play"
             android:background="@drawable/play_button"
             android:onClick="onClick"/>
 
