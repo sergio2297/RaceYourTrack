@@ -10,6 +10,7 @@ import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
 import es.sfernandez.raceyourtrack.app_error_handling.AppError;
 import es.sfernandez.raceyourtrack.app_error_handling.AppErrorHandler;
 import model.bluetooth.BluetoothCommunicationThread;
+import model.lapCounter.LapCounter;
 
 public class Game {
 
@@ -20,6 +21,8 @@ public class Game {
     private String racerName;
     private int coins;
     private Car selectedCar;
+
+    private LapCounter lapCounter = new LapCounter();
 
     private BluetoothCommunicationThread communicationThread;
     private boolean errorHasHappenedBefore = false;
@@ -77,4 +80,9 @@ public class Game {
             }
         }
     }
+
+    public LapCounter getLapCounter() {
+        return lapCounter;
+    }
+
 }

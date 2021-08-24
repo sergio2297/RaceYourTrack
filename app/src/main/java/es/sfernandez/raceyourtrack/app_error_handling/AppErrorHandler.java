@@ -46,6 +46,7 @@ public class AppErrorHandler {
     public static class CodeErrors {
         public static final int MUST_NOT_HAPPEN = MIN_FATAL_ERROR_CODE + 0;      // Failure that never should happen, and if it happens is caused by a src bug.
         public static final int MUST_NOT_HAPPEN_SRC_ERROR_CREATION = MIN_FATAL_ERROR_CODE + 1;   // Bug in src during an error creation
+        public static final int MUST_NOT_HAPPEN_LAP_COUNTER_NOT_INITIALIZED = MIN_FATAL_ERROR_CODE + 2; // Try to start a lap counter without initialized it
 
         public static final int BLUETOOTH_CONNECTION_LOST = MIN_BLUETOOTH_ERROR_CODE + 0; // Bluetooth connection lost
 

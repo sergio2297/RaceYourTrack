@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import model.Game;
 import model.carController.CarController;
+import model.lapCounter.LapCounter;
 
 /**
  * Receives a BluetoothSocket that already has established a connection with another device. Allow to
@@ -55,6 +57,8 @@ public class BluetoothCommunicationThread extends Thread {
         buffer = new byte[1024];
         int numBytes; // bytes returned from read()
 
+        LapCounter lapCounter = Game.getInstance().getLapCounter();
+
         // Keep listening to the InputStream until an exception occurs or the connection is finished.
         stillConnected = true;
         while (stillConnected) {
@@ -65,7 +69,14 @@ public class BluetoothCommunicationThread extends Thread {
                 for(int i = 0; i < numBytes; ++i) {
                     readMessage += (char)((int)buffer[i]);
                 }
-                Log.i("------", readMessage);
+
+                if(!lapCounter.isStarted()) {
+                    Log.i("", "LapCounter Initialized");
+                    lapCounter.initialize(3, true);
+                    lapCounter.start();
+                } else {
+                    lapCounter.checkPassed(readMessage.charAt(0));
+                }
 
             } catch (IOException e) {
                 Log.d(BluetoothCommunicationThread.class.getCanonicalName(), "Input stream was disconnected", e);
