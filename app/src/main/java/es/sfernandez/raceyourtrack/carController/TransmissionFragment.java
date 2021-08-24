@@ -128,6 +128,7 @@ public class TransmissionFragment extends Fragment {
             btnForward.setOnPressListener(() -> {
                 carController.addTransmissionAction(transmissionSystemController.buildActionShiftTo(1));
                 carController.addLightsAction(lightsSystemController.buildActionTurnOffReverseLights());
+                carInfoFragment.shiftTo(CarInfoFragment.FORWARD_GEAR_NUMBER);
             });
         }
 

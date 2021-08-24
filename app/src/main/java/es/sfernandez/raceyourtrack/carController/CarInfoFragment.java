@@ -11,9 +11,14 @@ import androidx.fragment.app.Fragment;
 
 import es.sfernandez.raceyourtrack.R;
 import model.Game;
+import model.settings.Settings;
+import model.settings.configurable.PedalsConfig;
 import utils.ObjectProperty;
 
 public class CarInfoFragment extends Fragment {
+
+    //---- Constants and Definitions ----
+    protected static final int FORWARD_GEAR_NUMBER = 100;
 
     //---- Attributes ----
     private ObjectProperty<Integer> currentGear = new ObjectProperty<>(0);
@@ -52,6 +57,9 @@ public class CarInfoFragment extends Fragment {
     //---- Methods ----
     private void initializeViewElements() {
         this.txtCurrentGearDisplay = getView().findViewById(R.id.txt_current_gear_display);
+        if(Settings.getInstance().getPedalsConfig().equals(PedalsConfig.ARROWS)) {
+            this.txtCurrentGearDisplay.setVisibility(View.INVISIBLE);
+        }
     }
 
     public Integer getCurrentGear() {
@@ -67,7 +75,7 @@ public class CarInfoFragment extends Fragment {
     }
 
     public void shiftTo(final Integer gear) {
-        if(-1 <= gear && gear <= Game.getInstance().getSelectedCar().getNumOfGears()) {
+        if(-1 <= gear && gear <= Game.getInstance().getSelectedCar().getNumOfGears() || gear == FORWARD_GEAR_NUMBER) {
             currentGear.setProperty(gear);
         }
     }
@@ -116,6 +124,10 @@ public class CarInfoFragment extends Fragment {
 
             case 9:
                 txtCurrentGearDisplay.setBackgroundResource(R.drawable.png_7_segment_display_num_9);
+                break;
+
+            case FORWARD_GEAR_NUMBER:
+                txtCurrentGearDisplay.setBackgroundResource(R.drawable.png_7_segment_display_f);
                 break;
 
             default:
