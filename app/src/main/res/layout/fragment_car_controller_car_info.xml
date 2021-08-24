@@ -3,46 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal">
-
-        <Button
-            android:id="@+id/btn_dipped_lights"
-            android:layout_width="@dimen/button_lights_side"
-            android:layout_height="@dimen/button_lights_side"
-            android:layout_marginRight="@dimen/small_padding"
-            android:background="@drawable/dipped_lights_button"/>
-
-        <Button
-            android:id="@+id/btn_main_lights"
-            android:layout_width="@dimen/button_lights_side"
-            android:layout_height="@dimen/button_lights_side"
-            android:layout_marginRight="@dimen/large_padding"
-            android:background="@drawable/main_lights_button"/>
-
-        <Button
-            android:id="@+id/btn_left_blinking"
-            android:layout_width="@dimen/button_lights_side"
-            android:layout_height="@dimen/button_lights_side"
-            android:layout_marginLeft="@dimen/large_padding"
-            android:background="@drawable/left_blinking_lights_button"/>
-
-        <Button
-            android:id="@+id/btn_emergency"
-            android:layout_width="@dimen/button_lights_side"
-            android:layout_height="@dimen/button_lights_side"
-            android:layout_marginHorizontal="@dimen/small_padding"
-            android:background="@drawable/emergency_lights_button"/>
-
-        <Button
-            android:id="@+id/btn_right_blinking"
-            android:layout_width="@dimen/button_lights_side"
-            android:layout_height="@dimen/button_lights_side"
-            android:background="@drawable/right_blinking_lights_button"/>
-
-    </LinearLayout>-->
+    <TextView
+        android:id="@+id/txt_current_gear_display"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/png_7_segment_display_num_1"/>
 
 </FrameLayout>

@@ -23,19 +23,19 @@
                 android:layout_gravity="center_horizontal">
 
                 <Button
-                    android:id="@+id/btn_up_shift"
+                    android:id="@+id/btn_down_shift"
                     android:layout_width="@dimen/button_gear_side"
                     android:layout_height="@dimen/button_gear_side"
-                    android:layout_marginRight="@dimen/large_padding"
+                    android:layout_marginLeft="@dimen/large_padding"
                     android:text="-"
                     android:textSize="@dimen/gear_character_size"
                     android:background="@drawable/gear_button"/>
 
                 <Button
-                    android:id="@+id/btn_down_shift"
+                    android:id="@+id/btn_up_shift"
                     android:layout_width="@dimen/button_gear_side"
                     android:layout_height="@dimen/button_gear_side"
-                    android:layout_marginLeft="@dimen/large_padding"
+                    android:layout_marginRight="@dimen/large_padding"
                     android:text="+"
                     android:textSize="@dimen/gear_character_size"
                     android:background="@drawable/gear_button"/>

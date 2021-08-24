@@ -5,27 +5,27 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import es.sfernandez.raceyourtrack.R;
-import model.carController.CarController;
-import model.carController.LightsSystemController;
-import utils.viewComponents.SwitchButtonC;
+import model.Game;
+import utils.ObjectProperty;
 
 public class CarInfoFragment extends Fragment {
 
     //---- Attributes ----
-    private CarController carController;
-    private LightsSystemController lightsSystemController;
+    private ObjectProperty<Integer> currentGear = new ObjectProperty<>(0);
 
     //---- View Elements ----
-    private SwitchButtonC btnDippedLights, btnMainLights;
-    private SwitchButtonC btnLeftBlinking, btnEmergency, btnRightBlinking;
+    private TextView txtCurrentGearDisplay;
 
     //---- Constructor ----
     public CarInfoFragment() {
-        lightsSystemController = new LightsSystemController();
+        currentGear.addListener( (oldValue, newValue) -> {
+            switchDisplayToGear((Integer)newValue);
+        });
     }
 
     //---- Fragment Methods ----
@@ -46,52 +46,80 @@ public class CarInfoFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         initializeViewElements();
-        addListenersToViewElements();
+        currentGear.setProperty(0);
     }
 
     //---- Methods ----
     private void initializeViewElements() {
-//        btnDippedLights = new SwitchButtonC((Button) getView().findViewById(R.id.btn_dipped_lights));
-//        btnMainLights = new SwitchButtonC((Button) getView().findViewById(R.id.btn_main_lights));
-//        btnLeftBlinking = new SwitchButtonC((Button) getView().findViewById(R.id.btn_left_blinking));
-//        btnEmergency = new SwitchButtonC((Button) getView().findViewById(R.id.btn_emergency));
-//        btnRightBlinking = new SwitchButtonC((Button) getView().findViewById(R.id.btn_right_blinking));
-//
-//        Car selectedCar = Game.getInstance().getSelectedCar();
-//        btnMainLights.setVisible(selectedCar.hasMainBeamLights());
-//        btnLeftBlinking.setVisible(selectedCar.hasBlinkingLights());
-//        btnEmergency.setVisible(selectedCar.hasBlinkingLights());
-//        btnRightBlinking.setVisible(selectedCar.hasBlinkingLights());
+        this.txtCurrentGearDisplay = getView().findViewById(R.id.txt_current_gear_display);
     }
 
-    private void addListenersToViewElements() {
-//        if(btnDippedLights.isVisible()) {
-//            btnDippedLights.setOnActivateListener(() -> carController.addLightsAction(lightsSystemController.buildActionTurnOnDippedBeamLights()));
-//            btnDippedLights.setOnDeactivateListener(() -> carController.addLightsAction(lightsSystemController.buildActionTurnOffDippedBeamLights()));
-//        }
-//
-//        if(btnMainLights.isVisible()) {
-//            btnMainLights.setOnActivateListener(() -> carController.addLightsAction(lightsSystemController.buildActionTurnOnMainBeamLights()));
-//            btnMainLights.setOnDeactivateListener(() -> carController.addLightsAction(lightsSystemController.buildActionTurnOffMainBeamLights()));
-//        }
-//
-//        if(btnLeftBlinking.isVisible()) {
-//            btnLeftBlinking.setOnActivateListener(() -> carController.addLightsAction(lightsSystemController.buildActionTurnOnLeftBlinking()));
-//            btnLeftBlinking.setOnDeactivateListener(() -> carController.addLightsAction(lightsSystemController.buildActionTurnOffLeftBlinking()));
-//        }
-//
-//        if(btnEmergency.isVisible()) {
-//            btnEmergency.setOnActivateListener(() -> carController.addLightsAction(lightsSystemController.buildActionTurnOnEmergencyLights()));
-//            btnEmergency.setOnDeactivateListener(() -> carController.addLightsAction(lightsSystemController.buildActionTurnOffEmergencyLights()));
-//        }
-//
-//        if(btnRightBlinking.isVisible()) {
-//            btnRightBlinking.setOnActivateListener(() -> carController.addLightsAction(lightsSystemController.buildActionTurnOnRightBlinking()));
-//            btnRightBlinking.setOnDeactivateListener(() -> carController.addLightsAction(lightsSystemController.buildActionTurnOffRightBlinking()));
-//        }
+    public Integer getCurrentGear() {
+        return currentGear.getProperty();
     }
 
-    public void setCarController(final CarController carController) {
-        this.carController = carController;
+    public void downShift() {
+        shiftTo(currentGear.getProperty() - 1);
+    }
+
+    public void upShift() {
+        shiftTo(currentGear.getProperty() + 1);
+    }
+
+    public void shiftTo(final Integer gear) {
+        if(-1 <= gear && gear <= Game.getInstance().getSelectedCar().getNumOfGears()) {
+            currentGear.setProperty(gear);
+        }
+    }
+
+    private void switchDisplayToGear(final Integer gear) {
+        switch(gear.intValue()) {
+            case -1:
+                txtCurrentGearDisplay.setBackgroundResource(R.drawable.png_7_segment_display_r);
+                break;
+
+            case 0:
+                txtCurrentGearDisplay.setBackgroundResource(R.drawable.png_7_segment_display_n);
+                break;
+
+            case 1:
+                txtCurrentGearDisplay.setBackgroundResource(R.drawable.png_7_segment_display_num_1);
+                break;
+
+            case 2:
+                txtCurrentGearDisplay.setBackgroundResource(R.drawable.png_7_segment_display_num_2);
+                break;
+
+            case 3:
+                txtCurrentGearDisplay.setBackgroundResource(R.drawable.png_7_segment_display_num_3);
+                break;
+
+            case 4:
+                txtCurrentGearDisplay.setBackgroundResource(R.drawable.png_7_segment_display_num_4);
+                break;
+
+            case 5:
+                txtCurrentGearDisplay.setBackgroundResource(R.drawable.png_7_segment_display_num_5);
+                break;
+
+            case 6:
+                txtCurrentGearDisplay.setBackgroundResource(R.drawable.png_7_segment_display_num_6);
+                break;
+
+            case 7:
+                txtCurrentGearDisplay.setBackgroundResource(R.drawable.png_7_segment_display_num_7);
+                break;
+
+            case 8:
+                txtCurrentGearDisplay.setBackgroundResource(R.drawable.png_7_segment_display_num_8);
+                break;
+
+            case 9:
+                txtCurrentGearDisplay.setBackgroundResource(R.drawable.png_7_segment_display_num_9);
+                break;
+
+            default:
+                break;
+        }
     }
 }

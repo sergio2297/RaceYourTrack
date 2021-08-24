@@ -27,8 +27,10 @@ import utils.viewComponents.GearButtonC;
 public class TransmissionFragment extends Fragment {
 
     //---- Attributes ----
+    private int currentGear = 0;
     private TransmissionConfig transmissionConfig;
     private CarController carController;
+    private CarInfoFragment carInfoFragment;
     private TransmissionSystemController transmissionSystemController;
     private LightsSystemController lightsSystemController;
 
@@ -101,11 +103,25 @@ public class TransmissionFragment extends Fragment {
 
     private void addListenersToViewElements() {
         if(btnDownShift.isVisible()) {
-            btnDownShift.setOnPressListener(() -> carController.addTransmissionAction(transmissionSystemController.buildActionShiftDown()));
+            btnDownShift.setOnPressListener(() -> {
+                carController.addTransmissionAction(transmissionSystemController.buildActionShiftDown());
+                carInfoFragment.downShift();
+                --currentGear;
+                if(currentGear == -1) {
+                    carController.addLightsAction(lightsSystemController.buildActionTurnOnReverseLights());
+                }
+            });
         }
 
         if(btnUpShift.isVisible()) {
-            btnUpShift.setOnPressListener(() -> carController.addTransmissionAction(transmissionSystemController.buildActionShiftUp()));
+            btnUpShift.setOnPressListener(() -> {
+                carController.addTransmissionAction(transmissionSystemController.buildActionShiftUp());
+                carInfoFragment.upShift();
+                ++currentGear;
+                if(currentGear == 0) {
+                    carController.addLightsAction(lightsSystemController.buildActionTurnOffReverseLights());
+                }
+            });
         }
 
         if(btnForward.isVisible()) {
@@ -119,6 +135,8 @@ public class TransmissionFragment extends Fragment {
             btnNeutral.setOnPressListener(() -> {
                 carController.addTransmissionAction(transmissionSystemController.buildActionNeutral());
                 carController.addLightsAction(lightsSystemController.buildActionTurnOffReverseLights());
+                carInfoFragment.shiftTo(0);
+                currentGear = 0;
             });
         }
 
@@ -126,11 +144,17 @@ public class TransmissionFragment extends Fragment {
             btnReverse.setOnPressListener(() -> {
                 carController.addTransmissionAction(transmissionSystemController.buildActionReverse());
                 carController.addLightsAction(lightsSystemController.buildActionTurnOnReverseLights());
+                carInfoFragment.shiftTo(-1);
+                currentGear = -1;
             });
         }
     }
 
     public void setCarController(final CarController carController) {
         this.carController = carController;
+    }
+
+    public void setCarInfoFragment(final CarInfoFragment carInfoFragment) {
+        this.carInfoFragment = carInfoFragment;
     }
 }

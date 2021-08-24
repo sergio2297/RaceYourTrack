@@ -23,6 +23,7 @@ public class CarControllerActivity extends AppCompatActivity {
     private CarController carController;
 
     //---- View Elements ----
+    private CarInfoFragment carInfoFragment;
     private LightsFragment lightsFragment;
     private PedalsFragment pedalsFragment;
     private SteeringFragment steeringFragment;
@@ -50,6 +51,8 @@ public class CarControllerActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
 
         // Loading view elements
+        carInfoFragment = (CarInfoFragment) getSupportFragmentManager().findFragmentById(R.id.car_controller_info_fragment);
+
         lightsFragment = (LightsFragment) getSupportFragmentManager().findFragmentById(R.id.car_controller_lights_fragment);
         lightsFragment.setCarController(carController);
 
@@ -61,6 +64,7 @@ public class CarControllerActivity extends AppCompatActivity {
 
         transmissionFragment = (TransmissionFragment) getSupportFragmentManager().findFragmentById(R.id.car_controller_transmission_fragment);
         transmissionFragment.setCarController(carController);
+        transmissionFragment.setCarInfoFragment(carInfoFragment);
     }
 
     @Override

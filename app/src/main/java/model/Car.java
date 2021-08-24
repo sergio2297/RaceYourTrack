@@ -6,7 +6,7 @@ import model.settings.configurable.TransmissionConfig;
 public class Car extends IdentifiedObjectClass {
 
     //---- Constants and Definitions ----
-    public static final Car SPORT_CAR = new Car(0, "Rapidster", TransmissionConfig.SEQUENTIAL_SHIFT, 5, true, false);
+    public static final Car SPORT_CAR = new Car(0, "Rapidster", TransmissionConfig.SEQUENTIAL_SHIFT, 5, true, true);
     public static final Car MUSCLE_CAR = new Car(1, "Muscleitor", TransmissionConfig.H_SHIFT, 3,true, true);
 
     //---- Attributes ----

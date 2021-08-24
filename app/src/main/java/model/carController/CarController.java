@@ -81,6 +81,7 @@ public class CarController extends Thread {
                     new TransmissionSystemController().buildActionConfigSequentialShift()
                 );
         this.addTransmissionAction(transmissionSystemController.buildActionConfigNumOfGears(car.getNumOfGears()));
+        this.addTransmissionAction(transmissionSystemController.buildActionNeutral());
     }
 
     private String constructCommand() {
