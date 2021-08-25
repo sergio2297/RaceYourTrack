@@ -139,6 +139,10 @@ public class BluetoothActivity extends AppCompatActivity {
             Toast.makeText(this, "It's not possible to find your car", Toast.LENGTH_SHORT).show();
         }
 
+        if(processSuccessful) {
+            Game.getInstance().getSoundPlayer().playMotorOnSound();
+        }
+
         if(processSuccessful == false || targetActivityOnFinish == null) {
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -149,7 +153,7 @@ public class BluetoothActivity extends AppCompatActivity {
         }
     }
 
-
+    
     public class BluetoothTryToConnectThread extends Thread {
 
         @Override

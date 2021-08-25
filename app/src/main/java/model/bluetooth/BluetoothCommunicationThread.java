@@ -75,7 +75,16 @@ public class BluetoothCommunicationThread extends Thread {
                     lapCounter.initialize(3, true);
                     lapCounter.start();
                 } else {
-                    lapCounter.checkPassed(readMessage.charAt(0));
+                    int result = lapCounter.checkPassed(readMessage.charAt(0));
+                    switch (result) {
+                        case 0:
+                            Game.getInstance().getSoundPlayer().playLapCheckSound();
+                            break;
+
+                        case 1:
+                            Game.getInstance().getSoundPlayer().playCoinCheckSound();
+                            break;
+                    }
                 }
 
             } catch (IOException e) {

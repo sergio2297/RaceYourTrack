@@ -51,7 +51,10 @@ public class LapCounter {
         isWorking = true;
     }
 
-    public void checkPassed(final char checkedKey) {
+    /**
+     * 0 if it was a lap check, 1 if it was a coin check, 2 if it was the end, -1 other case
+     */
+    public int checkPassed(final char checkedKey) {
         switch(checkedKey) {
             case LAP_CHECKPOINT_KEY:
                 long currentTimestamp = System.currentTimeMillis();
@@ -60,15 +63,16 @@ public class LapCounter {
                 ++currentLap;
                 if(currentLap == numOfLaps) {
                     end();
+                    return 2;
                 }
-                break;
+                return 0;
 
             case SPECIAL_CHECKPOINT_KEY:
                 specialCheckpointFounded = thereIsSpecialCheckpoint ? true : false;
-                break;
+                return specialCheckpointFounded ? 1 : -1;
 
             default:
-                break;
+                return -1;
         }
     }
 

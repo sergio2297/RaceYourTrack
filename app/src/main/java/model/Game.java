@@ -11,6 +11,7 @@ import es.sfernandez.raceyourtrack.app_error_handling.AppError;
 import es.sfernandez.raceyourtrack.app_error_handling.AppErrorHandler;
 import model.bluetooth.BluetoothCommunicationThread;
 import model.lapCounter.LapCounter;
+import model.soundPlayer.SoundPlayer;
 
 public class Game {
 
@@ -26,6 +27,8 @@ public class Game {
 
     private BluetoothCommunicationThread communicationThread;
     private boolean errorHasHappenedBefore = false;
+
+    private SoundPlayer soundPlayer = new SoundPlayer(RaceYourTrackApplication.getContext());
 
     //---- Construction ----
     private Game() {
@@ -84,5 +87,7 @@ public class Game {
     public LapCounter getLapCounter() {
         return lapCounter;
     }
-
+    public SoundPlayer getSoundPlayer() {
+        return soundPlayer;
+    }
 }
