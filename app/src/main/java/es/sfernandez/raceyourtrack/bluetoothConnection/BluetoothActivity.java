@@ -153,7 +153,7 @@ public class BluetoothActivity extends AppCompatActivity {
         }
     }
 
-    
+
     public class BluetoothTryToConnectThread extends Thread {
 
         @Override

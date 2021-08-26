@@ -79,7 +79,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void btnFreeRideOnClick() {
-        btnFreeRide.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_free_ride_button));
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                btnFreeRide.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_free_ride_button));
+            }
+        });
         Intent intent;
         if(Game.getInstance().isCarConnected()) {
             intent = new Intent(getApplicationContext(), CarControllerActivity.class);

@@ -64,29 +64,32 @@ public class BluetoothCommunicationThread extends Thread {
         while (stillConnected) {
             try {
                 // Read from the InputStream.
-                String readMessage = "";
-                numBytes = inputStream.read(buffer);
-                for(int i = 0; i < numBytes; ++i) {
-                    readMessage += (char)((int)buffer[i]);
-                }
+                if(Game.getInstance().isChallengeMode() && inputStream.available() > 0) {
 
-                if(!lapCounter.isStarted()) {
-                    Log.i("", "LapCounter Initialized");
-                    lapCounter.initialize(3, true);
-                    lapCounter.start();
-                } else {
-                    int result = lapCounter.checkPassed(readMessage.charAt(0));
-                    switch (result) {
-                        case 0:
-                            Game.getInstance().getSoundPlayer().playLapCheckSound();
-                            break;
-
-                        case 1:
-                            Game.getInstance().getSoundPlayer().playCoinCheckSound();
-                            break;
+                    String readMessage = "";
+                    numBytes = inputStream.read(buffer);
+                    for (int i = 0; i < numBytes; ++i) {
+                        readMessage += (char) ((int) buffer[i]);
                     }
-                }
 
+                    if (!lapCounter.isStarted()) {
+                        Log.i("", "LapCounter Initialized");
+                        lapCounter.initialize(3, true);
+                        lapCounter.start();
+                    } else {
+                        int result = lapCounter.checkPassed(readMessage.charAt(0));
+                        switch (result) {
+                            case 0:
+                                Game.getInstance().getSoundPlayer().playLapCheckSound();
+                                break;
+
+                            case 1:
+                                Game.getInstance().getSoundPlayer().playCoinCheckSound();
+                                break;
+                        }
+                    }
+
+                }
             } catch (IOException e) {
                 Log.d(BluetoothCommunicationThread.class.getCanonicalName(), "Input stream was disconnected", e);
                 break;

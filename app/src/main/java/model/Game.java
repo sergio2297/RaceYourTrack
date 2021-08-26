@@ -23,6 +23,8 @@ public class Game {
     private int coins;
     private Car selectedCar;
 
+//    private Challenge challengeActivated; //TODO:
+    private boolean isChallengeMode = true;
     private LapCounter lapCounter = new LapCounter();
 
     private BluetoothCommunicationThread communicationThread;
@@ -84,10 +86,19 @@ public class Game {
         }
     }
 
+    public void setChallengeMode(final boolean challengeMode) {
+        this.isChallengeMode = challengeMode;
+    }
+
+    public boolean isChallengeMode() {
+        return isChallengeMode;
+    }
+
     public LapCounter getLapCounter() {
         return lapCounter;
     }
     public SoundPlayer getSoundPlayer() {
         return soundPlayer;
     }
+
 }

@@ -2,8 +2,10 @@ package model.lapCounter;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
 import es.sfernandez.raceyourtrack.app_error_handling.AppError;
@@ -15,9 +17,13 @@ public class LapCounter {
     //---- Constants and Definitions ----
     private final char LAP_CHECKPOINT_KEY = 'C';
     private final char SPECIAL_CHECKPOINT_KEY = 'K';
+    public interface LapCounterChangeStateListener {
+        void onLapCounterChangeState();
+    }
 
     //---- Attributes ----
     private boolean initialized = false;
+    private List<LapCounterChangeStateListener> listListeners = new ArrayList<>();
 
     private TimestampRaceYourTrack[] lapTimes;
     private long lastTimestamp;
@@ -40,7 +46,10 @@ public class LapCounter {
         this.thereIsSpecialCheckpoint = thereIsSpecialCheckpoint;
         this.specialCheckpointFounded = false;
 
+//        this.listListeners.clear();
+
         this.initialized = true;
+        executeListeners();
     }
 
     public void start() {
@@ -55,6 +64,8 @@ public class LapCounter {
      * 0 if it was a lap check, 1 if it was a coin check, 2 if it was the end, -1 other case
      */
     public int checkPassed(final char checkedKey) {
+        int resultCode = -1;
+
         switch(checkedKey) {
             case LAP_CHECKPOINT_KEY:
                 long currentTimestamp = System.currentTimeMillis();
@@ -63,17 +74,25 @@ public class LapCounter {
                 ++currentLap;
                 if(currentLap == numOfLaps) {
                     end();
-                    return 2;
+                    resultCode = 2;
+                } else {
+                    resultCode = 0;
                 }
-                return 0;
+                break;
 
             case SPECIAL_CHECKPOINT_KEY:
                 specialCheckpointFounded = thereIsSpecialCheckpoint ? true : false;
-                return specialCheckpointFounded ? 1 : -1;
+                resultCode = specialCheckpointFounded ? 1 : -1;
+                break;
 
             default:
-                return -1;
+                resultCode = -1;
+                break;
         }
+
+        executeListeners();
+
+        return resultCode;
     }
 
     public void end() {
@@ -82,12 +101,34 @@ public class LapCounter {
         printResult();
     }
 
+    private void executeListeners() {
+        for(LapCounterChangeStateListener listener : listListeners) {
+            listener.onLapCounterChangeState();
+        }
+    }
+
+    public void addListener(final LapCounterChangeStateListener listener) {
+        this.listListeners.add(listener);
+    }
+
     public boolean isStarted() {
         return isWorking;
     }
 
+    public boolean thereIsSpecialCheckpoint() {
+        return thereIsSpecialCheckpoint;
+    }
+
     public boolean isSpecialCheckpointFounded() {
         return specialCheckpointFounded;
+    }
+
+    public int getNumOfLaps() {
+        return numOfLaps;
+    }
+
+    public int getCurrentLap() {
+        return currentLap;
     }
 
     public Iterator<TimestampRaceYourTrack> getLapTimes() {

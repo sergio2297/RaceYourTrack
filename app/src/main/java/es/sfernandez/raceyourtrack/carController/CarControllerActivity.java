@@ -27,6 +27,7 @@ public class CarControllerActivity extends AppCompatActivity {
     private LightsFragment lightsFragment;
     private PedalsFragment pedalsFragment;
     private SteeringFragment steeringFragment;
+    private ChallengeInfoFragment challengeInfoFragment;
     private TransmissionFragment transmissionFragment;
 
     //---- Constructor ----
@@ -61,6 +62,9 @@ public class CarControllerActivity extends AppCompatActivity {
 
         steeringFragment = (SteeringFragment) getSupportFragmentManager().findFragmentById(R.id.car_controller_steering_fragment);
         steeringFragment.setCarController(carController);
+
+        challengeInfoFragment = (ChallengeInfoFragment) getSupportFragmentManager().findFragmentById(R.id.car_controller_challenge_info_fragment);
+        challengeInfoFragment.getView().setVisibility(Game.getInstance().isChallengeMode() ? View.VISIBLE : View.GONE);
 
         transmissionFragment = (TransmissionFragment) getSupportFragmentManager().findFragmentById(R.id.car_controller_transmission_fragment);
         transmissionFragment.setCarController(carController);
