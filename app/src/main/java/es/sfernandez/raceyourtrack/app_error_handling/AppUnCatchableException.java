@@ -1,5 +1,7 @@
 package es.sfernandez.raceyourtrack.app_error_handling;
 
+import androidx.annotation.Nullable;
+
 public class AppUnCatchableException extends RuntimeException {
 
     //---- Attributes ----
@@ -11,4 +13,9 @@ public class AppUnCatchableException extends RuntimeException {
         this.error = error;
     }
 
+    @Nullable
+    @Override
+    public String getMessage() {
+        return error.getMsg();
+    }
 }

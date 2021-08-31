@@ -12,6 +12,7 @@ import es.sfernandez.raceyourtrack.bluetoothConnection.BluetoothActivity;
 import es.sfernandez.raceyourtrack.carController.CarControllerActivity;
 import es.sfernandez.raceyourtrack.garage.GarageActivity;
 import model.Game;
+import model.raceway.Raceway;
 import utils.viewComponents.SwitchButtonC;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        toDelete();
 
 //        DataBaseUtils.deleteAllDataStored(getApplicationContext()); // TODO: Delete later
 
@@ -102,5 +105,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void btnPlayOnClick() {
         Toast.makeText(this, "Play", Toast.LENGTH_SHORT).show();
+    }
+
+    private void toDelete() {
+        Raceway.loadFromJson("circle.json");
     }
 }

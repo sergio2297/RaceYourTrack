@@ -22,6 +22,9 @@ public class AppErrorHandler {
     // Codes: [10,14] --> Errors which are related with user inputs
     private static final int MIN_INPUT_ERROR_CODE = MAX_BLUETOOTH_ERROR_CODE + 1, MAX_INPUT_ERROR_CODE = MIN_INPUT_ERROR_CODE + 4;
 
+    // Codes: [15,24] --> Errors which are related with raceway building
+    private static final int MIN_RACEWAY_ERROR_CODE = MAX_INPUT_ERROR_CODE + 1, MAX_RACEWAY_ERROR_CODE = MIN_RACEWAY_ERROR_CODE + 9;
+
     private static final int MAX_ERROR_CODE = 200;
 
     //---- Handlers ----
@@ -49,6 +52,16 @@ public class AppErrorHandler {
         public static final int MUST_NOT_HAPPEN_LAP_COUNTER_NOT_INITIALIZED = MIN_FATAL_ERROR_CODE + 2; // Try to start a lap counter without initialized it
 
         public static final int BLUETOOTH_CONNECTION_LOST = MIN_BLUETOOTH_ERROR_CODE + 0; // Bluetooth connection lost
+
+
+        public static final int RACEWAY_BUILDING_SOMETHING_NULL = MIN_RACEWAY_ERROR_CODE + 0; // After create a Raceway object, it has some null attribute
+        public static final int RACEWAY_BUILDING_INCORRECT_CELLS_COUNT = MIN_RACEWAY_ERROR_CODE + 1; //After create a Raceway object, the number of cells is incorrect
+        public static final int RACEWAY_BUILDING_CELLS_SOMETHING_NULL = MIN_RACEWAY_ERROR_CODE + 2; //After create a Raceway object, some cell has some null attribute
+        public static final int RACEWAY_BUILDING_CELLS_BAD_ORDERS = MIN_RACEWAY_ERROR_CODE + 3; // After create a Raceway object, the cell's order isn't correct (repeated values, out of bounds...)
+        public static final int RACEWAY_BUILDING_INCORRECT_CELLS_LAYOUT = MIN_RACEWAY_ERROR_CODE + 4; //After create a Raceway object, the cells matrix doesn't verify the correct layout
+        public static final int RACEWAY_BUILDING_INCORRECT_PIECES_COUNT = MIN_RACEWAY_ERROR_CODE + 5; //After create a Raceway object, the number of pieces is incorrect
+        public static final int RACEWAY_BUILDING_PIECES_SOMETHING_NULL = MIN_RACEWAY_ERROR_CODE + 6; //After create a Raceway object, some piece has some null attribute
+        public static final int RACEWAY_BUILDING_INCORRECT_PIECES_LAYOUT = MIN_RACEWAY_ERROR_CODE + 7; //After create a Raceway object, the pieces matrix of some cell doesn't verify the correct layout
 
 //        public static final int EMPTY_NAME_INPUT = MIN_INPUT_ERROR_CODE + 0; // Se ha dejado el nombre a introducir en blanco
 //        public static final int EMPTY_AMOUNT_INPUT = MIN_INPUT_ERROR_CODE + 1; // Se ha dejado la cantidad objetivo a introducir en blanco
