@@ -2,11 +2,10 @@ package model.raceway;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Cell {
-
-    //---- Constants and Definitions ----
+public class Cell implements Serializable {
 
     //---- Attributes ----
     @SerializedName("x")
@@ -44,6 +43,14 @@ public class Cell {
 
     public Piece[][] getPieces() {
         return pieces;
+    }
+
+    public int getNumOfPiecesPerColumn() {
+        return pieces[0].length;
+    }
+
+    public int getNumOfPiecesPerRow() {
+        return pieces.length;
     }
 
     @Override

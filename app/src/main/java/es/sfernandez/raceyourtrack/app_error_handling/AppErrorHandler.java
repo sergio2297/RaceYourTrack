@@ -62,7 +62,7 @@ public class AppErrorHandler {
         public static final int RACEWAY_BUILDING_INCORRECT_PIECES_COUNT = MIN_RACEWAY_ERROR_CODE + 5; //After create a Raceway object, the number of pieces is incorrect
         public static final int RACEWAY_BUILDING_PIECES_SOMETHING_NULL = MIN_RACEWAY_ERROR_CODE + 6; //After create a Raceway object, some piece has some null attribute
         public static final int RACEWAY_BUILDING_INCORRECT_PIECES_LAYOUT = MIN_RACEWAY_ERROR_CODE + 7; //After create a Raceway object, the pieces matrix of some cell doesn't verify the correct layout
-
+        public static final int RACEWAY_BUILDING_INCORRECT_NUMBER_OF_SPECIAL_PIECES = MIN_RACEWAY_ERROR_CODE + 8; //After create a Raceway object, number of special checks incorrect
 //        public static final int EMPTY_NAME_INPUT = MIN_INPUT_ERROR_CODE + 0; // Se ha dejado el nombre a introducir en blanco
 //        public static final int EMPTY_AMOUNT_INPUT = MIN_INPUT_ERROR_CODE + 1; // Se ha dejado la cantidad objetivo a introducir en blanco
 //        public static final int INVALID_AMOUNT_INPUT = MIN_INPUT_ERROR_CODE + 2; // La cantidad objetivo introducido es <= 0

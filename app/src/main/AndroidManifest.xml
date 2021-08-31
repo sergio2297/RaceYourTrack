@@ -58,6 +58,14 @@
                 android:value=".MainActivity" />
         </activity>
 
+        <activity
+            android:name=".play.racewayBuilding.RacewayGuideBuildingActivity"
+            android:label="@string/play"
+            android:screenOrientation="landscape"
+            android:noHistory="true"
+            android:theme="@style/Theme.RaceYourTrack">
+        </activity>
+
     </application>
 
 </manifest>

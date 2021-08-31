@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import es.sfernandez.raceyourtrack.bluetoothConnection.BluetoothActivity;
 import es.sfernandez.raceyourtrack.carController.CarControllerActivity;
 import es.sfernandez.raceyourtrack.garage.GarageActivity;
+import es.sfernandez.raceyourtrack.play.racewayBuilding.RacewayGuideBuildingActivity;
 import model.Game;
 import model.raceway.Raceway;
 import utils.viewComponents.SwitchButtonC;
@@ -26,10 +27,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        toDelete();
-
-//        DataBaseUtils.deleteAllDataStored(getApplicationContext()); // TODO: Delete later
 
         // Loading view elements
         btnConnectBluetooth = findViewById(R.id.btn_connect_bluetooth);
@@ -104,10 +101,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void btnPlayOnClick() {
-        Toast.makeText(this, "Play", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), RacewayGuideBuildingActivity.class);
+
+        Raceway raceway = Raceway.loadFromJson("large.json");
+        intent.putExtra("raceway",raceway);
+
+        getApplicationContext().startActivity(intent);
     }
 
-    private void toDelete() {
-        Raceway.loadFromJson("circle.json");
-    }
 }
