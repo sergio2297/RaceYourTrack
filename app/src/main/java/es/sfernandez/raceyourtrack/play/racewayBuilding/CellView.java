@@ -34,7 +34,7 @@ public class CellView extends GridLayout {
             Piece piece = cell.getPieces()[row][col];
 
             ImageView imageView = new ImageView(getContext());
-            if(piece.getPiece() != Piece.Type.NONE) {
+            if(piece.getPieceType() != Piece.Type.NONE) {
                 imageView.setBackground(piece.getPieceDrawable(getContext()));
                 imageView.setRotation(piece.getRotation() * 90);
             }

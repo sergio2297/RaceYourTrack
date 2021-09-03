@@ -7,6 +7,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/normal_padding"
+        android:layout_marginTop="@dimen/normal_padding"
         android:orientation="horizontal">
 
         <GridLayout
@@ -16,12 +18,18 @@
             android:layout_weight="1"
             android:layout_gravity="center"/>
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            tools:context=".play.racewayBuilding.RacewayGuideBuildingActivity"
+            app:layoutManager="LinearLayoutManager"
             android:id="@+id/lyt_materials_raceway_guide_building"
+            android:name=".play.racewayBuilding.RacewayGuideBuildingActivity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Texto"
-            android:background="@color/blue"/>
+            android:layout_gravity="center"
+            android:background="@drawable/exterior_container"
+            tools:listitem="@layout/recycler_view_adapter_pieces_type_count"/>
 
     </LinearLayout>
 

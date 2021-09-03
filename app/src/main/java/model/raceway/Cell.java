@@ -20,6 +20,8 @@ public class Cell implements Serializable {
     @SerializedName("pieces")
     private final Piece[][] pieces;
 
+    private int[] piecesCount;
+
     //---- Construction
     public Cell(final int x, final int y, final int order, final Piece[][] pieces) {
         this.x = x;
@@ -29,6 +31,18 @@ public class Cell implements Serializable {
     }
 
     //---- Methods ----
+    public void initPiecesCount() {
+        this.piecesCount = new int[Piece.Type.values().length - 1];
+        for(int i = 0; i < pieces.length; ++i) {
+            for(int j = 0; j < pieces[i].length; ++j) {
+                Piece.Type pieceType = pieces[i][j].getPieceType();
+                if(pieceType != Piece.Type.NONE) {
+                    ++piecesCount[pieceType.ordinal()];
+                }
+            }
+        }
+    }
+
     public int getX() {
         return x;
     }
@@ -51,6 +65,10 @@ public class Cell implements Serializable {
 
     public int getNumOfPiecesPerRow() {
         return pieces.length;
+    }
+
+    public int[] getPiecesCount() {
+        return piecesCount;
     }
 
     @Override

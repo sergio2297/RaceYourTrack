@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     private void btnPlayOnClick() {
         Intent intent = new Intent(getApplicationContext(), RacewayGuideBuildingActivity.class);
 
-        Raceway raceway = Raceway.loadFromJson("circle.json");
+        Raceway raceway = Raceway.loadFromJson("large.json");
         intent.putExtra("raceway",raceway);
 
         getApplicationContext().startActivity(intent);

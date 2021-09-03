@@ -15,8 +15,9 @@ public class Piece implements Serializable {
 
     //---- Constants and Definitions ----
     public enum Type {
-        STRAIGHT(R.drawable.png_straight), START_STRAIGHT(R.drawable.png_start_straight), GOAL_STRAIGHT(R.drawable.png_goal_straight), SPECIAL_CHECK_STRAIGHT(R.drawable.png_special_check_straight),
-        CURVE(R.drawable.png_curve), SPECIAL_CHECK_CURVE(R.drawable.png_special_check_curve), NONE(-1);
+        START_STRAIGHT(R.drawable.png_start_straight), GOAL_STRAIGHT(R.drawable.png_goal_straight), STRAIGHT(R.drawable.png_straight), SPECIAL_CHECK_STRAIGHT(R.drawable.png_special_check_straight),
+        CURVE(R.drawable.png_curve), SPECIAL_CHECK_CURVE(R.drawable.png_special_check_curve),
+        NONE(-1); //NONE must be the last value in the enum
 
         //---- Attributes ----
         @DrawableRes
@@ -67,7 +68,7 @@ public class Piece implements Serializable {
         return rotation;
     }
 
-    public Type getPiece() {
+    public Type getPieceType() {
         return piece;
     }
 

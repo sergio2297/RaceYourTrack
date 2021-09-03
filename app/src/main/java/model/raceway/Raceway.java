@@ -1,6 +1,7 @@
 package model.raceway;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -71,6 +72,8 @@ public class Raceway implements Serializable {
     @SerializedName("cells")
     private final Cell[][] cells;
 
+    private int[] piecesCount;
+
     //---- Construction ----
     public Raceway(final Type type, final boolean hasSecret, final String name, final String description, final Dimension size, final Cell[][] cells) {
         this.type = type;
@@ -82,6 +85,23 @@ public class Raceway implements Serializable {
     }
 
     //---- Methods ----
+    public void initPiecesCount() {
+        for(int i = 0; i < cells.length; ++i) {
+            for(int j = 0; j < cells[i].length; ++j) {
+                cells[i][j].initPiecesCount();
+            }
+        }
+
+        this.piecesCount = new int[Piece.Type.values().length -1]; // Type NONE is not take account
+        for (int i = 0; i < cells.length; ++i) {
+            for (int j = 0; j < cells[i].length; ++j) {
+                for(int pieceType = 0; pieceType < piecesCount.length; ++pieceType) {
+                    piecesCount[pieceType] += cells[i][j].getPiecesCount()[pieceType];
+                }
+            }
+        }
+    }
+
     public Type getType() {
         return type;
     }
@@ -112,6 +132,10 @@ public class Raceway implements Serializable {
 
     public Cell[][] getCells() {
         return cells;
+    }
+
+    public int[] getPiecesCount() {
+        return piecesCount;
     }
 
     /**
@@ -157,7 +181,7 @@ public class Raceway implements Serializable {
                         for(int piece_column = 0; piece_column < pieces[0].length; ++piece_column) {
                             Piece piece = pieces[piece_row][piece_column];
 
-                            if(piece.getPiece() == null) {
+                            if(piece.getPieceType() == null) {
                                 throw new AppUnCatchableException(new AppError(AppErrorHandler.CodeErrors.RACEWAY_BUILDING_PIECES_SOMETHING_NULL, "Pieces can't have any null attribute", RaceYourTrackApplication.getContext()));
                             }
 
@@ -165,7 +189,7 @@ public class Raceway implements Serializable {
                                 throw new AppUnCatchableException(new AppError(AppErrorHandler.CodeErrors.RACEWAY_BUILDING_INCORRECT_PIECES_LAYOUT, "Cells must have pieces ordered in its Pieces matrix", RaceYourTrackApplication.getContext()));
                             }
 
-                            if(piece.getPiece() == Piece.Type.SPECIAL_CHECK_STRAIGHT || piece.getPiece() == Piece.Type.SPECIAL_CHECK_CURVE) {
+                            if(piece.getPieceType() == Piece.Type.SPECIAL_CHECK_STRAIGHT || piece.getPieceType() == Piece.Type.SPECIAL_CHECK_CURVE) {
                                 ++numOfSpecialPieces;
                             }
                         }
@@ -204,6 +228,7 @@ public class Raceway implements Serializable {
      */
     public static Raceway loadFromJson(final String filename) {
         String contentJson = Utils.getJsonStringFromAssets(RaceYourTrackApplication.getContext(), filename);
+        GsonBuilder gson = new GsonBuilder();
         Raceway raceway = new Gson().fromJson(contentJson, Raceway.class);
         raceway.verify();
         return raceway;

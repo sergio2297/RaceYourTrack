@@ -39,6 +39,8 @@
     <dimen name="container_small_stroke_width">1dp</dimen>
     <dimen name="container_radius">4dp</dimen>
     <dimen name="normal_spacing">8dp</dimen>
+    <dimen name="pieces_count_recycler_view_height">60dp</dimen>
+    <dimen name="pieces_count_recycler_view_margin">15dp</dimen>
     <!-- END CONTAINER DIMENS -->
 
 </resources>
