@@ -5,8 +5,10 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
@@ -132,6 +134,29 @@ public class Raceway implements Serializable {
 
     public Cell[][] getCells() {
         return cells;
+    }
+
+    /**
+     * @return cells of the building sorted, but removing cells with no order (order = 0)
+     */
+    public Cell[] getCellsSorted() {
+        List<Cell> listAux = new ArrayList<>();
+        for(int i = 0; i < cells.length; ++i) {
+            for(int j = 0; j < cells[i].length; ++j) {
+                listAux.add(cells[i][j]);
+            }
+        }
+        List<Cell> listSortedCells = new ArrayList<>();
+        for(Cell cell : listAux) {
+            if(cell.getOrder() > 0) {
+                listSortedCells.add(cell);
+            }
+        }
+        listSortedCells.sort( (cell1, cell2) -> {
+            return cell1.getOrder() - cell2.getOrder();
+        });
+
+        return listSortedCells.toArray(new Cell[listSortedCells.size()]);
     }
 
     public int[] getPiecesCount() {

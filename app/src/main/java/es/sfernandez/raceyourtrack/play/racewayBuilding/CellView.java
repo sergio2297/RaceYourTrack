@@ -10,15 +10,25 @@ import model.raceway.Piece;
 
 public class CellView extends GridLayout {
 
+    //---- Constants and Definitions ----
+    private final int BUILDING_REPRESENTATION_MARGIN_PX = 10;
+
     //---- Attributes ----
     private final Cell cell;
     private final int pieceSidePx;
+    private final boolean buildingRepresentation;
 
     //---- Construction ----
     public CellView(final Context context, final Cell cell, final int cellSide) {
+        this(context, cell, cellSide, false);
+    }
+
+    public CellView(final Context context, final Cell cell, final int cellSide, final boolean buildingRepresentation) {
         super(context);
         this.cell = cell;
-        this.pieceSidePx = calculateCellDimension(cell, cellSide);
+        this.buildingRepresentation = buildingRepresentation;
+        int pieceSidePx = calculateCellDimension(cell, cellSide);
+        this.pieceSidePx = buildingRepresentation ? pieceSidePx - BUILDING_REPRESENTATION_MARGIN_PX*2 : pieceSidePx;
         initializeViewElements();
     }
 
@@ -27,6 +37,11 @@ public class CellView extends GridLayout {
         this.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
         this.setColumnCount(cell.getNumOfPiecesPerColumn());
         this.setRowCount(cell.getNumOfPiecesPerRow());
+        GridLayout.LayoutParams gridParam = new GridLayout.LayoutParams();
+        gridParam.setGravity(Gravity.CENTER);
+        gridParam.setMargins(BUILDING_REPRESENTATION_MARGIN_PX, BUILDING_REPRESENTATION_MARGIN_PX,
+                BUILDING_REPRESENTATION_MARGIN_PX, BUILDING_REPRESENTATION_MARGIN_PX);
+        this.setLayoutParams(gridParam);
 
         for(int i = 0; i < this.getColumnCount() * this.getRowCount(); ++i) {
             int row = i/cell.getNumOfPiecesPerColumn();
@@ -44,14 +59,14 @@ public class CellView extends GridLayout {
             param.height = pieceSidePx;
             param.width = pieceSidePx;
             param.setGravity(Gravity.CENTER);
+            if(buildingRepresentation) {
+                param.setMargins(BUILDING_REPRESENTATION_MARGIN_PX, BUILDING_REPRESENTATION_MARGIN_PX,
+                        BUILDING_REPRESENTATION_MARGIN_PX, BUILDING_REPRESENTATION_MARGIN_PX);
+            }
             param.columnSpec = GridLayout.spec(i%cell.getNumOfPiecesPerRow(), 1);
             param.rowSpec = GridLayout.spec(i/cell.getNumOfPiecesPerRow(), 1);
-            imageView.setLayoutParams (param);
+            imageView.setLayoutParams(param);
         }
-    }
-
-    private void addListenersToViewElements() {
-
     }
 
     /**

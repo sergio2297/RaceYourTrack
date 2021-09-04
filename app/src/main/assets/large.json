@@ -7,7 +7,7 @@
   "cells": [
     [
       {
-        "x": 0, "y": 0, "order": 2,
+        "x": 0, "y": 0, "order": 3,
         "pieces": [
           [{"x": 0, "y": 0, "piece": "NONE", "rotation": 0}, {"x": 1, "y": 0, "piece": "CURVE", "rotation": 0}, {"x": 2, "y": 0, "piece": "STRAIGHT", "rotation": 0}],
           [{"x": 0, "y": 1, "piece": "NONE", "rotation": 0}, {"x": 1, "y": 1, "piece": "STRAIGHT", "rotation": 1}, {"x": 2, "y": 1, "piece": "CURVE", "rotation": 0}],
@@ -15,7 +15,7 @@
         ]
       },
       {
-        "x": 1, "y": 0, "order": 3,
+        "x": 1, "y": 0, "order": 4,
         "pieces": [
           [{"x": 0, "y": 0, "piece": "CURVE", "rotation": 1}, {"x": 1, "y": 0, "piece": "NONE", "rotation": 0}, {"x": 2, "y": 0, "piece": "CURVE", "rotation": 0}],
           [{"x": 0, "y": 1, "piece": "CURVE", "rotation": 2}, {"x": 1, "y": 1, "piece": "NONE", "rotation": 0}, {"x": 2, "y": 1, "piece": "STRAIGHT", "rotation": 1}],
@@ -23,7 +23,7 @@
         ]
       },
       {
-        "x": 2, "y": 0, "order": 4,
+        "x": 2, "y": 0, "order": 5,
         "pieces": [
           [{"x": 0, "y": 0, "piece": "STRAIGHT", "rotation": 0}, {"x": 1, "y": 0, "piece": "STRAIGHT", "rotation": 0}, {"x": 2, "y": 0, "piece": "CURVE", "rotation": 1}],
           [{"x": 0, "y": 1, "piece": "NONE", "rotation": 0}, {"x": 1, "y": 1, "piece": "NONE", "rotation": 0}, {"x": 2, "y": 1, "piece": "STRAIGHT", "rotation": 1}],
@@ -33,7 +33,7 @@
     ],
     [
       {
-        "x": 0, "y": 1, "order": 1,
+        "x": 0, "y": 1, "order": 2,
         "pieces": [
           [{"x": 0, "y": 0, "piece": "NONE", "rotation": 0}, {"x": 1, "y": 0, "piece": "STRAIGHT", "rotation": 1}, {"x": 2, "y": 0, "piece": "CURVE", "rotation": -1}],
           [{"x": 0, "y": 1, "piece": "CURVE", "rotation": 0}, {"x": 1, "y": 1, "piece": "CURVE", "rotation": 2}, {"x": 2, "y": 1, "piece": "NONE", "rotation": 0}],
@@ -41,7 +41,7 @@
         ]
       },
       {
-        "x": 1, "y": 1, "order": 5,
+        "x": 1, "y": 1, "order": 6,
         "pieces": [
           [{"x": 0, "y": 0, "piece": "CURVE", "rotation": 1}, {"x": 1, "y": 0, "piece": "NONE", "rotation": 0}, {"x": 2, "y": 0, "piece": "CURVE", "rotation": -1}],
           [{"x": 0, "y": 1, "piece": "CURVE", "rotation": -1}, {"x": 1, "y": 1, "piece": "STRAIGHT", "rotation": 0}, {"x": 2, "y": 1, "piece": "STRAIGHT", "rotation": 0}],
@@ -49,7 +49,7 @@
         ]
       },
       {
-        "x": 2, "y": 1, "order": 0,
+        "x": 2, "y": 1, "order": 1,
         "pieces": [
           [{"x": 0, "y": 0, "piece": "CURVE", "rotation": 1}, {"x": 1, "y": 0, "piece": "NONE", "rotation": 0}, {"x": 2, "y": 0, "piece": "STRAIGHT", "rotation": 1}],
           [{"x": 0, "y": 1, "piece": "CURVE", "rotation": 2}, {"x": 1, "y": 1, "piece": "NONE", "rotation": 0}, {"x": 2, "y": 1, "piece": "STRAIGHT", "rotation": 1}],

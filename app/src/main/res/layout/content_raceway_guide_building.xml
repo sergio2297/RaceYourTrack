@@ -2,56 +2,90 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/normal_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:layout_marginRight="@dimen/normal_padding"
-        android:layout_marginTop="@dimen/normal_padding"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <GridLayout
             android:id="@+id/grid_layout_raceway_template"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_gravity="center"/>
-
-        <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            tools:context=".play.racewayBuilding.RacewayGuideBuildingActivity"
-            app:layoutManager="LinearLayoutManager"
-            android:id="@+id/lyt_materials_raceway_guide_building"
-            android:name=".play.racewayBuilding.RacewayGuideBuildingActivity"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:background="@drawable/exterior_container"
-            tools:listitem="@layout/recycler_view_adapter_pieces_type_count"/>
+            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/normal_spacing"
+            android:background="@drawable/intermediate_container"/>
+
+        <LinearLayout
+            android:id="@+id/lyt_buttons_raceway_guide_building"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_raceway_building_previous_step"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/left_arrow_guide_building_button"/>
+
+            <TextView
+                android:id="@+id/txt_current_step_raceway_guide_building"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="@dimen/h2_character_size"
+                android:layout_marginHorizontal="@dimen/large_padding"/>
+
+            <Button
+                android:id="@+id/btn_raceway_building_next_step"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/right_arrow_guide_building_button"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/lyt_buttons_raceway_guide_building"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/blue"
-        android:layout_gravity="center">
+        android:id="@+id/lyt_materials_raceway_guide_building"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <Button
+        <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/recyclerview_pieces_count_raceway_guide_building"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            tools:context=".play.racewayBuilding.RacewayGuideBuildingActivity"
+            app:layoutManager="LinearLayoutManager"
+            android:name=".play.racewayBuilding.RacewayGuideBuildingActivity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Volver"/>
+            android:layout_gravity="center"
+            android:background="@drawable/exterior_container"
+            tools:listitem="@layout/recycler_view_adapter_pieces_type_count"/>
 
         <Button
-            android:layout_width="match_parent"
+            android:id="@+id/btn_action_raceway_guide_building"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Empezar"/>
+            android:layout_weight="6"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/small_padding"
+            android:background="@drawable/build_button"/>
 
     </LinearLayout>
+
 </LinearLayout>
