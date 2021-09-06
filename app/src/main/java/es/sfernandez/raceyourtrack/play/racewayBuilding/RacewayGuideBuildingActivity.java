@@ -141,7 +141,7 @@ public class RacewayGuideBuildingActivity extends AppCompatActivity {
                 btnAction.setVisibility(View.VISIBLE);
                 btnAction.setBackground(getDrawable(R.drawable.run_button));
                 Game.getInstance().getSoundPlayer().playLapCheckSound();
-                //TODO: Mostrar dialogo con el tiempo de construcción 
+                //TODO: Mostrar dialogo con el tiempo de construcción
             } else {
                 Game.getInstance().getSoundPlayer().playBuildSomethingSound();
                 currentPosition.setProperty(currentPosition.getProperty() + 1);

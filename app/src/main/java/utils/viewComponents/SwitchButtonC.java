@@ -62,6 +62,10 @@ public class SwitchButtonC {
         this.button.setText(text);
     }
 
+    public boolean isSelected() {
+        return isSelected;
+    }
+
     public void select() {
         isSelected = true;
         button.setSelected(isSelected);

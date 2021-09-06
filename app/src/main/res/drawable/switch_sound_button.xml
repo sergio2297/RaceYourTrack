@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_selected="true">
+        <layer-list>
+            <item>
+                <bitmap android:gravity="fill"
+                    android:src="@drawable/png_checkbox_on"
+                    android:width="@dimen/button_lights_side"
+                    android:height="@dimen/button_lights_side"/>
+            </item>
+        </layer-list>
+    </item>
+
+    <item android:state_pressed="false">
+        <layer-list>
+            <item>
+                <bitmap android:gravity="fill"
+                    android:src="@drawable/png_checkbox_off"
+                    android:width="10dp"
+                    android:height="10dp"/>
+            </item>
+        </layer-list>
+    </item>
+
+    <item android:state_pressed="true">
+        <layer-list>
+            <item>
+                <bitmap android:gravity="fill"
+                    android:src="@drawable/png_checkbox_on"
+                    android:width="@dimen/button_lights_side"
+                    android:height="@dimen/button_lights_side"/>
+            </item>
+        </layer-list>
+    </item>
+
+
+</selector>

@@ -7,6 +7,7 @@ import android.media.SoundPool;
 import java.util.Random;
 
 import es.sfernandez.raceyourtrack.R;
+import model.settings.Settings;
 
 public class SoundPlayer {
 
@@ -18,6 +19,7 @@ public class SoundPlayer {
 
     //---- Attributes ----
     private SoundPool soundPool;
+    private boolean soundEnabled;
 
     //---- Construction ----
     public SoundPlayer(Context context) {
@@ -30,6 +32,8 @@ public class SoundPlayer {
                 .setMaxStreams(2)
                 .setAudioAttributes(audioAttributes)
                 .build();
+
+        checkSoundEnableSetting();
 
         loadSounds(context);
     }
@@ -51,8 +55,14 @@ public class SoundPlayer {
     }
 
     //---- Methods ----
+    public void checkSoundEnableSetting() {
+        soundEnabled = Settings.getInstance().isSoundsOn();
+    }
+
     private void playSingleSound(final int sound) {
-        soundPool.play(sound, 1.0f, 1.0f, 1, 0, 1.0f);
+        if(soundEnabled) {
+            soundPool.play(sound, 1.0f, 1.0f, 1, 0, 1.0f);
+        }
     }
 
     public void playLapCheckSound() {

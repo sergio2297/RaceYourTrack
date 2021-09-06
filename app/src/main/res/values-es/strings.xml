@@ -30,6 +30,9 @@
     <string name="settings">Ajustes</string>
     <string name="settings_saved">Ajustes guardados.</string>
 
+    <string name="sound">Sonido:</string>
+    <string name="enable_sound">Activar sonido:</string>
+
     <string name="driving_mode">Modo de conducción:</string>
     <string name="custom">Personalizado</string>
     <string name="beginner">Principiante</string>

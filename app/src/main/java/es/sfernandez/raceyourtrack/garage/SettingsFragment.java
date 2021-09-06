@@ -11,12 +11,14 @@ import androidx.fragment.app.Fragment;
 
 import es.sfernandez.raceyourtrack.R;
 import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
+import model.Game;
 import model.settings.Settings;
 import model.settings.configurable.DrivingModeConfig;
 import model.settings.configurable.PedalsConfig;
 import model.settings.configurable.SteeringConfig;
 import model.settings.configurable.TransmissionConfig;
 import utils.viewComponents.SpinnerC;
+import utils.viewComponents.SwitchButtonC;
 
 public class SettingsFragment extends Fragment {
 
@@ -24,6 +26,8 @@ public class SettingsFragment extends Fragment {
     private Settings settings;
 
     //---- View Elements ----
+    private SwitchButtonC btnEnableSound;
+
     private SpinnerC<DrivingModeConfig> spinnerDrivingMode;
     private SpinnerC<PedalsConfig> spinnerPedals;
     private SpinnerC<TransmissionConfig> spinnerTransmission;
@@ -55,6 +59,9 @@ public class SettingsFragment extends Fragment {
     public void onStop() {
         super.onStop();
 
+        settings.setSoundsOn(btnEnableSound.isSelected());
+        Game.getInstance().getSoundPlayer().checkSoundEnableSetting();
+
         settings.setDrivingModeConfig((DrivingModeConfig)spinnerDrivingMode.getSelectedItem());
         settings.setSteeringConfig((SteeringConfig)spinnerSteeringWheel.getSelectedItem());
         settings.setTransmissionConfig((TransmissionConfig)spinnerTransmission.getSelectedItem());
@@ -66,6 +73,11 @@ public class SettingsFragment extends Fragment {
 
     //---- Methods ----
     private void initializeViewElements() {
+        btnEnableSound = new SwitchButtonC(this.getActivity().findViewById(R.id.btn_sound_switch));
+        if(settings.isSoundsOn()) {
+            btnEnableSound.select();
+        }
+
         spinnerDrivingMode = new SpinnerC<DrivingModeConfig>((AppCompatSpinner) this.getActivity().findViewById(R.id.spinner_driving_mode));
         spinnerDrivingMode.setSelectableValues(DrivingModeConfig.getValues());
         spinnerDrivingMode.setSelection(settings.getDrivingModeConfig(), false);

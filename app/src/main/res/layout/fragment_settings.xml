@@ -9,7 +9,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="10px">
+        android:layout_margin="10px"
+        android:background="@drawable/exterior_container">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15px"
+            android:layout_marginVertical="10px"
+            android:textAlignment="textStart"
+            android:textSize="@dimen/h1_character_size"
+            android:textColor="@color/light_font_color"
+            android:text="@string/sound"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="55px"
+            android:layout_marginVertical="10px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="@dimen/h2_character_size"
+                android:textColor="@color/white"
+                android:text="@string/enable_sound"/>
+
+            <Button
+                android:id="@+id/btn_sound_switch"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/switch_sound_button"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -20,14 +54,6 @@
         android:orientation="vertical"
         android:layout_margin="@dimen/normal_spacing"
         android:background="@drawable/exterior_container">
-
-        <!--<TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="textStart"
-            android:text="@string/controls"/>-->
-
-        <!-- TODO: Insert Line -->
 
         <!-- Driving Mode Spinner -->
         <LinearLayout
