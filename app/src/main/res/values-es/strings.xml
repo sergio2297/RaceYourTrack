@@ -54,6 +54,8 @@
 
     <!-- Play -->
     <string name="play">Jugar</string>
+
+    <string name="show_full_raceway">Ver circuito</string>
     <!-- - - - - - -->
 
     <!-- Errors -->

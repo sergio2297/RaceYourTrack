@@ -84,6 +84,7 @@
             android:layout_weight="6"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/small_padding"
+            android:padding="@dimen/normal_padding"
             android:background="@drawable/build_button"/>
 
     </LinearLayout>

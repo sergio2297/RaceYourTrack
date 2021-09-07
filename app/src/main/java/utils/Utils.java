@@ -2,8 +2,12 @@ package utils;
 
 import android.content.Context;
 
+import androidx.fragment.app.FragmentManager;
+
 import java.io.IOException;
 import java.io.InputStream;
+
+import utils.viewComponents.MsgDialogC;
 
 public abstract class Utils {
 
@@ -21,6 +25,12 @@ public abstract class Utils {
         }
 
         return false;
+    }
+
+    public static void showMessageDialog(final String title, final String msg, final String btnText, final FragmentManager fragmentManager, final String tag) {
+        final MsgDialogC dialog = new MsgDialogC(title, msg, btnText);
+        dialog.setListener(() -> dialog.dismiss());
+        dialog.show(fragmentManager, tag);
     }
 
     /**

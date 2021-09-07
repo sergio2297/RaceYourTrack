@@ -53,6 +53,8 @@
 
     <!-- Play -->
     <string name="play">Play</string>
+
+    <string name="show_full_raceway">Show raceway</string>
     <!-- - - - - - -->
 
     <!-- Errors -->

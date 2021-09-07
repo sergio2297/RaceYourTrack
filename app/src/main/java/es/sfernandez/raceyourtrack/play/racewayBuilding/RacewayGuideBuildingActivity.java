@@ -19,6 +19,8 @@ import model.Game;
 import model.raceway.Cell;
 import model.raceway.Raceway;
 import utils.ObjectProperty;
+import utils.viewComponents.MsgDialogC;
+import utils.viewComponents.RacewayDialogC;
 
 public class RacewayGuideBuildingActivity extends AppCompatActivity {
 
@@ -27,9 +29,11 @@ public class RacewayGuideBuildingActivity extends AppCompatActivity {
 
     //---- Attributes ----
     private Raceway raceway;
+    private int currentStep = -1;
     private ObjectProperty<Integer> currentPosition = new ObjectProperty<>(-1);
     private Cell[] sortedCells;
     private int cellSidePx, buttonsHeightPx, materialsWidthPx;
+    private boolean buildFinished = false;
 
     //---- View Elements ----
     private RecyclerView recyclerView;
@@ -110,12 +114,14 @@ public class RacewayGuideBuildingActivity extends AppCompatActivity {
 
     private void addListeners() {
         currentPosition.addListener( (oldValue, newValue) -> {
-            loadCellInScreen(sortedCells[currentPosition.getProperty()]);
+            if(currentPosition.getProperty() < sortedCells.length) {
+                loadCellInScreen(sortedCells[currentPosition.getProperty()]);
+            }
 
             if(newValue.equals(new Integer(0))) {
                 btnPrevious.setVisibility(View.INVISIBLE);
                 btnNext.setVisibility(View.VISIBLE);
-            } else if(btnAction.getVisibility() == View.VISIBLE && newValue.equals(new Integer(sortedCells.length - 1))) {
+            } else if(buildFinished && newValue.equals(new Integer(sortedCells.length - 1))) {
                 btnPrevious.setVisibility(View.VISIBLE);
                 btnNext.setVisibility(View.INVISIBLE);
             } else {
@@ -125,26 +131,45 @@ public class RacewayGuideBuildingActivity extends AppCompatActivity {
         });
 
         btnAction.setOnClickListener( e -> {
-            if(currentPosition.getProperty().equals(new Integer(-1))) {
+            if(currentPosition.getProperty().equals(new Integer(-1))) { //Build
                 currentPosition.setProperty(new Integer(0));
-                btnAction.setVisibility(View.INVISIBLE);
-            } else {
+                currentStep = 0;
+                btnAction.setText(R.string.show_full_raceway);
+                btnAction.setBackground(getDrawable(R.drawable.raceyourtrack_button));
+            } else if(buildFinished) {
                 btnAction.setSelected(true);
                 Game.getInstance().getSoundPlayer().playCarPassingAwaySound();
                 //TODO: Comenzar a conducir
+            } else {
+                showRacewayInDialog();
             }
         });
 
         btnNext.setOnClickListener( e -> {
-            if(currentPosition.getProperty() + 1 > sortedCells.length - 1) {
+            if(currentStep == currentPosition.getProperty() && currentStep != sortedCells.length) {
+                if(currentStep + 1 != sortedCells.length) {
+                    Game.getInstance().getSoundPlayer().playBuildSomethingSound();
+                }
+                ++currentStep;
+            }
+            currentPosition.setProperty(currentPosition.getProperty() + 1);
+
+            if(!buildFinished && currentStep == sortedCells.length) {
+                buildFinished = true;
                 btnNext.setVisibility(View.INVISIBLE);
-                btnAction.setVisibility(View.VISIBLE);
+                btnAction.setText("");
                 btnAction.setBackground(getDrawable(R.drawable.run_button));
                 Game.getInstance().getSoundPlayer().playLapCheckSound();
-                //TODO: Mostrar dialogo con el tiempo de construcción
-            } else {
-                Game.getInstance().getSoundPlayer().playBuildSomethingSound();
-                currentPosition.setProperty(currentPosition.getProperty() + 1);
+
+                final MsgDialogC dialog = new MsgDialogC("Enhorabuena", "Has terminado de construir el " +
+                        (raceway.getType() == Raceway.Type.CIRCUIT ? "circuito" : "tramo" ) + ".\n" +
+                        "¡Ahora ve y conduce sobre él!", "", R.drawable.run_button);
+                dialog.setListener(() -> {
+                    Game.getInstance().getSoundPlayer().playCarPassingAwaySound();
+                    dialog.dismiss();
+                    // TODO: Comenzar a conducir
+                });
+                dialog.show(getSupportFragmentManager(), "Tag");
             }
         });
 
@@ -173,7 +198,7 @@ public class RacewayGuideBuildingActivity extends AppCompatActivity {
     private void loadCellInScreen(final Cell cell) {
         int screenWidth = RaceYourTrackApplication.getScreenWidthPx();
         int screenHeight = RaceYourTrackApplication.getScreenHeightPx();
-        this.cellSidePx = Math.min((screenWidth - buttonsHeightPx) / 1, (screenHeight - materialsWidthPx) / 1);
+        int cellSidePx = Math.min((screenWidth - buttonsHeightPx) / 1, (screenHeight - materialsWidthPx) / 1);
 
         CellView cellView = new CellView(this, cell, cellSidePx, true);
 
@@ -185,6 +210,11 @@ public class RacewayGuideBuildingActivity extends AppCompatActivity {
 
         this.txtCurrentStep.setText("Paso " + (currentPosition.getProperty() + 1) + "/" + sortedCells.length);
         this.recyclerView.setAdapter(new PiecesCountRecyclerViewAdapter(cell.getPiecesCount()));
+    }
+
+    private void showRacewayInDialog() {
+        RacewayDialogC dialog = new RacewayDialogC(raceway, cellSidePx);
+        dialog.show(getSupportFragmentManager(), "Tag");
     }
 }
 
