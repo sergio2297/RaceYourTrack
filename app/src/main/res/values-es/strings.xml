@@ -55,6 +55,11 @@
     <!-- Play -->
     <string name="play">Jugar</string>
 
+    <string name="circuits">Circuitos</string>
+    <string name="tracks">Tramos</string>
+    <string name="secrets">Secretos</string>
+    <string name="number_of_laps">Vueltas: %1$d</string>
+
     <string name="show_full_raceway">Ver circuito</string>
     <!-- - - - - - -->
 

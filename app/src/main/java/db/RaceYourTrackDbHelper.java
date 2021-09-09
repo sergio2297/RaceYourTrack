@@ -29,23 +29,20 @@ public class RaceYourTrackDbHelper extends SQLiteOpenHelper {
                     "CHECK (" + RaceYourTrackContract.CarsTable.COLUMN_HAS_BLINKING_LIGHTS + " IN (0, 1)) " +
             ");";
 
-    /*protected static final String SQL_CREATE_LIST_PRODUCT_TABLE =
-            "CREATE TABLE " + bd.ShoppingListContract.ListProductTable.TABLE_NAME + " (" +
-            bd.ShoppingListContract.ListProductTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-            bd.ShoppingListContract.ListProductTable.COLUMN_LIST_ID + " INTEGER NOT NULL," +
-            bd.ShoppingListContract.ListProductTable.COLUMN_PRODUCT_ID + " INTEGER NOT NULL," +
-            "FOREIGN KEY (" + bd.ShoppingListContract.ListProductTable.COLUMN_LIST_ID + ") REFERENCES " +
-                    bd.ShoppingListContract.ListTable.TABLE_NAME + " (" + bd.ShoppingListContract.ListTable._ID +")," +
-            "FOREIGN KEY (" + bd.ShoppingListContract.ListProductTable.COLUMN_PRODUCT_ID + ") REFERENCES " +
-                    bd.ShoppingListContract.ProductTable.TABLE_NAME + " (" + bd.ShoppingListContract.ProductTable._ID +")" +
-            ");";*/
+    protected static final String SQL_CREATE_CHALLENGES_TABLE =
+            "CREATE TABLE " + RaceYourTrackContract.ChallengesTable.TABLE_NAME + " (" +
+            RaceYourTrackContract.ChallengesTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            RaceYourTrackContract.ChallengesTable.COLUMN_CHALLENGE + " INTEGER NOT NULL," +
+            RaceYourTrackContract.ChallengesTable.COLUMN_UNLOCKED + " BOOLEAN NOT NULL," +
+            RaceYourTrackContract.ChallengesTable.COLUMN_PLAYER_TIME + " TEXT NOT NULL" +
+            ");";
 
     protected static final String SQL_DELETE_SETTINGS_TABLE =
             "DROP TABLE IF EXISTS " + RaceYourTrackContract.SettingsTable.TABLE_NAME + ";";
     protected static final String SQL_DELETE_CARS_TABLE =
             "DROP TABLE IF EXISTS " + RaceYourTrackContract.CarsTable.TABLE_NAME + ";";
-    /*protected static final String SQL_DELETE_LIST_PRODUCT_TABLE =
-            "DROP TABLE IF EXISTS " + bd.ShoppingListContract.ListProductTable.TABLE_NAME + ";";*/
+    protected static final String SQL_DELETE_CHALLENGES_TABLE =
+            "DROP TABLE IF EXISTS " + RaceYourTrackContract.ChallengesTable.TABLE_NAME + ";";
 
     //---- Constructor ----
     public RaceYourTrackDbHelper(Context context, String dataBaseName) {
@@ -57,14 +54,14 @@ public class RaceYourTrackDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_SETTINGS_TABLE);
         db.execSQL(SQL_CREATE_CARS_TABLE);
-        /*db.execSQL(SQL_CREATE_LIST_PRODUCT_TABLE);*/
+        db.execSQL(SQL_CREATE_CHALLENGES_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_SETTINGS_TABLE);
         db.execSQL(SQL_DELETE_CARS_TABLE);
-        /*db.execSQL(SQL_DELETE_LIST_PRODUCT_TABLE);*/
+        db.execSQL(SQL_DELETE_CHALLENGES_TABLE);
         onCreate(db);
     }
 

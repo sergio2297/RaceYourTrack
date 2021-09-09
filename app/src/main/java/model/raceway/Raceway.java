@@ -1,7 +1,6 @@
 package model.raceway;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -108,7 +107,7 @@ public class Raceway implements Serializable {
         return type;
     }
 
-    public boolean isHasSecret() {
+    public boolean hasSecret() {
         return hasSecret;
     }
 
@@ -248,12 +247,18 @@ public class Raceway implements Serializable {
     }
 
     /**
+     * @return The number of curves x the size of the circuit
+     */
+    public int calculateDifficulty() {
+       return (piecesCount[Piece.Type.CURVE.ordinal()] + piecesCount[Piece.Type.SPECIAL_CHECK_CURVE.ordinal()]) * ((size.numPiecesPerCellX + size.numPiecesPerCellY) / 2);
+    }
+
+    /**
      * Build a Raceway from the json file which`s name is filename. The file must be placed in the
      * assets folder. The Raceway returned will be well built because it's verified before returns it
      */
     public static Raceway loadFromJson(final String filename) {
         String contentJson = Utils.getJsonStringFromAssets(RaceYourTrackApplication.getContext(), filename);
-        GsonBuilder gson = new GsonBuilder();
         Raceway raceway = new Gson().fromJson(contentJson, Raceway.class);
         raceway.verify();
         return raceway;

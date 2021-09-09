@@ -75,7 +75,7 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:background="@drawable/exterior_container"
-            tools:listitem="@layout/recycler_view_adapter_pieces_type_count"/>
+            tools:listitem="@layout/recycler_view_holder_pieces_type_count"/>
 
         <Button
             android:id="@+id/btn_action_raceway_guide_building"

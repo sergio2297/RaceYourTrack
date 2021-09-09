@@ -43,4 +43,7 @@
     <dimen name="pieces_count_recycler_view_margin">15dp</dimen>
     <!-- END CONTAINER DIMENS -->
 
+    <dimen name="challenge_info_container_height">130dp</dimen>
+    <dimen name="challenge_info_coin_side">25dp</dimen>
+
 </resources>

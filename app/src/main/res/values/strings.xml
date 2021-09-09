@@ -54,6 +54,11 @@
     <!-- Play -->
     <string name="play">Play</string>
 
+    <string name="circuits">Circuits</string>
+    <string name="tracks">Tracks</string>
+    <string name="secrets">Secrets</string>
+    <string name="number_of_laps">Laps: %1$d</string>
+
     <string name="show_full_raceway">Show raceway</string>
     <!-- - - - - - -->
 

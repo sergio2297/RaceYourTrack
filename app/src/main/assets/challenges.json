@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1, "racewayFile": "circle.json", "laps": 3,
+    "scores": [
+      {"requestTime": {"hours": 0, "mins": 1, "secs": 50, "millis": 0}, "coins": 10},
+      {"requestTime": {"hours": 0, "mins": 1, "secs": 30, "millis": 0}, "coins": 100},
+      {"requestTime": {"hours": 0, "mins": 1, "secs": 10, "millis": 0}, "coins": 1000}
+    ], "challengesRequired": []
+  },
+  {
+    "id": 2, "racewayFile": "normal.json", "laps": 2,
+    "scores": [
+      {"requestTime": {"hours": 0, "mins": 2, "secs": 30, "millis": 0}, "coins": 25},
+      {"requestTime": {"hours": 0, "mins": 2, "secs": 0, "millis": 0}, "coins": 75},
+      {"requestTime": {"hours": 0, "mins": 1, "secs": 30, "millis": 0}, "coins": 125}
+    ], "challengesRequired": [1]
+  },
+  {
+    "id": 3, "racewayFile": "large.json", "laps": 4,
+    "scores": [
+      {"requestTime": {"hours": 0, "mins": 2, "secs": 30, "millis": 0}, "coins": 25},
+      {"requestTime": {"hours": 0, "mins": 2, "secs": 0, "millis": 0}, "coins": 75},
+      {"requestTime": {"hours": 0, "mins": 1, "secs": 30, "millis": 0}, "coins": 125}
+    ], "challengesRequired": []
+  }
+]

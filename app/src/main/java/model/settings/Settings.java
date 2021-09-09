@@ -37,7 +37,7 @@ public class Settings {
     }
 
     //---- Methods ----
-    private void initializeSettings() {
+    public static void initializeSettingsDB() {
         List<SettingsRow> listSettingsRows = new ArrayList<SettingsRow>();
         listSettingsRows.add(new SettingsRow(DaoSettings.SOUND_GROUP, DaoSettings.ENABLE_VAR, DaoSettings.TRUE_VALUE));
         listSettingsRows.add(new SettingsRow(DaoSettings.CONTROL_GROUP, DaoSettings.CONTROL_CONFIG_TYPE_VAR, DrivingModeConfig.BASIC.getName()));
@@ -49,17 +49,10 @@ public class Settings {
         for(SettingsRow row : listSettingsRows) {
             daoSettings.set(row);
         }
-        daoSettings.setDataAsInitialized();
     }
 
     private void loadSettingsFromDB() {
         DaoSettings daoSettings = new DaoSettings();
-
-        if(!daoSettings.isDataInitialized()) {
-            Log.println(Log.INFO, Settings.class.getCanonicalName(), "First time? It's necessary to initialize settings data.");
-            initializeSettings();
-            Log.println(Log.INFO, Settings.class.getCanonicalName(), "Settings have been correctly initialized in database.");
-        }
 
         soundsOn = Utils.parseToBoolean(daoSettings.get(DaoSettings.SOUND_GROUP, DaoSettings.ENABLE_VAR).getValue());
         drivingModeConfig = DrivingModeConfig.valueOf(daoSettings.get(DaoSettings.CONTROL_GROUP, DaoSettings.CONTROL_CONFIG_TYPE_VAR).getValue());

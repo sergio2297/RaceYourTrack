@@ -55,15 +55,28 @@
             android:theme="@style/Theme.RaceYourTrack">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".MainActivity"/>
+        </activity>
+
+        <activity
+            android:name=".play.PlayActivity"
+            android:label="@string/play"
+            android:screenOrientation="portrait"
+            android:noHistory="false"
+            android:theme="@style/Theme.RaceYourTrack">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
         </activity>
 
         <activity
             android:name=".play.racewayBuilding.RacewayGuideBuildingActivity"
-            android:label="@string/play"
             android:screenOrientation="landscape"
             android:noHistory="true"
             android:theme="@style/Theme.RaceYourTrack">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".play.PlayActivity"/>
         </activity>
 
     </application>

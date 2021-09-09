@@ -24,20 +24,12 @@ public final class RaceYourTrackContract {
         public static final String COLUMN_HAS_BLINKING_LIGHTS = "hasBlinkingLights";
     }
 
-    /*//---- LIST TABLE ----
-    public static abstract class ListTable implements BaseColumns {
-        public static final String TABLE_NAME = "Listado";
-        public static final String COLUMN_IS_SHOPPING_LIST = "esListaCompra";
-        public static final String COLUMN_IS_STOCK_SHOPPING_LIST = "esListaCompraInventario";
-        public static final String COLUMN_IS_STOCK = "esInventario";
-        public static final String COLUMN_NAME = "nombre";
-        public static final String COLUMN_ASSOCIATED_STOCK = "listadoAsociado";
+    //---- CHALLENGE TABLE ----
+    public static abstract class ChallengesTable implements BaseColumns {
+        public static final String TABLE_NAME = "Challenges";
+        public static final String COLUMN_CHALLENGE = "challenge";
+        public static final String COLUMN_UNLOCKED = "unlocked";
+        public static final String COLUMN_PLAYER_TIME = "playerTime";
     }
 
-    //---- LIST_PRODUCT TABLE
-    public static abstract class ListProductTable implements BaseColumns {
-        public static final String TABLE_NAME = "ListadoProducto";
-        public static final String COLUMN_LIST_ID = "listado";
-        public static final String COLUMN_PRODUCT_ID = "producto";
-    }*/
 }

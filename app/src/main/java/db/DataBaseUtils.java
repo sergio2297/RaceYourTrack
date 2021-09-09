@@ -33,9 +33,11 @@ public class DataBaseUtils {
 
         bd.execSQL(RaceYourTrackDbHelper.SQL_DELETE_SETTINGS_TABLE);
         bd.execSQL(RaceYourTrackDbHelper.SQL_DELETE_CARS_TABLE);
+        bd.execSQL(RaceYourTrackDbHelper.SQL_DELETE_CHALLENGES_TABLE);
 
         bd.execSQL(RaceYourTrackDbHelper.SQL_CREATE_SETTINGS_TABLE);
         bd.execSQL(RaceYourTrackDbHelper.SQL_CREATE_CARS_TABLE);
+        bd.execSQL(RaceYourTrackDbHelper.SQL_CREATE_CHALLENGES_TABLE);
     }
 
 }

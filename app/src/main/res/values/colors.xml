@@ -21,6 +21,8 @@
     <color name="dark_red">#FFA50000</color>
     <color name="silver">#FFC0C0C0</color>
     <color name="light_green">#FF90EE90</color>
+    <color name="really_dark_blue">#FF0C315B</color>
+    <color name="transparent_dark_blue">#AA124C8A</color>
 
     <!-- Buttons -->
     <color name="dipped_lights_button_off_color">@color/light_blue</color>

@@ -61,7 +61,7 @@ public class PiecesCountRecyclerViewAdapter extends RecyclerView.Adapter<PiecesC
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_view_adapter_pieces_type_count, parent, false));
+                .inflate(R.layout.recycler_view_holder_pieces_type_count, parent, false));
     }
 
     @Override

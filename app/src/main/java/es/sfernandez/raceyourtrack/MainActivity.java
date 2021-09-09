@@ -2,18 +2,21 @@ package es.sfernandez.raceyourtrack;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import db.dao.DaoSettings;
 import es.sfernandez.raceyourtrack.bluetoothConnection.BluetoothActivity;
 import es.sfernandez.raceyourtrack.carController.CarControllerActivity;
 import es.sfernandez.raceyourtrack.garage.GarageActivity;
-import es.sfernandez.raceyourtrack.play.racewayBuilding.RacewayGuideBuildingActivity;
+import es.sfernandez.raceyourtrack.play.PlayActivity;
 import model.Game;
-import model.raceway.Raceway;
+import model.challenges.Challenge;
+import model.settings.Settings;
 import utils.viewComponents.SwitchButtonC;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initializeData();
+
         setContentView(R.layout.activity_main);
 
         // Loading view elements
@@ -57,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show();
         }
 
+        btnPlay.deselect();
         btnGarage.deselect();
     }
 
@@ -65,6 +72,18 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
 
         Game.getInstance().destroyCommunicationThread();
+    }
+
+    private void initializeData() {
+        DaoSettings daoSettings = new DaoSettings();
+        if(!daoSettings.isDataInitialized()) {
+            Log.println(Log.INFO, Settings.class.getCanonicalName(), "First time? It's necessary to initialize data.");
+            Settings.initializeSettingsDB();
+            Challenge.initializeChallengesDB();
+            Log.println(Log.INFO, Settings.class.getCanonicalName(), "Data has been correctly initialized in database.");
+
+            daoSettings.setDataAsInitialized();
+        }
     }
 
     //---- Methods ----
@@ -101,11 +120,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void btnPlayOnClick() {
-        Intent intent = new Intent(getApplicationContext(), RacewayGuideBuildingActivity.class);
+//        List<Challenge> challenges = Challenge.loadAllChallenges(this);
+//        for(Challenge challenge : challenges) {
+//            Log.i("-----", challenge.toString());
+//        }
 
-        Raceway raceway = Raceway.loadFromJson("large.json");
-        intent.putExtra("raceway",raceway);
-
+        Intent intent = new Intent(getApplicationContext(), PlayActivity.class);
         getApplicationContext().startActivity(intent);
     }
 

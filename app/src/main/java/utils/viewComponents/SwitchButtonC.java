@@ -75,4 +75,8 @@ public class SwitchButtonC {
         isSelected = false;
         button.setSelected(isSelected);
     }
+
+    public void click() {
+        button.performClick();
+    }
 }
