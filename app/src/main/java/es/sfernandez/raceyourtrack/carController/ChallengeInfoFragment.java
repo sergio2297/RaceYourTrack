@@ -26,7 +26,7 @@ public class ChallengeInfoFragment extends Fragment {
     //---- Constructor ----
     public ChallengeInfoFragment() {
         lapCounter = Game.getInstance().getLapCounter();
-        lapCounter.addListener( () -> {
+        lapCounter.addListener( (code) -> {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

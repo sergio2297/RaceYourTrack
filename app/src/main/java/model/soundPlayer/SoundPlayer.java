@@ -16,6 +16,7 @@ public class SoundPlayer {
     private int F1_PASSING_AWAY_FAST, SPORT_CAR_PASSING_AWAY_FAST;
     private int ELECTRIC_DRILL_SHORT, ELECTRIC_DRILL_LONG, DRILL;
     private int HAMMERING, HAMMERING_FAST;
+    private int AND_ITS_LIGHTS_OUT;
 
     //---- Attributes ----
     private SoundPool soundPool;
@@ -52,6 +53,8 @@ public class SoundPlayer {
 
         HAMMERING = soundPool.load(context, R.raw.hammering, 1);
         HAMMERING_FAST = soundPool.load(context, R.raw.hammering_fast, 1);
+
+        AND_ITS_LIGHTS_OUT = soundPool.load(context, R.raw.start_race_back_count, 1);
     }
 
     //---- Methods ----
@@ -63,6 +66,10 @@ public class SoundPlayer {
         if(soundEnabled) {
             soundPool.play(sound, 1.0f, 1.0f, 1, 0, 1.0f);
         }
+    }
+
+    public void playBackCount() {
+        playSingleSound(AND_ITS_LIGHTS_OUT);
     }
 
     public void playLapCheckSound() {

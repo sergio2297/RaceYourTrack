@@ -1,6 +1,6 @@
 [
   {
-    "id": 1, "racewayFile": "circle.json", "laps": 3,
+    "id": 1, "racewayFile": "circle.json", "laps": 1,
     "scores": [
       {"requestTime": {"hours": 0, "mins": 1, "secs": 50, "millis": 0}, "coins": 10},
       {"requestTime": {"hours": 0, "mins": 1, "secs": 30, "millis": 0}, "coins": 100},

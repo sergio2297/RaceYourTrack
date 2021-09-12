@@ -21,6 +21,7 @@ public class CarControllerActivity extends AppCompatActivity {
 
     //---- Attributes ----
     private CarController carController;
+    protected Class activityClassToReturn = MainActivity.class;
 
     //---- View Elements ----
     private CarInfoFragment carInfoFragment;
@@ -79,8 +80,8 @@ public class CarControllerActivity extends AppCompatActivity {
          * This will return to the Main Activity without destroy and create it again. That's to
          * avoid disconnect from the RC car.
          */
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        Intent intent = new Intent(this, activityClassToReturn);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         super.onDestroy();
     }

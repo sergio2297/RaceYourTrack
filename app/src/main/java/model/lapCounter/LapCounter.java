@@ -15,18 +15,20 @@ import es.sfernandez.raceyourtrack.app_error_handling.AppUnCatchableException;
 public class LapCounter {
 
     //---- Constants and Definitions ----
+    public static final int CODE_LAP_CHECK = 0, CODE_COIN_CHECK = 1, CODE_END = 2, CODE_OTHERWISE = -1;
     private final char LAP_CHECKPOINT_KEY = 'C';
     private final char SPECIAL_CHECKPOINT_KEY = 'K';
     public interface LapCounterChangeStateListener {
-        void onLapCounterChangeState();
+        void onLapCounterChangeState(final int code);
     }
 
     //---- Attributes ----
     private boolean initialized = false;
     private List<LapCounterChangeStateListener> listListeners = new ArrayList<>();
 
+    private TimestampRaceYourTrack totalTime;
     private TimestampRaceYourTrack[] lapTimes;
-    private long lastTimestamp;
+    private long firstTimestamp, lastTimestamp;
     private int numOfLaps, currentLap;
     private boolean isWorking;
     private boolean thereIsSpecialCheckpoint, specialCheckpointFounded;
@@ -36,27 +38,30 @@ public class LapCounter {
 
     //---- Methods ----
     public void initialize(final int numOfLaps, final boolean thereIsSpecialCheckpoint) {
+        this.firstTimestamp = -1;
         this.lastTimestamp = -1;
         this.isWorking = false;
 
         this.numOfLaps = numOfLaps;
         this.currentLap = 0;
+        this.totalTime = null;
         this.lapTimes = new TimestampRaceYourTrack[numOfLaps];
 
         this.thereIsSpecialCheckpoint = thereIsSpecialCheckpoint;
         this.specialCheckpointFounded = false;
 
-//        this.listListeners.clear();
+        this.listListeners.clear();
 
         this.initialized = true;
-        executeListeners();
+        executeListeners(CODE_OTHERWISE);
     }
 
     public void start() {
         if(!initialized) {
             throw new AppUnCatchableException(new AppError(AppErrorHandler.CodeErrors.MUST_NOT_HAPPEN_LAP_COUNTER_NOT_INITIALIZED, "", RaceYourTrackApplication.getContext()));
         }
-        lastTimestamp = System.currentTimeMillis();
+        firstTimestamp = System.currentTimeMillis();
+        lastTimestamp = firstTimestamp;
         isWorking = true;
     }
 
@@ -64,7 +69,7 @@ public class LapCounter {
      * 0 if it was a lap check, 1 if it was a coin check, 2 if it was the end, -1 other case
      */
     public int checkPassed(final char checkedKey) {
-        int resultCode = -1;
+        int resultCode = CODE_OTHERWISE;
 
         switch(checkedKey) {
             case LAP_CHECKPOINT_KEY:
@@ -74,23 +79,23 @@ public class LapCounter {
                 ++currentLap;
                 if(currentLap == numOfLaps) {
                     end();
-                    resultCode = 2;
+                    resultCode = CODE_END;
                 } else {
-                    resultCode = 0;
+                    resultCode = CODE_LAP_CHECK;
                 }
                 break;
 
             case SPECIAL_CHECKPOINT_KEY:
                 specialCheckpointFounded = thereIsSpecialCheckpoint ? true : false;
-                resultCode = specialCheckpointFounded ? 1 : -1;
+                resultCode = specialCheckpointFounded ? CODE_COIN_CHECK : CODE_OTHERWISE;
                 break;
 
             default:
-                resultCode = -1;
+                resultCode = CODE_OTHERWISE;
                 break;
         }
 
-        executeListeners();
+        executeListeners(resultCode);
 
         return resultCode;
     }
@@ -98,12 +103,13 @@ public class LapCounter {
     public void end() {
         isWorking = false;
         initialized = false;
+        totalTime = TimestampRaceYourTrack.calculateTimestamp(firstTimestamp, lastTimestamp);
         printResult();
     }
 
-    private void executeListeners() {
+    private void executeListeners(final int code) {
         for(LapCounterChangeStateListener listener : listListeners) {
-            listener.onLapCounterChangeState();
+            listener.onLapCounterChangeState(code);
         }
     }
 
@@ -133,6 +139,19 @@ public class LapCounter {
 
     public Iterator<TimestampRaceYourTrack> getLapTimes() {
         return Arrays.stream(lapTimes).iterator();
+    }
+
+    public String getLapTimesString() {
+        String result = "";
+        for(int i = 0; i < numOfLaps; ++i) {
+            result += "Vuelta " + (i+1) + ": " + lapTimes[i].toString() + "\n";
+        }
+        result += "\nTotal: " + totalTime.toString();
+        return result;
+    }
+
+    public TimestampRaceYourTrack getTotalTime() {
+        return totalTime;
     }
 
     private void printResult() {

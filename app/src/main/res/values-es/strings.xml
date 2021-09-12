@@ -61,6 +61,8 @@
     <string name="number_of_laps">Vueltas: %1$d</string>
 
     <string name="show_full_raceway">Ver circuito</string>
+
+    <string name="accept">Aceptar</string>
     <!-- - - - - - -->
 
     <!-- Errors -->

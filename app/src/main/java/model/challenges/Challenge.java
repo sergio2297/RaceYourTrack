@@ -108,7 +108,35 @@ public class Challenge {
         dao.setPlayerTime(this.id, this.playerTime);
     }
 
+    public void unlock() {
+        unlocked = true;
+    }
+
+    private Challenge findChallenge(final List<Challenge> listChallenges, final int challengeId) {
+        Challenge challenge = null;
+        int i = 0;
+        while(i < listChallenges.size() && challenge == null) {
+            if(listChallenges.get(i).id == challengeId) {
+                challenge = listChallenges.get(i);
+            } else {
+                ++i;
+            }
+        }
+        return challenge;
+    }
+
+    public boolean canBeUnlocked(final List<Challenge> listChallenges) {
+        boolean canBeUnlocked = true;
+        int i = 0;
+        while(i < challengesRequired.length && canBeUnlocked) {
+            canBeUnlocked = findChallenge(listChallenges, challengesRequired[i]).hasBeenComplete();
+            ++i;
+        }
+        return canBeUnlocked;
+    }
+
     //---- Instance Methods ----
+
     public int getNumberOfLaps() {
         return laps;
     }
@@ -147,6 +175,18 @@ public class Challenge {
         return drawableId;
     }
 
+    public Integer getPlayerCoinsEarned() {
+        if(playerTime.compareTo(scores[2].getRequestTime()) <= 0) { // Gold
+            return scores[2].coins;
+        } else if(playerTime.compareTo(scores[1].getRequestTime()) <= 0) { // Silver
+            return scores[1].coins;
+        } else if(playerTime.compareTo(scores[0].getRequestTime()) <= 0) { // Bronze
+            return scores[0].coins;
+        } else {
+            return 0;
+        }
+    }
+
     public TimestampRaceYourTrack getPlayerTime() {
         return playerTime;
     }
@@ -157,6 +197,18 @@ public class Challenge {
 
     public boolean isUnlocked() {
         return unlocked;
+    }
+
+    public boolean hasSecret() {
+        return hasSecret;
+    }
+
+    public boolean hasBeenComplete() {
+        return playerTime != null && playerTime.compareTo(scores[0].getRequestTime()) <= 0;
+    }
+
+    public void setPlayerTime(final TimestampRaceYourTrack time) {
+        this.playerTime = time;
     }
 
     @Override

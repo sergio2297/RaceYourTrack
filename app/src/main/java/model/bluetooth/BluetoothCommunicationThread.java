@@ -72,11 +72,7 @@ public class BluetoothCommunicationThread extends Thread {
                         readMessage += (char) ((int) buffer[i]);
                     }
 
-                    if (!lapCounter.isStarted()) {
-                        Log.i("", "LapCounter Initialized");
-                        lapCounter.initialize(3, true);
-                        lapCounter.start();
-                    } else {
+                    if (lapCounter.isStarted()) {
                         int result = lapCounter.checkPassed(readMessage.charAt(0));
                         switch (result) {
                             case 0:

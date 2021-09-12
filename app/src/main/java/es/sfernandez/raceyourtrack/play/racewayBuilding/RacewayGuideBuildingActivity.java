@@ -1,5 +1,6 @@
 package es.sfernandez.raceyourtrack.play.racewayBuilding;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import es.sfernandez.raceyourtrack.R;
 import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
+import es.sfernandez.raceyourtrack.bluetoothConnection.BluetoothActivity;
+import es.sfernandez.raceyourtrack.carController.ChallengeCarControllerActivity;
 import model.Game;
 import model.raceway.Cell;
 import model.raceway.Raceway;
@@ -34,6 +37,7 @@ public class RacewayGuideBuildingActivity extends AppCompatActivity {
     private Cell[] sortedCells;
     private int cellSidePx, buttonsHeightPx, materialsWidthPx;
     private boolean buildFinished = false;
+    private boolean startDriving = false;
 
     //---- View Elements ----
     private RecyclerView recyclerView;
@@ -61,6 +65,14 @@ public class RacewayGuideBuildingActivity extends AppCompatActivity {
         if(recyclerView != null) {
             recyclerView.setAdapter(new PiecesCountRecyclerViewAdapter(raceway.getPiecesCount()));
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+//        if(startDriving) {
+//            startDriving();
+//        }
+        super.onDestroy();
     }
 
     private void loadViewElements() {
@@ -138,8 +150,9 @@ public class RacewayGuideBuildingActivity extends AppCompatActivity {
                 btnAction.setBackground(getDrawable(R.drawable.raceyourtrack_button));
             } else if(buildFinished) {
                 btnAction.setSelected(true);
-                Game.getInstance().getSoundPlayer().playCarPassingAwaySound();
-                //TODO: Comenzar a conducir
+                startDriving = true;
+//                finish();
+                startDriving();
             } else {
                 showRacewayInDialog();
             }
@@ -165,9 +178,10 @@ public class RacewayGuideBuildingActivity extends AppCompatActivity {
                         (raceway.getType() == Raceway.Type.CIRCUIT ? "circuito" : "tramo" ) + ".\n" +
                         "¡Ahora ve y conduce sobre él!", "", R.drawable.run_button);
                 dialog.setListener(() -> {
-                    Game.getInstance().getSoundPlayer().playCarPassingAwaySound();
                     dialog.dismiss();
-                    // TODO: Comenzar a conducir
+                    startDriving = true;
+//                    finish();
+                    startDriving();
                 });
                 dialog.show(getSupportFragmentManager(), "Tag");
             }
@@ -215,6 +229,18 @@ public class RacewayGuideBuildingActivity extends AppCompatActivity {
     private void showRacewayInDialog() {
         RacewayDialogC dialog = new RacewayDialogC(raceway, cellSidePx);
         dialog.show(getSupportFragmentManager(), "Tag");
+    }
+
+    private void startDriving() {
+        Game.getInstance().getSoundPlayer().playCarPassingAwaySound();
+        if(!Game.getInstance().isCarConnected()) {
+            Intent intent = new Intent(getApplicationContext(), BluetoothActivity.class);
+            intent.putExtra("targetActivity", ChallengeCarControllerActivity.class);
+            getApplicationContext().startActivity(intent);
+        } else {
+            Intent intent = new Intent(getApplicationContext(), ChallengeCarControllerActivity.class);
+            getApplicationContext().startActivity(intent);
+        }
     }
 }
 

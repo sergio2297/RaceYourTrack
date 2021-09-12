@@ -10,6 +10,7 @@ import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
 import es.sfernandez.raceyourtrack.app_error_handling.AppError;
 import es.sfernandez.raceyourtrack.app_error_handling.AppErrorHandler;
 import model.bluetooth.BluetoothCommunicationThread;
+import model.challenges.Challenge;
 import model.lapCounter.LapCounter;
 import model.soundPlayer.SoundPlayer;
 
@@ -23,8 +24,8 @@ public class Game {
     private int coins;
     private Car selectedCar;
 
-//    private Challenge challengeActivated; //TODO:
-    private boolean isChallengeMode = true;
+    private Challenge selectedChallenge;
+    private boolean isChallengeMode = false;
     private LapCounter lapCounter = new LapCounter();
 
     private BluetoothCommunicationThread communicationThread;
@@ -84,6 +85,14 @@ public class Game {
                 Log.i(Game.class.getCanonicalName(), "This should never happen");
             }
         }
+    }
+
+    public Challenge getSelectedChallenge() {
+        return selectedChallenge;
+    }
+
+    public void setSelectedChallenge(Challenge selectedChallenge) {
+        this.selectedChallenge = selectedChallenge;
     }
 
     public void setChallengeMode(final boolean challengeMode) {

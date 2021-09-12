@@ -1,12 +1,16 @@
 package utils;
 
 import android.content.Context;
+import android.view.Gravity;
+import android.widget.GridLayout;
 
 import androidx.fragment.app.FragmentManager;
 
 import java.io.IOException;
 import java.io.InputStream;
 
+import es.sfernandez.raceyourtrack.play.racewayBuilding.CellView;
+import model.raceway.Raceway;
 import utils.viewComponents.MsgDialogC;
 
 public abstract class Utils {
@@ -54,4 +58,35 @@ public abstract class Utils {
         }
         return jsonString;
     }
+
+    /**
+     * Print the raceway in the gridLayout passed as argument
+     * @param context
+     * @param raceway
+     * @param gridLayout
+     * @param cellSidePx
+     * @param buildingRepresentation
+     */
+    public static void constructRacewayOnGrid(final Context context, final Raceway raceway, final GridLayout gridLayout, final int cellSidePx, final boolean buildingRepresentation) {
+        gridLayout.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
+        gridLayout.setColumnCount(raceway.getNumOfCellsPerColumn());
+        gridLayout.setRowCount(raceway.getNumOfCellsPerRow());
+
+        for(int i = 0; i < gridLayout.getColumnCount() * gridLayout.getRowCount(); ++i) {
+            int row = i/raceway.getNumOfCellsPerColumn();
+            int col = i%raceway.getNumOfCellsPerColumn();
+            CellView cellView = new CellView(context, raceway.getCells()[row][col], cellSidePx, buildingRepresentation);
+
+            gridLayout.addView(cellView, i);
+
+            GridLayout.LayoutParams param = new GridLayout.LayoutParams();
+            param.height = cellSidePx;
+            param.width = cellSidePx;
+            param.setGravity(Gravity.CENTER);
+            param.rowSpec = GridLayout.spec(row, 1);
+            param.columnSpec = GridLayout.spec(col, 1);
+            cellView.setLayoutParams(param);
+        }
+    }
+
 }

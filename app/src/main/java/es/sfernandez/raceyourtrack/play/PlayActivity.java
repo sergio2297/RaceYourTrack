@@ -16,6 +16,7 @@ import java.util.List;
 import es.sfernandez.raceyourtrack.MainActivity;
 import es.sfernandez.raceyourtrack.R;
 import es.sfernandez.raceyourtrack.play.racewayBuilding.RacewayGuideBuildingActivity;
+import model.Game;
 import model.challenges.Challenge;
 import utils.viewComponents.SwitchButtonC;
 
@@ -55,6 +56,23 @@ public class PlayActivity extends AppCompatActivity {
 //        fragmentSpecial = new ListChallengesFragment();
 
         btnCircuits.click();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        List<Challenge> listChallenges = new ArrayList<>();
+        listChallenges.addAll(listCircuitsChallenges);
+        listChallenges.addAll(listTracksChallenges);
+
+        for(Challenge challenge : listChallenges) {
+            if(!challenge.isUnlocked() && challenge.canBeUnlocked(listChallenges)) {
+                challenge.unlock();
+                challenge.storeDataInDataBase();
+            }
+        }
+
     }
 
     @Override
@@ -133,8 +151,12 @@ public class PlayActivity extends AppCompatActivity {
     private void onChallengeSelected() {
         Challenge selectedChallenge = ((ListChallengesFragment)fragmentActive).getSelectedChallenge();
 
+        Game.getInstance().setSelectedChallenge(selectedChallenge);
+
         Intent intent = new Intent(getApplicationContext(), RacewayGuideBuildingActivity.class);
         intent.putExtra("raceway",selectedChallenge.getRaceway());
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         getApplicationContext().startActivity(intent);
     }
 }
