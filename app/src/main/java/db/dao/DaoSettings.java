@@ -16,6 +16,7 @@ public class DaoSettings extends AbstractDao {
     public static final String GENERAL_GROUP = "GENERAL";
     public static final String DATA_INITIALIZED_VAR = "DATA_INITIALIZED";
     public static final String SELECTED_CAR_VAR = "SELECTED_CAR";
+    public static final String CURRENT_COINS_VAR = "CURRENT_COINS";
     public static final String FALSE_VALUE = "FALSE";
     public static final String TRUE_VALUE = "TRUE";
 
@@ -50,6 +51,7 @@ public class DaoSettings extends AbstractDao {
         if(group.equals(GENERAL_GROUP)) {
             listAcceptableVariables.add(DATA_INITIALIZED_VAR);
             listAcceptableVariables.add(SELECTED_CAR_VAR);
+            listAcceptableVariables.add(CURRENT_COINS_VAR);
         } else if(group.equals(CONTROL_GROUP)) {
             listAcceptableVariables.add(CONTROL_CONFIG_TYPE_VAR);
             listAcceptableVariables.add(STEERING_VAR);

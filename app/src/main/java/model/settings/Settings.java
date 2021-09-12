@@ -44,6 +44,7 @@ public class Settings {
         listSettingsRows.add(new SettingsRow(DaoSettings.CONTROL_GROUP, DaoSettings.PEDALS_VAR, DrivingModeConfig.BASIC.getPedalsConfig().getName()));
         listSettingsRows.add(new SettingsRow(DaoSettings.CONTROL_GROUP, DaoSettings.STEERING_VAR, DrivingModeConfig.BASIC.getSteeringConfig().getName()));
         listSettingsRows.add(new SettingsRow(DaoSettings.CONTROL_GROUP, DaoSettings.TRANSMISSION_VAR, DrivingModeConfig.BASIC.getTransmissionConfig().getName()));
+        listSettingsRows.add(new SettingsRow(DaoSettings.GENERAL_GROUP, DaoSettings.CURRENT_COINS_VAR, "0"));
 
         DaoSettings daoSettings = new DaoSettings();
         for(SettingsRow row : listSettingsRows) {

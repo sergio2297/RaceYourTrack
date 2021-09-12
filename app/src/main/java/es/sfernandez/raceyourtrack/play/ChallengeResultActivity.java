@@ -55,7 +55,9 @@ public class ChallengeResultActivity extends AppCompatActivity {
 
     private void loadViewElements() {
 
-        Utils.constructRacewayOnGrid(this, challenge.getRaceway(), (GridLayout) findViewById(R.id.grid_layout_raceway_template), calculateDimensions(challenge.getRaceway()), false);
+        ((TextView) findViewById(R.id.txt_current_player_coins)).setText("" + Game.getInstance().getCoins());
+
+        Utils.constructRacewayOnGrid(this, challenge.getRaceway(), (GridLayout) findViewById(R.id.grid_layout_raceway_template), calculateDimensions(challenge.getRaceway()) - 20, false);
 
         ((TextView) findViewById(R.id.txt_challenge_bronze_time)).setText(challenge.getBronzeTime().toString());
         ((TextView) findViewById(R.id.txt_challenge_silver_time)).setText(challenge.getSilverTime().toString());
@@ -75,6 +77,15 @@ public class ChallengeResultActivity extends AppCompatActivity {
         this.btnAccept = findViewById(R.id.btn_accept_challenge_results);
         this.btnAccept.setOnClickListener(e -> {
             if (resultShowed) {
+                Game.getInstance().setCoins(Game.getInstance().getCoins() + challenge.getPlayerCoinsEarned());
+                ((TextView) findViewById(R.id.txt_current_player_coins)).setText("" + Game.getInstance().getCoins());
+                Game.getInstance().getSoundPlayer().playCoinCheckSound();
+                Game.getInstance().storeCoinsInDB();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }
                 finish();
             } else {
                 showViewElements();

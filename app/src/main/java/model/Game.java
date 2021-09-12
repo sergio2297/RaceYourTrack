@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.io.IOException;
 
+import db.dao.DaoSettings;
 import es.sfernandez.raceyourtrack.R;
 import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
 import es.sfernandez.raceyourtrack.app_error_handling.AppError;
@@ -36,6 +37,7 @@ public class Game {
     //---- Construction ----
     private Game() {
         selectedCar = Car.SPORT_CAR;
+        loadCoinsFromDB();
     }
 
     public static Game getInstance() {
@@ -110,4 +112,23 @@ public class Game {
         return soundPlayer;
     }
 
+    public int getCoins() {
+        return coins;
+    }
+
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
+
+    public void loadCoinsFromDB() {
+        try {
+            coins = Integer.parseInt(new DaoSettings().get(DaoSettings.GENERAL_GROUP, DaoSettings.CURRENT_COINS_VAR).getValue());
+        } catch (NumberFormatException ex) {
+            coins = 0;
+        }
+    }
+
+    public void storeCoinsInDB() {
+        new DaoSettings().set(DaoSettings.GENERAL_GROUP, DaoSettings.CURRENT_COINS_VAR, "" + coins);
+    }
 }
