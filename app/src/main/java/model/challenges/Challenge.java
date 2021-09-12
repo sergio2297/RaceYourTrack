@@ -20,6 +20,7 @@ import utils.Utils;
 public class Challenge {
 
     //---- Constants and Definitions ----
+    public static final int SPECIAL_CHECK_COINS_AWARD = 100;
     public class Score {
         @SerializedName("requestTime")
         private final TimestampRaceYourTrack requestTime;

@@ -219,11 +219,11 @@ public class Raceway implements Serializable {
                         }
                     }
 
-                    if((hasSecret && numOfSpecialPieces != 1) || (!hasSecret && numOfSpecialPieces != 0)) {
-                        throw new AppUnCatchableException(new AppError(AppErrorHandler.CodeErrors.RACEWAY_BUILDING_INCORRECT_NUMBER_OF_SPECIAL_PIECES, "The number of special checks is incorrect. Provided: " + numOfSpecialPieces + " Expected: " + (hasSecret ? 1 : 0), RaceYourTrackApplication.getContext()));
-                    }
-
                 }
+            }
+
+            if((hasSecret && numOfSpecialPieces != 1) || (!hasSecret && numOfSpecialPieces != 0)) {
+                throw new AppUnCatchableException(new AppError(AppErrorHandler.CodeErrors.RACEWAY_BUILDING_INCORRECT_NUMBER_OF_SPECIAL_PIECES, "The number of special checks is incorrect. Provided: " + numOfSpecialPieces + " Expected: " + (hasSecret ? 1 : 0), RaceYourTrackApplication.getContext()));
             }
 
             if((setCaughtOrderNumber.size() + numOfNoOrderedCells) != NUM_HORIZONTAL_CELLS*NUM_VERTICAL_CELLS) {

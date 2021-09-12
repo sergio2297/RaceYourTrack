@@ -72,12 +72,14 @@ public class ChallengeResultActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.txt_challenge_player_time)).setText("No has conseguido medalla");
         }
 
-        ((TextView) findViewById(R.id.txt_coins_earned_by_player)).setText("Has ganado: " + challenge.getPlayerCoinsEarned());
+        ((TextView) findViewById(R.id.txt_coins_earned_by_player)).setText("Has ganado: " + challenge.getPlayerCoinsEarned()
+            + ((lapCounter.isSpecialCheckpointFounded() && challenge.hasSecret()) ? " + " + Challenge.SPECIAL_CHECK_COINS_AWARD : ""));
 
         this.btnAccept = findViewById(R.id.btn_accept_challenge_results);
         this.btnAccept.setOnClickListener(e -> {
             if (resultShowed) {
-                Game.getInstance().setCoins(Game.getInstance().getCoins() + challenge.getPlayerCoinsEarned());
+                Game.getInstance().setCoins(Game.getInstance().getCoins() + challenge.getPlayerCoinsEarned() +
+                        ((lapCounter.isSpecialCheckpointFounded() && challenge.hasSecret()) ? Challenge.SPECIAL_CHECK_COINS_AWARD : 0));
                 ((TextView) findViewById(R.id.txt_current_player_coins)).setText("" + Game.getInstance().getCoins());
                 Game.getInstance().getSoundPlayer().playCoinCheckSound();
                 Game.getInstance().storeCoinsInDB();

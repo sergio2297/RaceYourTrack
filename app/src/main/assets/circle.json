@@ -1,6 +1,6 @@
 {
   "type": "CIRCUIT",
-  "hasSecret": false,
+  "hasSecret": true,
   "name": "Round Raceway",
   "description": "It's a simple racetrack. Only you have to do is turn right",
   "size": "SMALL",
@@ -35,7 +35,7 @@
       {
         "x": 1, "y": 1, "order": 4,
         "pieces": [[
-          {"x": 0, "y": 0, "piece": "STRAIGHT", "rotation": 0}
+          {"x": 0, "y": 0, "piece": "SPECIAL_CHECK_STRAIGHT", "rotation": 0}
         ]]
       },
       {
