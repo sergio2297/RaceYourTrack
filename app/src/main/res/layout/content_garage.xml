@@ -11,13 +11,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <android.widget.Button
+        <!--<android.widget.Button
             android:id="@+id/btn_cars"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/garage_background_style_buttons"
-            android:text="@string/cars"/>
+            android:text="@string/cars"/>-->
 
         <android.widget.Button
             android:id="@+id/btn_settings"

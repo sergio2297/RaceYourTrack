@@ -17,6 +17,7 @@ public class Piece implements Serializable {
     public enum Type {
         START_STRAIGHT(R.drawable.png_start_straight), GOAL_STRAIGHT(R.drawable.png_goal_straight), STRAIGHT(R.drawable.png_straight), SPECIAL_CHECK_STRAIGHT(R.drawable.png_special_check_straight),
         CURVE(R.drawable.png_curve), SPECIAL_CHECK_CURVE(R.drawable.png_special_check_curve),
+        INTERSECTION_UP(R.drawable.png_intersection_up), INTERSECTION_DOWN(R.drawable.png_intersection_down),
         NONE(-1); //NONE must be the last value in the enum
 
         //---- Attributes ----

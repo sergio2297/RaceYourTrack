@@ -37,12 +37,21 @@ public class RaceYourTrackDbHelper extends SQLiteOpenHelper {
             RaceYourTrackContract.ChallengesTable.COLUMN_PLAYER_TIME + " TEXT NOT NULL" +
             ");";
 
+    protected static final String SQL_CREATE_STEERING_WHEEL_COSMETICS_TABLE =
+            "CREATE TABLE " + RaceYourTrackContract.SteeringWheelCosmeticTable.TABLE_NAME + " (" +
+                    RaceYourTrackContract.SteeringWheelCosmeticTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    RaceYourTrackContract.SteeringWheelCosmeticTable.COLUMN_COSMETIC + " INTEGER NOT NULL," +
+                    RaceYourTrackContract.SteeringWheelCosmeticTable.COLUMN_UNLOCKED + " BOOLEAN NOT NULL" +
+                    ");";
+
     protected static final String SQL_DELETE_SETTINGS_TABLE =
             "DROP TABLE IF EXISTS " + RaceYourTrackContract.SettingsTable.TABLE_NAME + ";";
     protected static final String SQL_DELETE_CARS_TABLE =
             "DROP TABLE IF EXISTS " + RaceYourTrackContract.CarsTable.TABLE_NAME + ";";
     protected static final String SQL_DELETE_CHALLENGES_TABLE =
             "DROP TABLE IF EXISTS " + RaceYourTrackContract.ChallengesTable.TABLE_NAME + ";";
+    protected static final String SQL_DELETE_STEERING_WHEEL_COSMETICS_TABLE =
+            "DROP TABLE IF EXISTS " + RaceYourTrackContract.SteeringWheelCosmeticTable.TABLE_NAME + ";";
 
     //---- Constructor ----
     public RaceYourTrackDbHelper(Context context, String dataBaseName) {
@@ -55,6 +64,7 @@ public class RaceYourTrackDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_SETTINGS_TABLE);
         db.execSQL(SQL_CREATE_CARS_TABLE);
         db.execSQL(SQL_CREATE_CHALLENGES_TABLE);
+        db.execSQL(SQL_CREATE_STEERING_WHEEL_COSMETICS_TABLE);
     }
 
     @Override
@@ -62,6 +72,7 @@ public class RaceYourTrackDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_SETTINGS_TABLE);
         db.execSQL(SQL_DELETE_CARS_TABLE);
         db.execSQL(SQL_DELETE_CHALLENGES_TABLE);
+        db.execSQL(SQL_DELETE_STEERING_WHEEL_COSMETICS_TABLE);
         onCreate(db);
     }
 

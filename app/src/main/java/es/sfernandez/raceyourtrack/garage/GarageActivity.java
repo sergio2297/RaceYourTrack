@@ -19,7 +19,7 @@ public class GarageActivity extends AppCompatActivity {
     //---- Attributes ----
 
     //---- View Elements ----
-    private Fragment fragmentWelcome, fragmentCars, fragmentSettings;
+    private Fragment fragmentWelcome, fragmentCosmetics, fragmentSettings;
     private Fragment fragmentActive;
 
     private SwitchButtonC btnCars, btnSettings;
@@ -34,8 +34,10 @@ public class GarageActivity extends AppCompatActivity {
         addListenersToViewElements();
 
         fragmentWelcome = new DialogFragment();
-        fragmentCars = new DialogFragment();
+        fragmentCosmetics = new DialogFragment();
         fragmentSettings = new SettingsFragment();
+
+        btnSettings.click();
     }
 
     @Override
@@ -68,26 +70,26 @@ public class GarageActivity extends AppCompatActivity {
 
     //---- Methods ----
     private void initializeViewElements() {
-        btnCars = new SwitchButtonC(findViewById(R.id.btn_cars));
+//        btnCars = new SwitchButtonC(findViewById(R.id.btn_cars));
         btnSettings = new SwitchButtonC(findViewById(R.id.btn_settings));
     }
 
     private void addListenersToViewElements() {
-        btnCars.setOnActivateListener( () -> {
-            btnSettings.deselect();
-            moveToFragment(fragmentCars);
-        });
-        btnCars.setOnDeactivateListener( () -> {
-            moveToFragment(fragmentWelcome);
-        });
+//        btnCars.setOnActivateListener( () -> {
+//            btnSettings.deselect();
+//            moveToFragment(fragmentCosmetics);
+//        });
+//        btnCars.setOnDeactivateListener( () -> {
+//            moveToFragment(fragmentWelcome);
+//        });
 
         btnSettings.setOnActivateListener( () -> {
-            btnCars.deselect();
+//            btnCars.deselect();
             moveToFragment(fragmentSettings);
         });
-        btnSettings.setOnDeactivateListener( () -> {
-            moveToFragment(fragmentWelcome);
-        });
+//        btnSettings.setOnDeactivateListener( () -> {
+//            moveToFragment(fragmentWelcome);
+//        });
     }
 
     private void moveToFragment(final Fragment fragmentToMove) {

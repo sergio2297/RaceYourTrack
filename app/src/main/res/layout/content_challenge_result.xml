@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/txt_current_player_coins"
@@ -36,12 +37,24 @@
         android:orientation="vertical"
         android:background="@drawable/exterior_container">
 
+        <TextView
+            android:id="@+id/txt_challenge_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/h2_character_size"
+            android:layout_gravity="left"
+            android:layout_margin="@dimen/large_padding"
+            android:gravity="left"
+            android:visibility="gone"/>
+
         <GridLayout
             android:id="@+id/grid_layout_raceway_template"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:layout_margin="@dimen/large_padding"
             android:visibility="gone"/>
 
         <LinearLayout
@@ -166,6 +179,32 @@
                 android:layout_height="@dimen/challenge_info_coin_side"
                 android:gravity="center"
                 android:layout_marginRight="@dimen/small_padding"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyt_special_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_margin="@dimen/large_padding">
+
+            <TextView
+                android:id="@+id/txt_special_check_found"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textColor="@color/white"
+                android:textSize="@dimen/h2_character_size"/>
+
+            <ImageView
+                android:id="@+id/img_special_check"
+                android:layout_width="@dimen/challenge_info_coin_side"
+                android:layout_height="@dimen/challenge_info_coin_side"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/small_padding"
+                android:background="@drawable/png_coin_disabled"/>
 
         </LinearLayout>
 

@@ -1,4 +1,4 @@
-package es.sfernandez.raceyourtrack.play;
+package es.sfernandez.raceyourtrack.garage;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,7 +17,7 @@ import model.challenges.Challenge;
 import model.lapCounter.TimestampRaceYourTrack;
 import utils.ObjectProperty;
 
-public class ListChallengesRecyclerViewAdapter extends RecyclerView.Adapter<ListChallengesRecyclerViewAdapter.ViewHolder> {
+public class ListCosmeticsRecyclerViewAdapter extends RecyclerView.Adapter<ListCosmeticsRecyclerViewAdapter.ViewHolder> {
 
     //---- Constants and Definitions ----
     protected static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -50,7 +50,7 @@ public class ListChallengesRecyclerViewAdapter extends RecyclerView.Adapter<List
                 ((TextView) view.findViewById(R.id.txt_challenge_raceway_name)).setText(challenge.getRaceway().getName());
                 ((TextView) view.findViewById(R.id.txt_challenge_laps)).setText(
                         String.format(view.getResources().getString(R.string.number_of_laps), challenge.getNumberOfLaps()));
-                ((ImageView) view.findViewById(R.id.img_challenge_difficulty)).setImageDrawable(context.getDrawable(challenge.getDifficultyDrawable()));
+                ((TextView) view.findViewById(R.id.img_challenge_difficulty)).setText("" + challenge.getDifficulty());
 
                 ((TextView) view.findViewById(R.id.txt_challenge_bronze_time)).setText(challenge.getBronzeTime().toString());
                 ((TextView) view.findViewById(R.id.txt_challenge_silver_time)).setText(challenge.getSilverTime().toString());
@@ -66,7 +66,7 @@ public class ListChallengesRecyclerViewAdapter extends RecyclerView.Adapter<List
                 ((TextView) view.findViewById(R.id.txt_challenge_raceway_name)).setText(challenge.getRaceway().getName());
                 ((TextView) view.findViewById(R.id.txt_challenge_laps)).setText(
                         String.format(view.getResources().getString(R.string.number_of_laps), challenge.getNumberOfLaps()));
-                ((ImageView) view.findViewById(R.id.img_challenge_difficulty)).setImageDrawable(context.getDrawable(challenge.getDifficultyDrawable()));
+                ((TextView) view.findViewById(R.id.img_challenge_difficulty)).setText("" + challenge.getDifficulty());
 
                 ((TextView) view.findViewById(R.id.txt_challenge_bronze_time)).setText("???");
                 ((TextView) view.findViewById(R.id.txt_challenge_silver_time)).setText("???");
@@ -88,7 +88,7 @@ public class ListChallengesRecyclerViewAdapter extends RecyclerView.Adapter<List
     protected final ObjectProperty<Challenge> fragmentSelectedChallenge;
 
     //---- Constructor ----
-    public ListChallengesRecyclerViewAdapter(final List<Challenge> listChallenges, ObjectProperty<Challenge> selectedChallenge) {
+    public ListCosmeticsRecyclerViewAdapter(final List<Challenge> listChallenges, ObjectProperty<Challenge> selectedChallenge) {
         this.listChallenges = listChallenges;
         this.fragmentSelectedChallenge = selectedChallenge;
     }

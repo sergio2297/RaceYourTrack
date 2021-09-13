@@ -36,14 +36,30 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/h3_character_size"/>
 
-            <TextView
-                android:id="@+id/txt_challenge_difficulty"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/h3_character_size"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/h3_character_size"
+                    android:text="Dificultad:"/>
+
+                <ImageView
+                    android:id="@+id/img_challenge_difficulty"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/normal_padding"
+                    android:layout_weight="2"
+                    android:gravity="center"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

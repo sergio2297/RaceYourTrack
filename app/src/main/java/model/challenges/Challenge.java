@@ -137,7 +137,6 @@ public class Challenge {
     }
 
     //---- Instance Methods ----
-
     public int getNumberOfLaps() {
         return laps;
     }
@@ -148,6 +147,16 @@ public class Challenge {
 
     public int getDifficulty() {
         return difficulty;
+    }
+
+    public int getDifficultyDrawable() {
+        if(difficulty <= 8) {
+            return R.drawable.png_easy_challenge;
+        } else if(difficulty <= 15) {
+            return R.drawable.png_normal_challenge;
+        } else {
+            return R.drawable.png_hard_challenge;
+        }
     }
 
     public TimestampRaceYourTrack getBronzeTime() {

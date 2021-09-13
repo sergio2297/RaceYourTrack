@@ -56,8 +56,9 @@ public class ChallengeResultActivity extends AppCompatActivity {
     private void loadViewElements() {
 
         ((TextView) findViewById(R.id.txt_current_player_coins)).setText("" + Game.getInstance().getCoins());
+        ((TextView) findViewById(R.id.txt_challenge_name)).setText(challenge.getRaceway().getName());
 
-        Utils.constructRacewayOnGrid(this, challenge.getRaceway(), (GridLayout) findViewById(R.id.grid_layout_raceway_template), calculateDimensions(challenge.getRaceway()) - 20, false);
+        Utils.constructRacewayOnGrid(this, challenge.getRaceway(), (GridLayout) findViewById(R.id.grid_layout_raceway_template), calculateDimensions(challenge.getRaceway()) - 40, false);
 
         ((TextView) findViewById(R.id.txt_challenge_bronze_time)).setText(challenge.getBronzeTime().toString());
         ((TextView) findViewById(R.id.txt_challenge_silver_time)).setText(challenge.getSilverTime().toString());
@@ -72,6 +73,16 @@ public class ChallengeResultActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.txt_challenge_player_time)).setText("No has conseguido medalla");
         }
 
+        if(challenge.hasSecret()) {
+            if(lapCounter.isSpecialCheckpointFounded()) {
+                ((TextView) findViewById(R.id.txt_special_check_found)).setText("¡Has recogido la moneda secreta!");
+                ((ImageView) findViewById(R.id.img_special_check)).setImageDrawable(getDrawable(R.drawable.png_coin));
+            } else {
+                ((TextView) findViewById(R.id.txt_special_check_found)).setText("No has recogido la moneda secreta");
+                ((ImageView) findViewById(R.id.img_special_check)).setImageDrawable(getDrawable(R.drawable.png_coin_disabled));
+            }
+        }
+
         ((TextView) findViewById(R.id.txt_coins_earned_by_player)).setText("Has ganado: " + challenge.getPlayerCoinsEarned()
             + ((lapCounter.isSpecialCheckpointFounded() && challenge.hasSecret()) ? " + " + Challenge.SPECIAL_CHECK_COINS_AWARD : ""));
 
@@ -81,7 +92,7 @@ public class ChallengeResultActivity extends AppCompatActivity {
                 Game.getInstance().setCoins(Game.getInstance().getCoins() + challenge.getPlayerCoinsEarned() +
                         ((lapCounter.isSpecialCheckpointFounded() && challenge.hasSecret()) ? Challenge.SPECIAL_CHECK_COINS_AWARD : 0));
                 ((TextView) findViewById(R.id.txt_current_player_coins)).setText("" + Game.getInstance().getCoins());
-                Game.getInstance().getSoundPlayer().playCoinCheckSound();
+//                Game.getInstance().getSoundPlayer().playCoinCheckSound();
                 Game.getInstance().storeCoinsInDB();
                 try {
                     Thread.sleep(1000);
@@ -99,11 +110,13 @@ public class ChallengeResultActivity extends AppCompatActivity {
 
     private void showViewElements() {
         List<View> listComponents = new ArrayList<>();
+        listComponents.add(findViewById(R.id.txt_challenge_name));
         listComponents.add(findViewById(R.id.grid_layout_raceway_template));
         listComponents.add(findViewById(R.id.lyt_challenge_request_times));
         listComponents.add(findViewById(R.id.txt_player_times));
         listComponents.add(findViewById(R.id.lyt_player_medal));
-        listComponents.add(findViewById(R.id.lyt_coins_earned));
+//        listComponents.add(findViewById(R.id.lyt_coins_earned));
+        listComponents.add(findViewById(R.id.lyt_special_check));
         listComponents.add(findViewById(R.id.btn_accept_challenge_results));
 
         Iterator<View> it = listComponents.iterator();

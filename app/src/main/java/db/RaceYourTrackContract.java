@@ -32,4 +32,10 @@ public final class RaceYourTrackContract {
         public static final String COLUMN_PLAYER_TIME = "playerTime";
     }
 
+    //---- STEERING WHEEL COSMETICS TABLE ----
+    public static abstract class SteeringWheelCosmeticTable implements BaseColumns {
+        public static final String TABLE_NAME = "SteeringWheelCosmetics";
+        public static final String COLUMN_COSMETIC = "cosmetic";
+        public static final String COLUMN_UNLOCKED = "unlocked";
+    }
 }
