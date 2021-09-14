@@ -73,7 +73,7 @@
         <activity
             android:name=".play.racewayBuilding.RacewayGuideBuildingActivity"
             android:screenOrientation="landscape"
-            android:noHistory="false"
+            android:noHistory="true"
             android:theme="@style/Theme.RaceYourTrack">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

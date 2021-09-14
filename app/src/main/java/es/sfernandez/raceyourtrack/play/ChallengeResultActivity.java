@@ -81,6 +81,8 @@ public class ChallengeResultActivity extends AppCompatActivity {
                 ((TextView) findViewById(R.id.txt_special_check_found)).setText("No has recogido la moneda secreta");
                 ((ImageView) findViewById(R.id.img_special_check)).setImageDrawable(getDrawable(R.drawable.png_coin_disabled));
             }
+        } else {
+            findViewById(R.id.img_special_check).setVisibility(View.GONE);
         }
 
         ((TextView) findViewById(R.id.txt_coins_earned_by_player)).setText("Has ganado: " + challenge.getPlayerCoinsEarned()
@@ -144,6 +146,8 @@ public class ChallengeResultActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Intent intent = new Intent(this, PlayActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         getApplicationContext().startActivity(intent);
     }
 

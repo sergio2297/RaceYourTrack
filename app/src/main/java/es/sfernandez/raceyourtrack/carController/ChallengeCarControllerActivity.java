@@ -21,6 +21,7 @@ public class ChallengeCarControllerActivity extends CarControllerActivity {
                 Game.getInstance().getSelectedChallenge().hasSecret());
         lapCounter.addListener(code -> {
             if(code == LapCounter.CODE_END) {
+                Game.getInstance().getSoundPlayer().playLapCheckSound();
                 finish();
             }
         });

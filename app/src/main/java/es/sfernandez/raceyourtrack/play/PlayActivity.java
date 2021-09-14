@@ -25,6 +25,7 @@ public class PlayActivity extends AppCompatActivity {
     //---- Attributes ----
     private final List<Challenge> listCircuitsChallenges = new ArrayList<>();
     private final List<Challenge> listTracksChallenges = new ArrayList<>();
+    private boolean challengeSelected = false;
 
     //---- View Elements ----
     private ListChallengesFragment fragmentCircuits, fragmentTracks, fragmentSpecial;
@@ -77,15 +78,13 @@ public class PlayActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        /*
-         * This will return to the Main Activity without destroy and create it again. That's to
-         * avoid disconnect from the RC car.
-         */
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
         super.onDestroy();
+        if(!challengeSelected) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -150,13 +149,13 @@ public class PlayActivity extends AppCompatActivity {
 
     private void onChallengeSelected() {
         Challenge selectedChallenge = ((ListChallengesFragment)fragmentActive).getSelectedChallenge();
-
         Game.getInstance().setSelectedChallenge(selectedChallenge);
 
+        challengeSelected = true;
+
         Intent intent = new Intent(getApplicationContext(), RacewayGuideBuildingActivity.class);
-        intent.putExtra("raceway",selectedChallenge.getRaceway());
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        getApplicationContext().startActivity(intent);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 }

@@ -50,7 +50,7 @@ public class RacewayGuideBuildingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        raceway = (Raceway) getIntent().getSerializableExtra("raceway");
+        raceway = Game.getInstance().getSelectedChallenge().getRaceway();
         raceway.initPiecesCount();
         calculateDimensions(raceway);
         this.sortedCells = raceway.getCellsSorted();
