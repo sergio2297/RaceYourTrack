@@ -84,7 +84,7 @@ public class Challenge {
         this.raceway = Raceway.loadFromJson(racewayFileName);
         this.raceway.initPiecesCount();
         this.hasSecret = raceway.hasSecret();
-        this.difficulty = (raceway.calculateDifficulty() * laps) / 10; //A number between 1 and 5
+        this.difficulty = (raceway.calculateDifficulty() * laps); //A number between 1 and 5
         this.scores = scores;
         this.laps = laps;
         this.challengesRequired = challengesRequired;
@@ -150,9 +150,9 @@ public class Challenge {
     }
 
     public int getDifficultyDrawable() {
-        if(difficulty <= 8) {
+        if(difficulty <= 5) {
             return R.drawable.png_easy_challenge;
-        } else if(difficulty <= 15) {
+        } else if(difficulty <= 12) {
             return R.drawable.png_normal_challenge;
         } else {
             return R.drawable.png_hard_challenge;

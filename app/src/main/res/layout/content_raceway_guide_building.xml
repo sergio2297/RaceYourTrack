@@ -19,7 +19,7 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_marginHorizontal="@dimen/normal_spacing"
+            android:padding="@dimen/normal_spacing"
             android:background="@drawable/intermediate_container"/>
 
         <LinearLayout

@@ -7,6 +7,7 @@ import java.util.Queue;
 
 import model.Car;
 import model.Game;
+import model.settings.Settings;
 import model.settings.configurable.TransmissionConfig;
 
 /**
@@ -81,7 +82,11 @@ public class CarController extends Thread {
                     new TransmissionSystemController().buildActionConfigSequentialShift()
                 );
         this.addTransmissionAction(transmissionSystemController.buildActionConfigNumOfGears(car.getNumOfGears()));
-        this.addTransmissionAction(transmissionSystemController.buildActionNeutral());
+        if(Settings.getInstance().getTransmissionConfig().equals(TransmissionConfig.AUTOMATIC)) {
+            this.addTransmissionAction(transmissionSystemController.buildActionShiftTo(1));
+        } else {
+            this.addTransmissionAction(transmissionSystemController.buildActionNeutral());
+        }
     }
 
     private String constructCommand() {

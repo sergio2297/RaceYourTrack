@@ -1,0 +1,55 @@
+{
+  "type": "TRACK",
+  "hasSecret": true,
+  "name": "Tramo con dos curvas",
+  "description": "Un tramo con dos curvas. Aunque puedes ir a por el secreto",
+  "size": "NORMAL",
+  "cells": [
+    [
+      {
+        "x": 0, "y": 0, "order": 1,
+        "pieces": [
+          [{"x": 0, "y": 0, "piece": "START_STRAIGHT", "rotation": 0}, {"x": 1, "y": 0, "piece": "STRAIGHT", "rotation": 0}],
+          [{"x": 0, "y": 1, "piece": "CURVE", "rotation": 0}, {"x": 1, "y": 1, "piece": "STRAIGHT", "rotation": 0}]
+        ]
+      },
+      {
+        "x": 1, "y": 0, "order": 2,
+        "pieces": [
+          [{"x": 0, "y": 0, "piece": "CURVE", "rotation": 1}, {"x": 1, "y": 0, "piece": "NONE", "rotation": 0}],
+          [{"x": 0, "y": 1, "piece": "INTERSECTION_UP", "rotation": -1}, {"x": 1, "y": 1, "piece": "NONE", "rotation": 0}]
+        ]
+      },
+      {
+        "x": 2, "y": 0, "order": 0,
+        "pieces": [
+          [{"x": 0, "y": 0, "piece": "NONE", "rotation": 0}, {"x": 1, "y": 0, "piece": "NONE", "rotation": 2}],
+          [{"x": 0, "y": 1, "piece": "NONE", "rotation": 1}, {"x": 1, "y": 1, "piece": "NONE", "rotation": 0}]
+        ]
+      }
+    ],
+    [
+      {
+        "x": 0, "y": 1, "order": 3,
+        "pieces": [
+          [{"x": 0, "y": 0, "piece": "STRAIGHT", "rotation": 1}, {"x": 1, "y": 0, "piece": "NONE", "rotation": 0}],
+          [{"x": 0, "y": 1, "piece": "CURVE", "rotation": -1}, {"x": 1, "y": 1, "piece": "STRAIGHT", "rotation": 0}]
+        ]
+      },
+      {
+        "x": 1, "y": 1, "order": 4,
+        "pieces": [
+          [{"x": 0, "y": 0, "piece": "CURVE", "rotation": -1}, {"x": 1, "y": 0, "piece": "STRAIGHT", "rotation": 0}],
+          [{"x": 0, "y": 1, "piece": "SPECIAL_CHECK_STRAIGHT", "rotation": 0}, {"x": 1, "y": 1, "piece": "STRAIGHT", "rotation": 0}]
+        ]
+      },
+      {
+        "x": 2, "y": 1, "order": 5,
+        "pieces": [
+          [{"x": 0, "y": 0, "piece": "INTERSECTION_DOWN", "rotation": 0}, {"x": 1, "y": 0, "piece": "GOAL_STRAIGHT", "rotation": 2}],
+          [{"x": 0, "y": 1, "piece": "CURVE", "rotation": 2}, {"x": 1, "y": 1, "piece": "NONE", "rotation": 0}]
+        ]
+      }
+    ]
+  ]
+}

@@ -206,7 +206,10 @@ public class RacewayGuideBuildingActivity extends AppCompatActivity {
 
         this.buttonsHeightPx = (int)(screenWidth * BUTTONS_HEIGHT_PERCENTAGE);
         this.materialsWidthPx = (int)(screenHeight * MATERIALS_WIDTH_PERCENTAGE);
-        this.cellSidePx = Math.min((screenWidth - buttonsHeightPx) / numOfRowsOnScreen, (screenHeight - materialsWidthPx) / numOfColumnsOnScreen);
+        this.cellSidePx = Math.min((screenWidth - buttonsHeightPx) / numOfRowsOnScreen, (screenHeight - materialsWidthPx) / numOfColumnsOnScreen) - 10;
+        if(raceway.getSize().equals(Raceway.Dimension.LARGE)) {
+            this.cellSidePx = this.cellSidePx % 2 == 0 ? this.cellSidePx +1 : this.cellSidePx;
+        }
     }
 
     private void loadCellInScreen(final Cell cell) {

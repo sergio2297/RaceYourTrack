@@ -24,11 +24,43 @@
     ], "challengesRequired": []
   },
   {
-    "id": 4, "racewayFile": "make_a_decision_track.json", "laps": 1,
+    "id": 4, "racewayFile": "drag_track.json", "laps": 1,
     "scores": [
-      {"requestTime": {"hours": 0, "mins": 2, "secs": 30, "millis": 0}, "coins": 25},
-      {"requestTime": {"hours": 0, "mins": 2, "secs": 0, "millis": 0}, "coins": 75},
-      {"requestTime": {"hours": 0, "mins": 1, "secs": 30, "millis": 0}, "coins": 125}
+      {"requestTime": {"hours": 0, "mins": 0, "secs": 50, "millis": 0}, "coins": 25},
+      {"requestTime": {"hours": 0, "mins": 0, "secs": 30, "millis": 0}, "coins": 75},
+      {"requestTime": {"hours": 0, "mins": 0, "secs": 15, "millis": 0}, "coins": 125}
     ], "challengesRequired": []
+  },
+  {
+    "id": 5, "racewayFile": "make_a_decision_track.json", "laps": 1,
+    "scores": [
+      {"requestTime": {"hours": 0, "mins": 1, "secs": 0, "millis": 0}, "coins": 25},
+      {"requestTime": {"hours": 0, "mins": 0, "secs": 40, "millis": 0}, "coins": 75},
+      {"requestTime": {"hours": 0, "mins": 0, "secs": 30, "millis": 0}, "coins": 125}
+    ], "challengesRequired": [4]
+  },
+  {
+    "id": 6, "racewayFile": "two_turns_track.json", "laps": 1,
+    "scores": [
+      {"requestTime": {"hours": 0, "mins": 1, "secs": 0, "millis": 0}, "coins": 25},
+      {"requestTime": {"hours": 0, "mins": 0, "secs": 35, "millis": 0}, "coins": 75},
+      {"requestTime": {"hours": 0, "mins": 0, "secs": 20, "millis": 0}, "coins": 125}
+    ], "challengesRequired": [5]
+  },
+  {
+    "id": 7, "racewayFile": "ultimate_track.json", "laps": 1,
+    "scores": [
+      {"requestTime": {"hours": 0, "mins": 1, "secs": 10, "millis": 0}, "coins": 25},
+      {"requestTime": {"hours": 0, "mins": 0, "secs": 50, "millis": 0}, "coins": 75},
+      {"requestTime": {"hours": 0, "mins": 0, "secs": 35, "millis": 0}, "coins": 125}
+    ], "challengesRequired": [6]
+  },
+  {
+    "id": 8, "racewayFile": "ultimate_track_with_special_check.json", "laps": 1,
+    "scores": [
+      {"requestTime": {"hours": 0, "mins": 1, "secs": 30, "millis": 0}, "coins": 25},
+      {"requestTime": {"hours": 0, "mins": 1, "secs": 0, "millis": 0}, "coins": 75},
+      {"requestTime": {"hours": 0, "mins": 0, "secs": 40, "millis": 0}, "coins": 125}
+    ], "challengesRequired": [6]
   }
 ]
