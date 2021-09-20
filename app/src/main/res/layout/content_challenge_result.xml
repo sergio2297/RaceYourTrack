@@ -235,14 +235,35 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_accept_challenge_results"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Ver resultados"
-        android:padding="@dimen/normal_padding"
-        android:layout_marginTop="@dimen/large_padding"
-        android:background="@drawable/raceyourtrack_button"/>
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btn_restart_challenge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Reiniciar nivel"
+            android:padding="@dimen/normal_padding"
+            android:layout_marginVertical="@dimen/large_padding"
+            android:layout_marginRight="@dimen/large_padding"
+            android:background="@drawable/raceyourtrack_button"
+            android:visibility="gone"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/btn_accept_challenge_results"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Ver resultados"
+            android:padding="@dimen/normal_padding"
+            android:layout_marginVertical="@dimen/large_padding"
+            android:background="@drawable/raceyourtrack_button"/>
+
+    </LinearLayout>
 
 </LinearLayout>

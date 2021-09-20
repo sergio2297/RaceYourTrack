@@ -21,7 +21,7 @@
       {"requestTime": {"hours": 0, "mins": 2, "secs": 30, "millis": 0}, "coins": 25},
       {"requestTime": {"hours": 0, "mins": 2, "secs": 0, "millis": 0}, "coins": 75},
       {"requestTime": {"hours": 0, "mins": 1, "secs": 30, "millis": 0}, "coins": 125}
-    ], "challengesRequired": []
+    ], "challengesRequired": [1]
   },
   {
     "id": 4, "racewayFile": "drag_track.json", "laps": 1,

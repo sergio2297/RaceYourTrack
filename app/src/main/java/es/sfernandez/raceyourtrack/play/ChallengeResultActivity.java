@@ -19,6 +19,8 @@ import java.util.List;
 
 import es.sfernandez.raceyourtrack.R;
 import es.sfernandez.raceyourtrack.RaceYourTrackApplication;
+import es.sfernandez.raceyourtrack.bluetoothConnection.BluetoothActivity;
+import es.sfernandez.raceyourtrack.carController.ChallengeCarControllerActivity;
 import model.Game;
 import model.challenges.Challenge;
 import model.lapCounter.LapCounter;
@@ -30,13 +32,12 @@ public class ChallengeResultActivity extends AppCompatActivity {
     //---- Constants and Definitions ----
 
     //---- Attributes ----
-    private boolean resultShowed = false;
+    private boolean resultShowed = false, restart = false;
     private Challenge challenge = Game.getInstance().getSelectedChallenge();
     private LapCounter lapCounter = Game.getInstance().getLapCounter();
 
     //---- View Elements ----
-
-    private Button btnAccept;
+    private Button btnAccept, btnRestart;
 
     //---- Constructor ----
     public ChallengeResultActivity() {
@@ -88,6 +89,12 @@ public class ChallengeResultActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.txt_coins_earned_by_player)).setText("Has ganado: " + challenge.getPlayerCoinsEarned()
             + ((lapCounter.isSpecialCheckpointFounded() && challenge.hasSecret()) ? " + " + Challenge.SPECIAL_CHECK_COINS_AWARD : ""));
 
+        this.btnRestart = findViewById(R.id.btn_restart_challenge);
+        this.btnRestart.setOnClickListener(e -> {
+            restart = true;
+            btnAccept.performClick();
+        });
+
         this.btnAccept = findViewById(R.id.btn_accept_challenge_results);
         this.btnAccept.setOnClickListener(e -> {
             if (resultShowed) {
@@ -120,6 +127,7 @@ public class ChallengeResultActivity extends AppCompatActivity {
 //        listComponents.add(findViewById(R.id.lyt_coins_earned));
         listComponents.add(findViewById(R.id.lyt_special_check));
         listComponents.add(findViewById(R.id.btn_accept_challenge_results));
+        listComponents.add(findViewById(R.id.btn_restart_challenge));
 
         Iterator<View> it = listComponents.iterator();
         while(it.hasNext()) {
@@ -145,10 +153,22 @@ public class ChallengeResultActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Intent intent = new Intent(this, PlayActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        getApplicationContext().startActivity(intent);
+        if(restart) {
+            Game.getInstance().getSoundPlayer().playCarPassingAwaySound();
+            if(!Game.getInstance().isCarConnected()) {
+                Intent intent = new Intent(getApplicationContext(), BluetoothActivity.class);
+                intent.putExtra("targetActivity", ChallengeCarControllerActivity.class);
+                getApplicationContext().startActivity(intent);
+            } else {
+                Intent intent = new Intent(getApplicationContext(), ChallengeCarControllerActivity.class);
+                getApplicationContext().startActivity(intent);
+            }
+        } else {
+            Intent intent = new Intent(this, PlayActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            getApplicationContext().startActivity(intent);
+        }
     }
 
     /**

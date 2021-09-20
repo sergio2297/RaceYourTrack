@@ -71,7 +71,7 @@ public class DaoSettings extends AbstractDao {
      */
     public boolean isDataInitialized() {
         return get(GENERAL_GROUP, DATA_INITIALIZED_VAR) != null &&
-                get(GENERAL_GROUP, DATA_INITIALIZED_VAR).getValue() == TRUE_VALUE;
+                get(GENERAL_GROUP, DATA_INITIALIZED_VAR).getValue().equals(TRUE_VALUE);
     }
 
     /**
